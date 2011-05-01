@@ -20,8 +20,8 @@ function get_text($name)
     return implode("#", $matches[1]);
 }
 
-$names = file("girl_full.txt");
-$r = fopen("girl_full_result.txt", "w");
+$names = file("Names/girl_full.txt");
+$r = fopen("Names/girl_full_result.txt", "w");
 foreach ($names as $key => $value)
 {
     $nn = get_text($value);

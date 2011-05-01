@@ -1,0 +1,8 @@
+
+    public function testFatherWoman{% id %}()
+    {
+        $this->object->setFatherName('{% father %}');
+        $this->object->setGender(2);
+        
+        $this->assertEquals(explode(',','{% fatherOK %}'), $this->object->getFatherNameCase());
+    }
