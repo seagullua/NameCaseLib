@@ -38,6 +38,7 @@ class NCLNameCaseRuTest extends PHPUnit_Framework_TestCase
     public function test2()
     {
         $this->object->setSecondName('Касюк');
+        $this->object->setGender(1);
         $this->assertEquals('Касюка', $this->object->getSecondNameCase(1));
     }
 
@@ -57,12 +58,14 @@ class NCLNameCaseRuTest extends PHPUnit_Framework_TestCase
     public function test5()
     {
         $this->object->setSirname('Касюк');
+        $this->object->setGender(1);
         $this->assertEquals('Касюка', $this->object->getSecondNameCase(1));
     }
 
     public function test6()
     {
         $this->object->setLastName('Касюк');
+        $this->object->setGender(1);
         $this->assertEquals('Касюка', $this->object->getSecondNameCase(1));
     }
 
@@ -108,5 +111,10 @@ class NCLNameCaseRuTest extends PHPUnit_Framework_TestCase
     public function test13()
     {
         $this->assertEquals('на Чайке Андрее Николаевиче красивая рубашка', $this->object->qFullName("Чайка", 'Андрей', 'Николаевич', 1, 5, "на S N F красивая рубашка"));
+    }
+    
+    public function test14()
+    {
+        $this->assertEquals('комментария', $this->object->qFirstName('комментарий',NCLNameCaseRu::$RODITLN , NCLNameCaseRu::$MAN));
     }
 }

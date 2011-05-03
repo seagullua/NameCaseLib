@@ -7,7 +7,7 @@
  * 
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
- * @version 0.1.0 30.04.2011 
+ * @version 0.1.1 03.05.2011 
  * 
  */
 
@@ -782,8 +782,6 @@ class NCLNameCaseRu
 
     /*
      * Автоматическое определение пола
-     * (в разработке)
-     * 
      * @return void
      */
 
@@ -791,10 +789,130 @@ class NCLNameCaseRu
     {
         if (!$this->gender)
         {
-            $this->gender = NCLNameCaseRu::$MAN;
+            //Определение пола по отчеству
+            if (isset($this->fatherName) and $this->fatherName)
+            {
+                $LastTwo = mb_substr($this->fatherName, -2, 2, 'utf-8');
+                if ($LastTwo=='ич')
+                {
+                    $this->gender=NCLNameCaseRu::$MAN; // мужчина
+                    return true;
+                }
+                if ($LastTwo=='на')
+                {
+                    $this->gender=NCLNameCaseRu::$WOMAN; // женщина
+                    return true;
+                }
+            }
+            $man=0; //Мужчина
+            $woman=0; //Женщина
+            $FLastSymbol=mb_substr($this->firstName, -1, 1, 'utf-8');
+            $FLastTwo=mb_substr($this->firstName, -2, 2, 'utf-8');
+            $FLastThree=mb_substr($this->firstName, -3, 3, 'utf-8');
+            $FLastFour=mb_substr($this->firstName, -4, 4, 'utf-8');
+            
+            $SLastSymbol=mb_substr($this->secondName, -1, 1, 'utf-8');
+            $SLastTwo=mb_substr($this->secondName, -2, 2, 'utf-8');
+            $SLastThree=mb_substr($this->secondName, -3, 3, 'utf-8');
+            //Если нет отчества, то определяем по имени и фамилии, будем считать вероятность
+            if (isset($this->firstName) and $this->firstName)
+            {
+                //Попробуем выжать максимум из имени
+                //Если имя заканчивается на й, то скорее всего мужчина
+                if($FLastSymbol=='й')
+                {
+                    $man+=0.9;
+                }
+                if(in_array($FLastTwo, array('он', 'ов', 'ав', 'ам','ол', 'ан', 'рд', 'мп')))
+                {
+                    $man+=0.3;
+                }
+                if($this->in($FLastSymbol,$this->consonant))
+                {
+                    $man+=0.01;
+                }
+                if($FLastSymbol=='ь')
+                {
+                    $man+=0.02;
+                }
+                
+                if(in_array($FLastTwo, array('вь', 'фь', 'ль')))
+                {
+                    $woman+=0.1;
+                }
+                
+                if(in_array($FLastTwo, array('ла')))
+                {
+                    $woman+=0.04;
+                }
+                
+                if(in_array($FLastTwo, array('то', 'ма')))
+                {
+                    $man+=0.01;
+                }
+                
+                if(in_array($FLastThree, array('лья','вва','ока','ука', 'ита')))
+                {
+                    $man+=0.2;
+                }
+                
+                if(in_array($FLastThree, array('има')))
+                {
+                    $woman+=0.15;
+                }
+                
+                if(in_array($FLastThree, array('лия', 'ния', 'сия','дра','лла','кла')))
+                {
+                    $woman+=0.5;
+                }
+                
+                if(in_array($FLastFour, array('льда', 'фира', 'нина','лита')))
+                {
+                    $woman+=0.5;
+                }
+                
+            }
+            if (isset($this->secondName) and $this->secondName)
+            {
+                if(in_array($SLastTwo, array('ов','ин', 'ев', 'ий', 'ёв','ый', 'ын','ой')))
+                {
+                    $man+=0.4;
+                }
+                
+                if(in_array($SLastThree, array('ова', 'ина', 'ева', 'ёва', 'ына','ая')))
+                {
+                    $woman+=0.4;
+                }
+                
+                if(in_array($SLastTwo, array('ая')))
+                {
+                    $woman+=0.4;
+                }
+            }
+            //Теперь смотрим, кто больше набрал
+            if($man>$woman)
+            {
+                $this->gender = NCLNameCaseRu::$MAN;
+            }
+            else
+            {
+                $this->gender = NCLNameCaseRu::$WOMAN;
+            }
         }
     }
-
+    
+    /*
+     * Автоматическое определение пола
+     * Возвращает пол по ФИО
+     * @return integer
+     */
+    public function genderAutoDetect()
+    {
+        $this->gender=null;
+        $this->genderDetect();
+        return $this->gender;
+    }
+    
     /*
      * Склонение имени
      * 
