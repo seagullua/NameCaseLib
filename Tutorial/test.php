@@ -9,4 +9,4 @@ require '../Library/NCL.NameCase.ru.php';
  * 2. Создаем объект
  */
 $nc = new NCLNameCaseRu();
-print_r($nc->qFullName("Рижиков", "Тарас", "Геннадиевич", NCLNameCaseRu::$MAN, NCLNameCaseRu::$DATELN));
+print_r($nc->q("Рижиков Тарас Геннадиевич"));

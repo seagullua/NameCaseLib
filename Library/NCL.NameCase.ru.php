@@ -1053,11 +1053,11 @@ class NCLNameCaseRu
             {
                 $this->fatherName = $list[$key];
             }
-            $format.=$letter.' ';
+            $format.=$letter . ' ';
         }
         return trim($format);
     }
-    
+
     /*
      * Склонение имени
      * 
@@ -1263,6 +1263,66 @@ class NCLNameCaseRu
     }
 
     /*
+     * Склоняет во все падежи и форматирует по шаблону $format
+     * Шаблон $format
+     * S - Фамилия
+     * N - Имя
+     * F - Отчество
+     * 
+     * @return array
+     */
+
+    public function getFormattedArray($format)
+    {
+        $length = mb_strlen($format);
+        $result = array();
+        $cases=array();
+        for ($i = 0; $i < $length; $i++)
+        {
+            $symbol = mb_substr($format, $i, 1);
+            if ($symbol == 'S')
+            {
+                $cases['S']=$this->getSecondNameCase();
+            }
+            elseif ($symbol == 'N')
+            {
+                $cases['N']=$this->getFirstNameCase();
+            }
+            elseif ($symbol == 'F')
+            {
+                $cases['F']=$this->getFatherNameCase();
+            }
+        }
+        
+        for ($curCase = 0; $curCase<6; $curCase++)
+        {
+            $line="";
+            for ($i = 0; $i < $length; $i++)
+            {
+                $symbol = mb_substr($format, $i, 1);
+                if ($symbol == 'S')
+                {
+                    $line.=$cases['S'][$curCase];
+                }
+                elseif ($symbol == 'N')
+                {
+                    $line.=$cases['N'][$curCase];
+                }
+                elseif ($symbol == 'F')
+                {
+                    $line.=$cases['F'][$curCase];
+                }
+                else
+                {
+                    $line.=$symbol;
+                }
+            }
+            $result[]=$line;
+        }
+        return $result;
+    }
+
+    /*
      * Склоняет в падеж $caseNum, и форматирует по шаблону $format
      * Шаблон $format
      * S - Фамилия
@@ -1277,29 +1337,36 @@ class NCLNameCaseRu
 
     public function getFormatted($caseNum=0, $format="S N F")
     {
-        $length = mb_strlen($format);
-        $result = "";
-        for ($i = 0; $i < $length; $i++)
+        if (is_null($caseNum))
         {
-            $symbol = mb_substr($format, $i, 1);
-            if ($symbol == 'S')
-            {
-                $result.=$this->getSecondNameCase($caseNum);
-            }
-            elseif ($symbol == 'N')
-            {
-                $result.=$this->getFirstNameCase($caseNum);
-            }
-            elseif ($symbol == 'F')
-            {
-                $result.=$this->getFatherNameCase($caseNum);
-            }
-            else
-            {
-                $result.=$symbol;
-            }
+            return $this->getFormattedArray($format);
         }
-        return $result;
+        else
+        {
+            $length = mb_strlen($format);
+            $result = "";
+            for ($i = 0; $i < $length; $i++)
+            {
+                $symbol = mb_substr($format, $i, 1);
+                if ($symbol == 'S')
+                {
+                    $result.=$this->getSecondNameCase($caseNum);
+                }
+                elseif ($symbol == 'N')
+                {
+                    $result.=$this->getFirstNameCase($caseNum);
+                }
+                elseif ($symbol == 'F')
+                {
+                    $result.=$this->getFatherNameCase($caseNum);
+                }
+                else
+                {
+                    $result.=$symbol;
+                }
+            }
+            return $result;
+        }
     }
 
     /*
@@ -1331,19 +1398,21 @@ class NCLNameCaseRu
     {
         return $this->srule;
     }
-    
+
     /*
      * Быстрое склонение имени. Передается один параметр строка, где может быть ФИО в любом виде. Есть необязательный параметр пол. И так ще необязательный параметр падеж. Если падеж указан, тогда возвращается строка в том падеже, если нет тогда все возможные падежи.
      * 
      * @return string
      */
+
     public function q($fullname, $caseNum=null, $gender=null)
     {
-        $format=$this->splitFullName($fullname);
-        $this->gender=$gender;
+        $format = $this->splitFullName($fullname);
+        $this->gender = $gender;
         $this->genderAutoDetect();
         return $this->getFormatted($caseNum, $format);
     }
+
 }
 
 ?>
