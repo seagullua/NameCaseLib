@@ -7,7 +7,7 @@
  * 
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
- * @version 0.1.1 03.05.2011 
+ * @version 0.1.2 05.05.2011 
  * 
  */
 
@@ -793,104 +793,103 @@ class NCLNameCaseRu
             if (isset($this->fatherName) and $this->fatherName)
             {
                 $LastTwo = mb_substr($this->fatherName, -2, 2, 'utf-8');
-                if ($LastTwo=='ич')
+                if ($LastTwo == 'ич')
                 {
-                    $this->gender=NCLNameCaseRu::$MAN; // мужчина
+                    $this->gender = NCLNameCaseRu::$MAN; // мужчина
                     return true;
                 }
-                if ($LastTwo=='на')
+                if ($LastTwo == 'на')
                 {
-                    $this->gender=NCLNameCaseRu::$WOMAN; // женщина
+                    $this->gender = NCLNameCaseRu::$WOMAN; // женщина
                     return true;
                 }
             }
-            $man=0; //Мужчина
-            $woman=0; //Женщина
-            $FLastSymbol=mb_substr($this->firstName, -1, 1, 'utf-8');
-            $FLastTwo=mb_substr($this->firstName, -2, 2, 'utf-8');
-            $FLastThree=mb_substr($this->firstName, -3, 3, 'utf-8');
-            $FLastFour=mb_substr($this->firstName, -4, 4, 'utf-8');
-            
-            $SLastSymbol=mb_substr($this->secondName, -1, 1, 'utf-8');
-            $SLastTwo=mb_substr($this->secondName, -2, 2, 'utf-8');
-            $SLastThree=mb_substr($this->secondName, -3, 3, 'utf-8');
+            $man = 0; //Мужчина
+            $woman = 0; //Женщина
+            $FLastSymbol = mb_substr($this->firstName, -1, 1, 'utf-8');
+            $FLastTwo = mb_substr($this->firstName, -2, 2, 'utf-8');
+            $FLastThree = mb_substr($this->firstName, -3, 3, 'utf-8');
+            $FLastFour = mb_substr($this->firstName, -4, 4, 'utf-8');
+
+            $SLastSymbol = mb_substr($this->secondName, -1, 1, 'utf-8');
+            $SLastTwo = mb_substr($this->secondName, -2, 2, 'utf-8');
+            $SLastThree = mb_substr($this->secondName, -3, 3, 'utf-8');
             //Если нет отчества, то определяем по имени и фамилии, будем считать вероятность
             if (isset($this->firstName) and $this->firstName)
             {
                 //Попробуем выжать максимум из имени
                 //Если имя заканчивается на й, то скорее всего мужчина
-                if($FLastSymbol=='й')
+                if ($FLastSymbol == 'й')
                 {
                     $man+=0.9;
                 }
-                if(in_array($FLastTwo, array('он', 'ов', 'ав', 'ам','ол', 'ан', 'рд', 'мп')))
+                if (in_array($FLastTwo, array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп')))
                 {
                     $man+=0.3;
                 }
-                if($this->in($FLastSymbol,$this->consonant))
+                if ($this->in($FLastSymbol, $this->consonant))
                 {
                     $man+=0.01;
                 }
-                if($FLastSymbol=='ь')
+                if ($FLastSymbol == 'ь')
                 {
                     $man+=0.02;
                 }
-                
-                if(in_array($FLastTwo, array('вь', 'фь', 'ль')))
+
+                if (in_array($FLastTwo, array('вь', 'фь', 'ль')))
                 {
                     $woman+=0.1;
                 }
-                
-                if(in_array($FLastTwo, array('ла')))
+
+                if (in_array($FLastTwo, array('ла')))
                 {
                     $woman+=0.04;
                 }
-                
-                if(in_array($FLastTwo, array('то', 'ма')))
+
+                if (in_array($FLastTwo, array('то', 'ма')))
                 {
                     $man+=0.01;
                 }
-                
-                if(in_array($FLastThree, array('лья','вва','ока','ука', 'ита')))
+
+                if (in_array($FLastThree, array('лья', 'вва', 'ока', 'ука', 'ита')))
                 {
                     $man+=0.2;
                 }
-                
-                if(in_array($FLastThree, array('има')))
+
+                if (in_array($FLastThree, array('има')))
                 {
                     $woman+=0.15;
                 }
-                
-                if(in_array($FLastThree, array('лия', 'ния', 'сия','дра','лла','кла')))
+
+                if (in_array($FLastThree, array('лия', 'ния', 'сия', 'дра', 'лла', 'кла')))
                 {
                     $woman+=0.5;
                 }
-                
-                if(in_array($FLastFour, array('льда', 'фира', 'нина','лита')))
+
+                if (in_array($FLastFour, array('льда', 'фира', 'нина', 'лита')))
                 {
                     $woman+=0.5;
                 }
-                
             }
             if (isset($this->secondName) and $this->secondName)
             {
-                if(in_array($SLastTwo, array('ов','ин', 'ев', 'ий', 'ёв','ый', 'ын','ой')))
+                if (in_array($SLastTwo, array('ов', 'ин', 'ев', 'ий', 'ёв', 'ый', 'ын', 'ой')))
                 {
                     $man+=0.4;
                 }
-                
-                if(in_array($SLastThree, array('ова', 'ина', 'ева', 'ёва', 'ына','ая')))
+
+                if (in_array($SLastThree, array('ова', 'ина', 'ева', 'ёва', 'ына', 'ая')))
                 {
                     $woman+=0.4;
                 }
-                
-                if(in_array($SLastTwo, array('ая')))
+
+                if (in_array($SLastTwo, array('ая')))
                 {
                     $woman+=0.4;
                 }
             }
             //Теперь смотрим, кто больше набрал
-            if($man>$woman)
+            if ($man > $woman)
             {
                 $this->gender = NCLNameCaseRu::$MAN;
             }
@@ -900,17 +899,163 @@ class NCLNameCaseRu
             }
         }
     }
-    
+
     /*
      * Автоматическое определение пола
      * Возвращает пол по ФИО
      * @return integer
      */
+
     public function genderAutoDetect()
     {
-        $this->gender=null;
+        $this->gender = null;
         $this->genderDetect();
         return $this->gender;
+    }
+
+    /*
+     * Определение текущее слово есть фамилией, именем или отчеством
+     * @return integer $number - 1-фамили 2-имя 3-отчество
+     */
+
+    private function detectNamePart($namepart)
+    {
+        $LastSymbol = mb_substr($namepart, -1, 1, 'utf-8');
+        $LastTwo = mb_substr($namepart, -2, 2, 'utf-8');
+        $LastThree = mb_substr($namepart, -3, 3, 'utf-8');
+        $LastFour = mb_substr($namepart, -4, 4, 'utf-8');
+
+        //Считаем вероятность
+        $first = 0;
+        $second = 0;
+        $father = 0;
+
+        //если смахивает на отчество
+        if (in_array($LastThree, array('вна', 'чна', 'вич', 'ьич')))
+        {
+            $father+=3;
+        }
+
+        //Похоже на имя
+        if (in_array($LastThree, array('тин', 'тын')))
+        {
+            $first+=0.5;
+        }
+
+        //Исключения
+        if (in_array($namepart, array('Лев', 'Яков', 'Мальвина', 'Антонина', 'Альбина', 'Агриппина', 'Каллиник', 'Маша', 'Ольга', 'Еремей', 'Фаина', 'Лазарь', 'Екатерина', 'Карина', 'Марина', 'Валентина', 'Кристина', 'Исак', 'Исаак', 'Валентин', 'Константин', 'Мартин', 'Устин', 'Калина', 'Аделина', 'Алина', 'Ангелина', 'Галина', 'Каролина', 'Павлина', 'Полина', 'Элина', 'Мина', 'Нина')))
+        {
+            $first+=10;
+        }
+
+        //похоже на фамилию
+        if (in_array($LastTwo, array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр')))
+        {
+            $second+=0.4;
+        }
+
+        if (in_array($LastThree, array('ова', 'ева', 'ёва', 'ына', 'тых', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'тин', 'чий', 'ина')))
+        {
+            $second+=0.4;
+        }
+
+        if (in_array($LastFour, array('ьник', 'нчук', 'тник', 'кирь', 'ский', 'шена')))
+        {
+            $second+=0.4;
+        }
+
+
+        $max = max(array($first, $second, $father));
+
+        if ($first == $max)
+        {
+            return 'N';
+        }
+        elseif ($second == $max)
+        {
+            return 'S';
+        }
+        else
+        {
+            return 'F';
+        }
+    }
+
+    /*
+     * Разбиение фразы на слова и определение, где имя, где фамилия, где отчество
+     * @return string $format - формат имен и фамилий
+     */
+
+    public function splitFullName($fullname)
+    {
+        $this->firstName = '';
+        $this->secondName = '';
+        $this->fatherName = '';
+        $this->gender = null;
+
+        $fullname = trim($fullname);
+        $list = explode(' ', $fullname);
+        $found = array();
+        $duplicate = array();
+        $c = count($list);
+        for ($i = 0; $i < $c; $i++)
+        {
+            if (trim($list[$i]))
+            {
+                $found[$i] = $this->detectNamePart($list[$i]);
+            }
+        }
+        $look = array('S' => false, 'F' => false, 'N' => false);
+        //Первая пробежка - ищем дупликаты
+        foreach ($found as $key => $letter)
+        {
+            if ($look[$letter]) //Если уже есть
+            {
+                $duplicate[$key] = $letter;
+            }
+            else
+            {
+                $look[$letter] = true;
+            }
+        }
+        //Вторая пробежка - тасуем дупликаты
+        foreach ($duplicate as $key => $letter)
+        {
+            if (!$look['S'])
+            {
+                $found[$key] = 'S';
+            }
+            elseif (!$look['F'])
+            {
+                $found[$key] = 'F';
+            }
+            elseif (!$look['N'])
+            {
+                $found[$key] = 'N';
+            }
+            else
+            {
+                $found[$key] = ''; //4 слова одно игнорируем
+            }
+        }
+        $format = '';
+        foreach ($found as $key => $letter)
+        {
+            if ($letter == 'S')
+            {
+                $this->secondName = $list[$key];
+            }
+            elseif ($letter == 'N')
+            {
+                $this->firstName = $list[$key];
+            }
+            elseif ($letter == 'F')
+            {
+                $this->fatherName = $list[$key];
+            }
+            $format.=$letter.' ';
+        }
+        return trim($format);
     }
     
     /*
@@ -1186,7 +1331,19 @@ class NCLNameCaseRu
     {
         return $this->srule;
     }
-
+    
+    /*
+     * Быстрое склонение имени. Передается один параметр строка, где может быть ФИО в любом виде. Есть необязательный параметр пол. И так ще необязательный параметр падеж. Если падеж указан, тогда возвращается строка в том падеже, если нет тогда все возможные падежи.
+     * 
+     * @return string
+     */
+    public function q($fullname, $caseNum=null, $gender=null)
+    {
+        $format=$this->splitFullName($fullname);
+        $this->gender=$gender;
+        $this->genderAutoDetect();
+        return $this->getFormatted($caseNum, $format);
+    }
 }
 
 ?>
