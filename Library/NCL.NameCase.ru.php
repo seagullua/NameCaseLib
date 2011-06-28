@@ -606,7 +606,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
                     $man+=0.4;
                 }
 
-                if (in_array($SLastThree, array('ова', 'ина', 'ева', 'ёва', 'ына', 'ая')))
+                if (in_array($SLastThree, array('ова', 'ина', 'ева', 'ёва', 'ына')))
                 {
                     $woman+=0.4;
                 }

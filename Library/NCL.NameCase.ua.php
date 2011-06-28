@@ -656,6 +656,97 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     {
 
         //$this->gender = NCL::$MAN; // мужчина
+        if (!$this->gender)
+        {
+            //Определение пола по отчеству
+            if (isset($this->fatherName) and $this->fatherName)
+            {
+                $LastTwo = mb_substr($this->fatherName, -2, 2, 'utf-8');
+                if ($LastTwo == 'ич')
+                {
+                    $this->gender = NCL::$MAN; // мужчина
+                    return true;
+                }
+                if ($LastTwo == 'на')
+                {
+                    $this->gender = NCL::$WOMAN; // женщина
+                    return true;
+                }
+            }
+            $man = 0; //Мужчина
+            $woman = 0; //Женщина
+
+            $FLastSymbol = mb_substr($this->firstName, -1, 1, 'utf-8');
+            $FLastTwo = mb_substr($this->firstName, -2, 2, 'utf-8');
+            $FLastThree = mb_substr($this->firstName, -3, 3, 'utf-8');
+            $FLastFour = mb_substr($this->firstName, -4, 4, 'utf-8');
+
+            $SLastSymbol = mb_substr($this->secondName, -1, 1, 'utf-8');
+            $SLastTwo = mb_substr($this->secondName, -2, 2, 'utf-8');
+            $SLastThree = mb_substr($this->secondName, -3, 3, 'utf-8');
+
+            //Если нет отчества, то определяем по имени и фамилии, будем считать вероятность
+            if (isset($this->firstName) and $this->firstName)
+            {
+                //Попробуем выжать максимум из имени
+                //Если имя заканчивается на й, то скорее всего мужчина
+                if ($FLastSymbol == 'й')
+                {
+                    $man+=0.9;
+                }
+                if (in_array($FLastTwo, array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
+                {
+                    $man+=0.3;
+                }
+                if ($this->in($FLastSymbol, $this->consonant))
+                {
+                    $man+=0.01;
+                }
+                if ($FLastSymbol == 'ь')
+                {
+                    $man+=0.02;
+                }
+
+                if (in_array($FLastTwo, array('дь')))
+                {
+                    $woman+=0.1;
+                }
+
+                if (in_array($FLastThree, array('ель', 'бов')))
+                {
+                    $woman+=0.4;
+                }
+            }
+
+
+            if (isset($this->secondName) and $this->secondName)
+            {
+                if (in_array($SLastTwo, array('ов', 'ин', 'ев','ич', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ій', 'ой','ей')))
+                {
+                    $man+=0.4;
+                }
+
+                if (in_array($SLastThree, array('ова', 'ина', 'ева', 'єва', 'іна')))
+                {
+                    $woman+=0.4;
+                }
+
+                if (in_array($SLastTwo, array('ая')))
+                {
+                    $woman+=0.4;
+                }
+            }
+
+            //Теперь смотрим, кто больше набрал
+            if ($man > $woman)
+            {
+                $this->gender = NCL::$MAN;
+            }
+            else
+            {
+                $this->gender = NCL::$WOMAN;
+            }
+        }
         return true;
     }
 
