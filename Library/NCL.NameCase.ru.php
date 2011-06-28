@@ -10,61 +10,16 @@
  * @version 0.1.2 05.05.2011 
  * 
  */
+require_once dirname(__FILE__) . '/NCL.NameCase.core.php';
 
-class NCLNameCaseRu
+class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 {
     /*
-     * Имя для склонения
-     * @var string
+     * @static string
+     * Количество падежов
      */
-
-    private $firstName = "";
-
-
-    /*
-     * Фамилия для склонения
-     * @var string
-     */
-    private $secondName = "";
-
-
-    /*
-     * Отчество для склонения
-     * @var string
-     */
-    private $fatherName = "";
-
-
-    /*
-     * @var integer
-     * Пол человека
-     * <li>0 - не известно</li>
-     * <li>1 - мужчина</li>
-     * <li>2 - женщина</li>
-     */
-    private $gender = 0;
-
-    /*
-     * @static integer
-     */
-    static $MAN = 1;
-
-    /*
-     * @static integer
-     */
-    static $WOMAN = 2;
-
-    /*
-     * @static integer
-     * Падежи
-     */
-    static $IMENITLN = 0;
-    static $RODITLN = 1;
-    static $DATELN = 2;
-    static $VINITELN = 3;
-    static $TVORITELN = 4;
-    static $PREDLOGN = 5;
-
+    protected $CaseCount = 6;
+    
     /*
      * @static string
      * Список гласных
@@ -90,42 +45,6 @@ class NCLNameCaseRu
      */
     private $ih = array('их', 'ых', 'ко');
 
-    /*
-     * @var array()
-     * Результат склонения имени
-     */
-    private $firstResult = array();
-
-
-    /*
-     * @var array()
-     * Результат склонения фамилии
-     */
-    private $secondResult = array();
-
-    /*
-     * @var array()
-     * Результат склонения отчества
-     */
-    private $fatherResult = array();
-
-    /*
-     * @var integer
-     * Номер правила по которому не склоняется имя/фамилия
-     */
-    private $error = "";
-
-    /*
-     * @var integer
-     * Номер правила по которому склоняется имя
-     */
-    private $frule = "";
-
-    /*
-     * @var integer
-     * Номер правила по которому не склоняется фамилия
-     */
-    private $srule = "";
 
     /*
      * Функция, которая склоняет имя записаное в $this->firstName, по правилам склонения мужских имен.
@@ -133,7 +52,7 @@ class NCLNameCaseRu
      * @return boolean
      */
 
-    private function manFirstName()
+    protected function manFirstName()
     {
         //Последний символ
         $LastSymbol = mb_substr($this->firstName, -1, 1, 'utf-8');
@@ -232,7 +151,7 @@ class NCLNameCaseRu
      * @return boolean
      */
 
-    private function womanFirstName()
+    protected function womanFirstName()
     {
         //Последний символ
         $LastSymbol = mb_substr($this->firstName, -1, 1, 'utf-8');
@@ -320,7 +239,7 @@ class NCLNameCaseRu
      * @return boolean
      */
 
-    private function manSecondName()
+    protected function manSecondName()
     {
         //Последний символ
         $LastSymbol = mb_substr($this->secondName, -1, 1, 'utf-8');
@@ -413,6 +332,12 @@ class NCLNameCaseRu
                             $this->srule = 301;
                             return true;
                         }
+                        elseif ($this->in($LastSymbol, 'р'))
+                        {
+                            $this->secondResult = $this->padeg($this->secondName, array('а', 'у', 'а', 'ом', 'е'), false);
+                            $this->srule = 302;
+                            return true;
+                        }
                         else
                         {
                             $this->secondResult = $this->padeg($this->secondName, array('а', 'у', 'а', 'ым', 'е'), false);
@@ -467,7 +392,7 @@ class NCLNameCaseRu
      * @return boolean
      */
 
-    private function womanSecondName()
+    protected function womanSecondName()
     {
         //Последний символ
         $LastSymbol = mb_substr($this->secondName, -1, 1, 'utf-8');
@@ -542,7 +467,7 @@ class NCLNameCaseRu
      * @return boolean
      */
 
-    private function manFatherName()
+    protected function manFatherName()
     {
         //Проверяем действительно ли отчество
         if ($this->fatherName == 'Ильич')
@@ -568,7 +493,7 @@ class NCLNameCaseRu
      * @return boolean
      */
 
-    private function womanFatherName()
+    protected function womanFatherName()
     {
         //Проверяем действительно ли отчество
         if (mb_substr($this->fatherName, -2, 2, 'utf-8') == 'на')
@@ -584,208 +509,11 @@ class NCLNameCaseRu
     }
 
     /*
-     * Функция, которая ставит имя во всех падежах в форме именительного падежа.
-     * 
-     * @return void
-     */
-
-    private function makeFirstTheSame()
-    {
-        $this->firstResult = array_fill(0, 6, $this->firstName);
-    }
-
-    /*
-     * Функция, которая ставит фамилию во всех падежах в форме именительного падежа.
-     * 
-     * @return void
-     */
-
-    private function makeSecondTheSame()
-    {
-        $this->secondResult = array_fill(0, 6, $this->secondName);
-    }
-
-    /*
-     * Функция, которая ставит фамилию во всех падежах в форме именительного падежа.
-     * 
-     * @return void
-     */
-
-    private function makeFatherTheSame()
-    {
-        $this->fatherResult = array_fill(0, 6, $this->fatherName);
-    }
-
-    /*
-     * Функция проверяет, входит ли буква в строку.
-     * 
-     * @param $letter - буква
-     * @param $string - строка
-     * 
-     * @return boolean
-     */
-
-    private function in($letter, $string)
-    {
-
-        if ($letter and mb_strpos($string, $letter) === false)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    /*
-     * Функция дополняет переданое слово нужными окончаниями.
-     * 
-     * @param $word (string) - слово
-     * @param $endings (array) - окончания
-     * @param $replaceLast (boolean) - убрать последнюю букву
-     * @param $replaceTwoLast (boolean) - убрать две последних буквы
-     * 
-     * @return boolean
-     */
-
-    private function padeg($word, $endings, $replaceLast=false, $replaceTwoLast=false)
-    {
-        $result = array($word);
-        if ($replaceTwoLast == true)
-        {
-            //убираем последнею букву
-            $word = mb_substr($word, 0, mb_strlen($word, 'utf-8') - 2, 'utf-8');
-        }
-        elseif ($replaceLast == true)
-        {
-            //убираем последнею букву
-            $word = mb_substr($word, 0, mb_strlen($word, 'utf-8') - 1, 'utf-8');
-        }
-        $i = 0;
-        for ($i == 0; $i < 5; $i++)
-        {
-            $result[$i + 1] = $word . $endings[$i];
-        }
-        return $result;
-    }
-
-    /*
-     * Установка имени
-     * 
-     * @param $firstname
-     * 
-     * @return void
-     */
-
-    public function setFirstName($firstname="")
-    {
-        $this->firstName = $firstname;
-    }
-
-    /*
-     * Установка Фамилии
-     * 
-     * @param $secondname
-     * 
-     * @return void
-     */
-
-    public function setSecondName($secondname="")
-    {
-        $this->secondName = $secondname;
-    }
-
-    /*
-     * Установка Отчества
-     * 
-     * @param $secondname
-     * 
-     * @return void
-     */
-
-    public function setFatherName($fathername="")
-    {
-        $this->fatherName = $fathername;
-    }
-
-    /*
-     * Установка пола
-     * 
-     * @param $gender
-     * - null - не определено
-     * - NCLNameCaseRu::$MAN - мужчина
-     * - NCLNameCaseRu::$WOMAN - женщина
-     * @return void
-     */
-
-    public function setGender($gender=0)
-    {
-        $this->gender = $gender;
-    }
-
-    /*
-     * Установка Имени, Фамилии, Отчества
-     * 
-     * @param $firstName - имя
-     * @param $secondName - фамилия
-     * @param $fatherName - отчество
-     * 
-     * @return void
-     */
-
-    public function setFullName($secondName="", $firstName="", $fatherName="")
-    {
-        $this->setFirstName($firstName);
-        $this->setSecondName($secondName);
-        $this->setFatherName($fatherName);
-    }
-
-    /*
-     * Установка имени
-     * 
-     * @param $firstname
-     * 
-     * @return void
-     */
-
-    public function setName($firstname="")
-    {
-        $this->setFirstName($firstname);
-    }
-
-    /*
-     * Установка Фамилии
-     * 
-     * @param $secondname
-     * 
-     * @return void
-     */
-
-    public function setLastName($secondname="")
-    {
-        $this->setSecondName($secondname);
-    }
-
-    /*
-     * Установка Фамилии
-     * 
-     * @param $secondname
-     * 
-     * @return void
-     */
-
-    public function setSirname($secondname="")
-    {
-        $this->setSecondName($secondname);
-    }
-
-    /*
      * Автоматическое определение пола
      * @return void
      */
 
-    private function genderDetect()
+    protected function genderDetect()
     {
         if (!$this->gender)
         {
@@ -795,12 +523,12 @@ class NCLNameCaseRu
                 $LastTwo = mb_substr($this->fatherName, -2, 2, 'utf-8');
                 if ($LastTwo == 'ич')
                 {
-                    $this->gender = NCLNameCaseRu::$MAN; // мужчина
+                    $this->gender = NCL::$MAN; // мужчина
                     return true;
                 }
                 if ($LastTwo == 'на')
                 {
-                    $this->gender = NCLNameCaseRu::$WOMAN; // женщина
+                    $this->gender = NCL::$WOMAN; // женщина
                     return true;
                 }
             }
@@ -891,26 +619,13 @@ class NCLNameCaseRu
             //Теперь смотрим, кто больше набрал
             if ($man > $woman)
             {
-                $this->gender = NCLNameCaseRu::$MAN;
+                $this->gender = NCL::$MAN;
             }
             else
             {
-                $this->gender = NCLNameCaseRu::$WOMAN;
+                $this->gender = NCL::$WOMAN;
             }
         }
-    }
-
-    /*
-     * Автоматическое определение пола
-     * Возвращает пол по ФИО
-     * @return integer
-     */
-
-    public function genderAutoDetect()
-    {
-        $this->gender = null;
-        $this->genderDetect();
-        return $this->gender;
     }
 
     /*
@@ -918,7 +633,7 @@ class NCLNameCaseRu
      * @return integer $number - 1-фамили 2-имя 3-отчество
      */
 
-    private function detectNamePart($namepart)
+    protected function detectNamePart($namepart)
     {
         $LastSymbol = mb_substr($namepart, -1, 1, 'utf-8');
         $LastTwo = mb_substr($namepart, -2, 2, 'utf-8');
@@ -949,7 +664,7 @@ class NCLNameCaseRu
         }
 
         //похоже на фамилию
-        if (in_array($LastTwo, array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр')))
+        if (in_array($LastTwo, array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр')))
         {
             $second+=0.4;
         }
@@ -979,438 +694,6 @@ class NCLNameCaseRu
         {
             return 'F';
         }
-    }
-
-    /*
-     * Разбиение фразы на слова и определение, где имя, где фамилия, где отчество
-     * @return string $format - формат имен и фамилий
-     */
-
-    public function splitFullName($fullname)
-    {
-        $this->firstName = '';
-        $this->secondName = '';
-        $this->fatherName = '';
-        $this->gender = null;
-
-        $fullname = trim($fullname);
-        $list = explode(' ', $fullname);
-        $found = array();
-        $duplicate = array();
-        $c = count($list);
-        for ($i = 0; $i < $c; $i++)
-        {
-            if (trim($list[$i]))
-            {
-                $found[$i] = $this->detectNamePart($list[$i]);
-            }
-        }
-        $look = array('S' => false, 'F' => false, 'N' => false);
-        //Первая пробежка - ищем дупликаты
-        foreach ($found as $key => $letter)
-        {
-            if ($look[$letter]) //Если уже есть
-            {
-                $duplicate[$key] = $letter;
-            }
-            else
-            {
-                $look[$letter] = true;
-            }
-        }
-        //Вторая пробежка - тасуем дупликаты
-        foreach ($duplicate as $key => $letter)
-        {
-            if (!$look['S'])
-            {
-                $found[$key] = 'S';
-            }
-            elseif (!$look['F'])
-            {
-                $found[$key] = 'F';
-            }
-            elseif (!$look['N'])
-            {
-                $found[$key] = 'N';
-            }
-            else
-            {
-                $found[$key] = ''; //4 слова одно игнорируем
-            }
-        }
-        $format = '';
-        foreach ($found as $key => $letter)
-        {
-            if ($letter == 'S')
-            {
-                $this->secondName = $list[$key];
-            }
-            elseif ($letter == 'N')
-            {
-                $this->firstName = $list[$key];
-            }
-            elseif ($letter == 'F')
-            {
-                $this->fatherName = $list[$key];
-            }
-            $format.=$letter . ' ';
-        }
-        return trim($format);
-    }
-
-    /*
-     * Склонение имени
-     * 
-     * @return boolean
-     */
-
-    private function FirstName()
-    {
-        $this->genderDetect();
-        if ($this->firstName)
-        {
-            if ($this->gender == 1)
-            {
-                return $this->manFirstName();
-            }
-            else
-            {
-                return $this->womanFirstName();
-            }
-        }
-        else
-        {
-            $this->firstResult = array_fill(0, 6, "");
-            return false;
-        }
-    }
-
-    /*
-     * Склонение фамилии
-     * 
-     * @return boolean
-     */
-
-    private function SecondName()
-    {
-        $this->genderDetect();
-        if ($this->secondName)
-        {
-            if ($this->gender == 1)
-            {
-                return $this->manSecondName();
-            }
-            else
-            {
-                return $this->womanSecondName();
-            }
-        }
-        else
-        {
-            $this->secondResult = array_fill(0, 6, "");
-            return false;
-        }
-    }
-
-    /*
-     * Склонение отчеств
-     * 
-     * @return boolean
-     */
-
-    private function FatherName()
-    {
-        $this->genderDetect();
-        if ($this->fatherName)
-        {
-            if ($this->gender == 1)
-            {
-                return $this->manFatherName();
-            }
-            else
-            {
-                return $this->womanFatherName();
-            }
-        }
-        else
-        {
-            $this->fatherResult = array_fill(0, 6, "");
-            return false;
-        }
-    }
-
-    /*
-     * Поставить имя в определенный падеж
-     * 
-     * @return string
-     */
-
-    public function getFirstNameCase($number=null)
-    {
-        if (!isset($this->firstResult[0]) or $this->firstResult[0] <> $this->firstName)
-        {
-            $this->FirstName();
-        }
-        if ($number < 0 or $number > 5)
-        {
-            $number = null;
-        }
-
-        if (is_null($number))
-        {
-            //Возвращаем все падежи
-            return $this->firstResult;
-        }
-        else
-        {
-            return $this->firstResult[$number];
-        }
-    }
-
-    /*
-     * Поставить фамилию в определенный падеж
-     * 
-     * @return string
-     */
-
-    public function getSecondNameCase($number=null)
-    {
-        if (!isset($this->secondResult[0]) or $this->secondResult[0] <> $this->secondName)
-        {
-            $this->SecondName();
-        }
-        if ($number < 0 or $number > 5)
-        {
-            $number = null;
-        }
-
-        if (is_null($number))
-        {
-            //Возвращаем все падежи
-            return $this->secondResult;
-        }
-        else
-        {
-            return $this->secondResult[$number];
-        }
-    }
-
-    /*
-     * Поставить отчество в определенный падеж
-     * 
-     * @return string
-     */
-
-    public function getFatherNameCase($number=null)
-    {
-        if (!isset($this->fatherResult[0]) or $this->fatherResult[0] <> $this->fatherName)
-        {
-            $this->FatherName();
-        }
-        if ($number < 0 or $number > 5)
-        {
-            $number = null;
-        }
-
-        if (is_null($number))
-        {
-            //Возвращаем все падежи
-            return $this->fatherResult;
-        }
-        else
-        {
-            return $this->fatherResult[$number];
-        }
-    }
-
-    /*
-     * Поставить фамилию в определенный падеж
-     * 
-     * @return string
-     */
-
-    public function qFirstName($firstName, $CaseNumber=null, $gender=0)
-    {
-        $this->gender = $gender;
-        $this->firstName = $firstName;
-        return $this->getFirstNameCase($CaseNumber);
-    }
-
-    /*
-     * Поставить фамилию в определенный падеж
-     * 
-     * @return string
-     */
-
-    public function qSecondName($secondName, $CaseNumber=null, $gender=0)
-    {
-        $this->gender = $gender;
-        $this->secondName = $secondName;
-        return $this->getSecondNameCase($CaseNumber);
-    }
-
-    /*
-     * Поставить отчество в определенный падеж
-     * 
-     * @return string
-     */
-
-    public function qFatherName($fatherName, $CaseNumber=null, $gender=0)
-    {
-        $this->gender = $gender;
-        $this->fatherName = $fatherName;
-        return $this->getFatherNameCase($CaseNumber);
-    }
-
-    /*
-     * Склоняет во все падежи и форматирует по шаблону $format
-     * Шаблон $format
-     * S - Фамилия
-     * N - Имя
-     * F - Отчество
-     * 
-     * @return array
-     */
-
-    public function getFormattedArray($format)
-    {
-        $length = mb_strlen($format);
-        $result = array();
-        $cases=array();
-        for ($i = 0; $i < $length; $i++)
-        {
-            $symbol = mb_substr($format, $i, 1);
-            if ($symbol == 'S')
-            {
-                $cases['S']=$this->getSecondNameCase();
-            }
-            elseif ($symbol == 'N')
-            {
-                $cases['N']=$this->getFirstNameCase();
-            }
-            elseif ($symbol == 'F')
-            {
-                $cases['F']=$this->getFatherNameCase();
-            }
-        }
-        
-        for ($curCase = 0; $curCase<6; $curCase++)
-        {
-            $line="";
-            for ($i = 0; $i < $length; $i++)
-            {
-                $symbol = mb_substr($format, $i, 1);
-                if ($symbol == 'S')
-                {
-                    $line.=$cases['S'][$curCase];
-                }
-                elseif ($symbol == 'N')
-                {
-                    $line.=$cases['N'][$curCase];
-                }
-                elseif ($symbol == 'F')
-                {
-                    $line.=$cases['F'][$curCase];
-                }
-                else
-                {
-                    $line.=$symbol;
-                }
-            }
-            $result[]=$line;
-        }
-        return $result;
-    }
-
-    /*
-     * Склоняет в падеж $caseNum, и форматирует по шаблону $format
-     * Шаблон $format
-     * S - Фамилия
-     * N - Имя
-     * F - Отчество
-     * 
-     * Например getFormatted(1, 'N F')
-     * Выведет имя и отчество в родительном падиже
-     * 
-     * @return string
-     */
-
-    public function getFormatted($caseNum=0, $format="S N F")
-    {
-        if (is_null($caseNum))
-        {
-            return $this->getFormattedArray($format);
-        }
-        else
-        {
-            $length = mb_strlen($format);
-            $result = "";
-            for ($i = 0; $i < $length; $i++)
-            {
-                $symbol = mb_substr($format, $i, 1);
-                if ($symbol == 'S')
-                {
-                    $result.=$this->getSecondNameCase($caseNum);
-                }
-                elseif ($symbol == 'N')
-                {
-                    $result.=$this->getFirstNameCase($caseNum);
-                }
-                elseif ($symbol == 'F')
-                {
-                    $result.=$this->getFatherNameCase($caseNum);
-                }
-                else
-                {
-                    $result.=$symbol;
-                }
-            }
-            return $result;
-        }
-    }
-
-    /*
-     * Склоняет фамилию имя отчество в падеж $caseNum, и форматирует по шаблону $format
-     * Шаблон $format
-     * S - Фамилия
-     * N - Имя
-     * F - Отчество
-     * 
-     * @return string
-     */
-
-    public function qFullName($secondName="", $firstName="", $fatherName="", $gender=0, $caseNum=0, $format="S N F")
-    {
-        $this->gender = $gender;
-        $this->firstName = $firstName;
-        $this->secondName = $secondName;
-        $this->fatherName = $fatherName;
-
-        return $this->getFormatted($caseNum, $format);
-    }
-
-    public function getFirstNameRule()
-    {
-        return $this->frule;
-    }
-
-    public function getSecondNameRule()
-    {
-        return $this->srule;
-    }
-
-    /*
-     * Быстрое склонение имени. Передается один параметр строка, где может быть ФИО в любом виде. Есть необязательный параметр пол. И так ще необязательный параметр падеж. Если падеж указан, тогда возвращается строка в том падеже, если нет тогда все возможные падежи.
-     * 
-     * @return string
-     */
-
-    public function q($fullname, $caseNum=null, $gender=null)
-    {
-        $format = $this->splitFullName($fullname);
-        $this->gender = $gender;
-        $this->genderAutoDetect();
-        return $this->getFormatted($caseNum, $format);
     }
 
 }
