@@ -260,7 +260,6 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                     $this->frule = 305;
                     return true;
                 }
-                
                 elseif ($BeforeLast == 'і' or $LastSymbol == 'й')
                 {
                     $this->firstResult = $this->padeg($this->firstName, array('я', 'єві', 'я', 'єм', 'єві', 'ю'), true);
@@ -300,8 +299,8 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         //Якщо закінчується на ніга -» нога
         if (mb_substr($this->firstName, -4, 4, 'utf-8') == 'ніга')
         {
-            $osnova = mb_substr($this->firstName, 0, mb_strlen($this->firstName, 'utf-8')-3, 'utf-8').'о';
-            $this->firstResult = $this->padeg($osnova, array('ги', 'зі', 'гу', 'гою', 'зі',  'го'));
+            $osnova = mb_substr($this->firstName, 0, mb_strlen($this->firstName, 'utf-8') - 3, 'utf-8') . 'о';
+            $this->firstResult = $this->padeg($osnova, array('ги', 'зі', 'гу', 'гою', 'зі', 'го'));
             $this->frule = 101;
             return true;
         }
@@ -332,7 +331,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         {
             $osnova = $this->getOsnova($this->firstName);
             $apostrof = '';
-            $duplicate='';
+            $duplicate = '';
             $osLast = mb_substr($osnova, -1, 1, 'utf-8');
             $osBeforeLast = mb_substr($osnova, -2, 1, 'utf-8');
             //Чи треба ставити апостроф
@@ -343,17 +342,17 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
             //Чи треба подвоювати
             if ($this->in($osLast, 'дтзсцлн'))
             {
-                $duplicate=$osLast;
+                $duplicate = $osLast;
             }
             if ($LastSymbol == 'ь')
             {
-                $this->firstResult = $this->padeg($osnova, array('і', 'і', 'ь',  $duplicate.$apostrof. 'ю', 'і', 'е'));
+                $this->firstResult = $this->padeg($osnova, array('і', 'і', 'ь', $duplicate . $apostrof . 'ю', 'і', 'е'));
                 $this->frule = 402;
                 return true;
             }
             else
             {
-                $this->firstResult = $this->padeg($osnova, array('і', 'і', '',  $duplicate.$apostrof. 'ю', 'і', 'е'));
+                $this->firstResult = $this->padeg($osnova, array('і', 'і', '', $duplicate . $apostrof . 'ю', 'і', 'е'));
                 $this->frule = 401;
                 return true;
             }
@@ -381,9 +380,9 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         //Предпоследний символ
         $BeforeLast = mb_substr($this->secondName, -2, 1, 'utf-8');
         //Якщо закінчується на ий
-        if($BeforeLast.$LastSymbol=='ий' or $BeforeLast.$LastSymbol=='ой')
+        if ($BeforeLast . $LastSymbol == 'ий' or $BeforeLast . $LastSymbol == 'ой')
         {
-            $this->secondResult = $this->padeg($this->secondName, array('ого', 'ому', 'ого', 'им', 'ому',  'ий'),true,true);
+            $this->secondResult = $this->padeg($this->secondName, array('ого', 'ому', 'ого', 'им', 'ому', 'ий'), true, true);
             $this->srule = 9;
             return true;
         }
@@ -453,21 +452,21 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
             if ($group == 1)
             {
                 //Слова що закінчуються на ок
-                if (mb_substr($this->secondName, -2, 2, 'utf-8')=='ок')
+                if (mb_substr($this->secondName, -2, 2, 'utf-8') == 'ок')
                 {
-                    $this->secondResult = $this->padeg(mb_substr($this->secondName,0,(mb_strlen($this->secondName, 'utf-8')-2), 'utf-8'), array('ка', 'кові', 'ка', 'ком', 'кові', 'че'));
+                    $this->secondResult = $this->padeg(mb_substr($this->secondName, 0, (mb_strlen($this->secondName, 'utf-8') - 2), 'utf-8'), array('ка', 'кові', 'ка', 'ком', 'кові', 'че'));
                     $this->srule = 30101;
                     return true;
                 }
                 //Російські прізвища на ов, ев, єв
-                elseif (in_array(mb_substr($this->secondName, -2, 2, 'utf-8'),array('ов','ев','єв')))
+                elseif (in_array(mb_substr($this->secondName, -2, 2, 'utf-8'), array('ов', 'ев', 'єв')))
                 {
                     $this->secondResult = $this->padeg($osnova, array($osLast . 'а', $osLast . 'у', $osLast . 'а', $osLast . 'им', $osLast . 'у', $this->inverse2($osLast) . 'е'), true);
                     $this->srule = 30102;
                     return true;
                 }
                 //Російські прізвища на ін
-                elseif (in_array(mb_substr($this->secondName, -2, 2, 'utf-8'),array('ін')))
+                elseif (in_array(mb_substr($this->secondName, -2, 2, 'utf-8'), array('ін')))
                 {
                     $this->secondResult = $this->padeg($this->secondName, array('а', 'у', 'а', 'ом', 'у', 'е'));
                     $this->srule = 30103;
@@ -492,7 +491,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
             {
                 //М’яка група
                 //Соловей
-                if (mb_substr($this->secondName, -2, 2, 'utf-8') == 'ей' and $this->in(mb_substr($this->secondName, -3, 1, 'utf-8'),$this->gubni))
+                if (mb_substr($this->secondName, -2, 2, 'utf-8') == 'ей' and $this->in(mb_substr($this->secondName, -3, 1, 'utf-8'), $this->gubni))
                 {
                     $osnova = mb_substr($this->secondName, 0, mb_strlen($this->secondName, 'utf-8') - 2, 'utf-8') . '’';
                     $this->secondResult = $this->padeg($osnova, array('я', 'єві', 'я', 'єм', 'єві', 'ю'));
@@ -506,16 +505,16 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                     return true;
                 }
                 //Слова що закінчуються на ець
-                elseif (mb_substr($this->secondName, -3, 3, 'utf-8')=='ець')
+                elseif (mb_substr($this->secondName, -3, 3, 'utf-8') == 'ець')
                 {
-                    $this->secondResult = $this->padeg(mb_substr($this->secondName,0,(mb_strlen($this->secondName, 'utf-8')-3), 'utf-8').'ц', array('я', 'еві', 'я', 'ем', 'еві', 'ю'));
+                    $this->secondResult = $this->padeg(mb_substr($this->secondName, 0, (mb_strlen($this->secondName, 'utf-8') - 3), 'utf-8') . 'ц', array('я', 'еві', 'я', 'ем', 'еві', 'ю'));
                     $this->srule = 305;
                     return true;
                 }
                 //Слова що закінчуються на єць яць
-                elseif (in_array(mb_substr($this->secondName, -3, 3, 'utf-8'),array('єць','яць')))
+                elseif (in_array(mb_substr($this->secondName, -3, 3, 'utf-8'), array('єць', 'яць')))
                 {
-                    $this->secondResult = $this->padeg(mb_substr($this->secondName,0,(mb_strlen($this->secondName, 'utf-8')-3), 'utf-8').'йц', array('я', 'еві', 'я', 'ем', 'еві', 'ю'));
+                    $this->secondResult = $this->padeg(mb_substr($this->secondName, 0, (mb_strlen($this->secondName, 'utf-8') - 3), 'utf-8') . 'йц', array('я', 'еві', 'я', 'ем', 'еві', 'ю'));
                     $this->srule = 306;
                     return true;
                 }
@@ -527,7 +526,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                 }
             }
         }
-        elseif ($LastSymbol=='і')
+        elseif ($LastSymbol == 'і')
         {
             $this->secondResult = $this->padeg($this->secondName, array('их', 'им', 'их', 'ими', 'их', 'і'), true);
             $this->srule = 4;
@@ -555,33 +554,40 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         $LastSymbol = mb_substr($this->secondName, -1, 1, 'utf-8');
         //Предпоследний символ
         $BeforeLast = mb_substr($this->secondName, -2, 1, 'utf-8');
-        
+
         //Якщо закінчується на ніга -» нога        
         if (mb_substr($this->secondName, -4, 4, 'utf-8') == 'ніга')
         {
-            $osnova = mb_substr($this->secondName, 0, mb_strlen($this->secondName, 'utf-8')-3, 'utf-8').'о';
-            $this->secondResult = $this->padeg($osnova, array('ги', 'зі', 'гу', 'гою', 'зі',  'го'));
+            $osnova = mb_substr($this->secondName, 0, mb_strlen($this->secondName, 'utf-8') - 3, 'utf-8') . 'о';
+            $this->secondResult = $this->padeg($osnova, array('ги', 'зі', 'гу', 'гою', 'зі', 'го'));
             $this->srule = 10101;
             return true;
         }
         //Ті що на ськ
-        elseif ($LastSymbol == 'а' and (in_array(mb_substr($this->secondName, -3, 2, 'utf-8'),array('ов','ев','єв','ив','ьк','тн','рн'))))
+        elseif ($LastSymbol == 'а' and (in_array(mb_substr($this->secondName, -3, 2, 'utf-8'), array('ов', 'ев', 'єв', 'ив', 'ьк', 'тн', 'рн', 'ин'))))
         {
             $this->secondResult = $this->padeg($this->secondName, array($BeforeLast . 'ої', $BeforeLast . 'ій', $BeforeLast . 'у', $BeforeLast . 'ою', $BeforeLast . 'ій', $BeforeLast . 'о'), false, true);
-            $this->srule = 101;
+            $this->srule = 10102;
             return true;
         }
         //Останні літера або а або я
         elseif ($LastSymbol == 'а')
         {
             $this->secondResult = $this->padeg($this->secondName, array($BeforeLast . 'и', $BeforeLast . 'і', $BeforeLast . 'у', $BeforeLast . 'ою', $BeforeLast . 'і', $BeforeLast . 'о'), false, true);
-            
+
             $this->srule = 101;
             return true;
         }
         elseif ($LastSymbol == 'я')
         {
-            if ($this->in($BeforeLast, $this->vowels))
+            //Донская
+            if ($BeforeLast == 'а')
+            {
+                $this->secondResult = $this->padeg($this->secondName, array('ої', 'ій', 'ую', 'ою', 'ій', 'ая'), true, true);
+                $this->srule = 10301;
+                return true;
+            }
+            elseif ($this->in($BeforeLast, $this->vowels))
             {
                 $this->secondResult = $this->padeg($this->secondName, array('ї', 'ї', 'ю', 'єю', 'ї', 'є'), true);
                 $this->srule = 103;
@@ -609,7 +615,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     protected function manFatherName()
     {
         $ending = mb_substr($this->fatherName, -2, 2, 'utf-8');
-        if ($ending == 'ич' or $ending== 'іч')
+        if ($ending == 'ич' or $ending == 'іч')
         {
             $this->fatherResult = $this->padeg($this->fatherName, array('а', 'у', 'а', 'ем', 'у', 'у'), false, false);
             return true;

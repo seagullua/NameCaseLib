@@ -25,15 +25,20 @@ class TestGeneratorDB
         $this->testtemplate = file_get_contents('Template/NCLNameCaseRuTest' . $fname . $gender . '.test');
         //$this->resultArr=file('Names/'.$gender.'_full_result.txt');
         $this->count = 0;
+        $fnewname = $fname;
+        if($fnewname=='Sirnames')
+        {
+            $fnewname = 'second';
+        }
         if ($gender == 'boy')
         {
             $this->gender = 1;
-            $this->dbTable = 'boy' . strtolower($fname);
+            $this->dbTable = 'boy' . strtolower($fnewname);
         }
         else
         {
             $this->gender = 2;
-            $this->dbTable = 'girl' . strtolower($fname) ;
+            $this->dbTable = 'girl' . strtolower($fnewname) ;
         }
         $this->resultArr = mysql_query("SELECT * FROM {$this->dbTable}");
         //foreach ($this->resultArr as $key=>$value)
@@ -83,4 +88,9 @@ $p = new TestGeneratorDB;
 $p->generate('Father', 'boy');
 $p = new TestGeneratorDB;
 $p->generate('Father', 'girl');
+
+$p = new TestGeneratorDB;
+$p->generate('Sirnames', 'boy');
+$p = new TestGeneratorDB;
+$p->generate('Sirnames', 'girl');
 ?>
