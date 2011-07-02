@@ -696,7 +696,11 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                 }
                 if (in_array($FLastTwo, array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
                 {
-                    $man+=0.3;
+                    $man+=0.5;
+                }
+                if (in_array($FLastThree, array('бов', 'нка', 'яра', 'ила')))
+                {
+                    $woman+=0.5;
                 }
                 if ($this->in($FLastSymbol, $this->consonant))
                 {
@@ -718,10 +722,12 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                 }
             }
 
+//            $man*=1.2;
+//            $woman*=1.2;
 
             if (isset($this->secondName) and $this->secondName)
             {
-                if (in_array($SLastTwo, array('ов', 'ин', 'ев','ич', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ій', 'ой','ей')))
+                if (in_array($SLastTwo, array('ов', 'ин', 'ев', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ой', 'ей')))
                 {
                     $man+=0.4;
                 }
@@ -757,8 +763,65 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     protected function detectNamePart($namepart)
     {
+        $LastSymbol = mb_substr($namepart, -1, 1, 'utf-8');
+        $LastTwo = mb_substr($namepart, -2, 2, 'utf-8');
+        $LastThree = mb_substr($namepart, -3, 3, 'utf-8');
+        $LastFour = mb_substr($namepart, -4, 4, 'utf-8');
 
-        return 'N';
+        //Считаем вероятность
+        $first = 0;
+        $second = 0;
+        $father = 0;
+
+        //если смахивает на отчество
+        if (in_array($LastThree, array('вна', 'чна', 'ліч')) or in_array($LastFour, array('ьмич', 'ович')))
+        {
+            $father+=3;
+        }
+
+        //Похоже на имя
+        if (in_array($LastThree, array('тин')) or in_array($LastFour, array('ьмич', 'юбов')))
+        {
+            $first+=0.5;
+        }
+
+        //Исключения
+        if (in_array($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь')))
+        {
+            $first+=10;
+        }
+
+        //похоже на фамилию
+        if (in_array($LastTwo, array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх','ут','ча','ул','вк','зь'  /*{endings2}*/)))
+        {
+            $second+=0.4;
+        }
+
+        if (in_array($LastThree, array('ова', 'ева', 'єва', 'тих', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'чий', 'іна', 'їна', 'ька', 'ань', 'ива', 'аль','ура','ран','ало','ола','кур','оба','оль','нта','зій','ґан','іло','шта', 'юпа', 'рна', 'бла', 'еїн', 'има', 'мар', 'кар', 'оха', 'чур', 'ниш', 'ета', 'тна', 'зур', 'нір', 'йма', 'орж', 'рба'  /*{endings3}*/)))
+        {
+            $second+=0.4;
+        }
+
+        if (in_array($LastFour, array('ьник', 'нчук', 'тник', 'кирь', 'ский', 'шена', 'шина', 'вина', 'нина' /*{endings4}*/)))
+        {
+            $second+=0.4;
+        }
+
+
+        $max = max(array($first, $second, $father));
+
+        if ($first == $max)
+        {
+            return 'N';
+        }
+        elseif ($second == $max)
+        {
+            return 'S';
+        }
+        else
+        {
+            return 'F';
+        }
     }
 
 }

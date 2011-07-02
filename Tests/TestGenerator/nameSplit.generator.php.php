@@ -16,7 +16,6 @@ class TestGenerator
     
     public function __construct()
     {
-        
         //$this->resultArr[]=file('Names/boy_full_result.txt');
         //$this->resultArr[]=file('Names/girl_full_result.txt');
     }
