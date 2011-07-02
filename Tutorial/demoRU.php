@@ -14,26 +14,26 @@ $nc = new NCLNameCaseRu();
  * =========================
  * Встроенные константы
  * =========================
- * NCLNameCaseRu::$IMENITLN - именительный падеж
- * NCLNameCaseRu::$RODITLN - родительные падеж
- * NCLNameCaseRu::$DATELN - дательные падеж
- * NCLNameCaseRu::$VINITELN - винительный падеж
- * NCLNameCaseRu::$TVORITELN - творительный падеж
- * NCLNameCaseRu::$PREDLOGN - предложный падеж
+ * NCL::$IMENITLN - именительный падеж
+ * NCL::$RODITLN - родительные падеж
+ * NCL::$DATELN - дательные падеж
+ * NCL::$VINITELN - винительный падеж
+ * NCL::$TVORITELN - творительный падеж
+ * NCL::$PREDLOGN - предложный падеж
  */
 
 echo 'Отчет, ' .
- $nc->q("Афонин Николай Сергеевич", NCLNameCaseRu::$RODITLN)
+ $nc->q("Афонин Николай Сергеевич", NCL::$RODITLN)
  . ' о проделаной работе вместе с его сыном ' .
- $nc->q("Афонин Никита", NCLNameCaseRu::$TVORITELN) .
+ $nc->q("Афонин Никита", NCL::$TVORITELN) .
  ' на осенних каникулах. Задание держалось на ' .
- $nc->q("Маргаритта Николаевна", NCLNameCaseRu::$PREDLOGN) .
+ $nc->q("Маргаритта Николаевна", NCL::$PREDLOGN) .
  '; Поздравляем всех предчастных, в том числе и ' .
- $nc->q("Кардонский Серафим Ильич", NCLNameCaseRu::$VINITELN) . ' и ' .
- $nc->q("Лобудская София Викторовна", NCLNameCaseRu::$VINITELN) .
+ $nc->q("Кардонский Серафим Ильич", NCL::$VINITELN) . ' и ' .
+ $nc->q("Лобудская София Викторовна", NCL::$VINITELN) .
  '. Хотим передать поздравление также ' .
- $nc->q("Игнатьев Павел Викторович", NCLNameCaseRu::$DATELN) . ' и ' .
- $nc->q("Сумарский Лев", NCLNameCaseRu::$DATELN);
+ $nc->q("Игнатьев Павел Викторович", NCL::$DATELN) . ' и ' .
+ $nc->q("Сумарский Лев", NCL::$DATELN);
 
 /*
  * ========================
