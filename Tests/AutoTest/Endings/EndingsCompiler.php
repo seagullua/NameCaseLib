@@ -17,6 +17,7 @@ class EndingsCompiler
     public function __construct($mode)
     {
         $this->template = file_get_contents($this->sourceFile);
+        $this->mode = $mode;
     }
     
     private function save()
