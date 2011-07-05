@@ -10,7 +10,7 @@
  * @version 0.1.2 05.05.2011 
  * 
  */
-require_once dirname(__FILE__) . '/NCL.NameCase.core.php';
+require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
 
 class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 {

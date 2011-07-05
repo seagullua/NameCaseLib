@@ -1,99 +1,24 @@
 <?php
-
-/*
- * NCL NameCase Core
- * 
- * Клас, которые содержит базовые функции склонения по падежам.
- * 
- * @license Dual licensed under the MIT or GPL Version 2 licenses.
- * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
- * @version 0.1.2 05.05.2011 
- * 
- */
-interface NCLNameCaseInterface
+if(!defined('NCL_DIR'))
 {
-
-    public function setFirstName($firstname="");
-
-    public function setSecondName($secondname="");
-
-    public function setFatherName($fathername="");
-
-    public function setGender($gender=0);
-
-    public function setFullName($secondName="", $firstName="", $fatherName="");
-
-    public function setName($firstname="");
-
-    public function setLastName($secondname="");
-
-    public function setSirname($secondname="");
-
-    public function genderAutoDetect();
-
-    public function splitFullName($fullname);
-
-    public function getFirstNameCase($number=null);
-
-    public function getSecondNameCase($number=null);
-
-    public function getFatherNameCase($number=null);
-
-    public function qFirstName($firstName, $CaseNumber=null, $gender=0);
-
-    public function qSecondName($secondName, $CaseNumber=null, $gender=0);
-
-    public function qFatherName($fatherName, $CaseNumber=null, $gender=0);
-
-    public function getFormattedArray($format);
-
-    public function getFormatted($caseNum=0, $format="S N F");
-
-    public function qFullName($secondName="", $firstName="", $fatherName="", $gender=0, $caseNum=0, $format="S N F");
-
-    public function getFirstNameRule();
-
-    public function getSecondNameRule();
-
-    public function q($fullname, $caseNum=null, $gender=null);
+    define('NCL_DIR', dirname(__FILE__));
 }
 
-class NCL
-{
-    /*
-     * @static integer
-     */
-
-    static $MAN = 1;
-
-    /*
-     * @static integer
-     */
-    static $WOMAN = 2;
-
-    /*
-     * @static integer
-     * Падежи
-     */
-    static $IMENITLN = 0;
-    static $RODITLN = 1;
-    static $DATELN = 2;
-    static $VINITELN = 3;
-    static $TVORITELN = 4;
-    static $PREDLOGN = 5;
-    static $UaNazyvnyi = 0;
-    static $UaRodovyi = 1;
-    static $UaDavalnyi = 2;
-    static $UaZnahidnyi = 3;
-    static $UaOrudnyi = 4;
-    static $UaMiszevyi = 5;
-    static $UaKlychnyi = 6;
-
-}
+require_once NCL_DIR . '/NCL.php';
+require_once NCL_DIR . '/NCLStr.php';
+require_once NCL_DIR . '/NCLNameCaseInterface.php';
+require_once NCL_DIR . '/NCLNameCaseWord.php';
 
 class NCLNameCaseCore extends NCL
 {
-    /*
+    /**
+     * Список всех слов
+     * @var array
+     */
+    protected $words = array();
+
+
+    /** DEPRECATED
      * Имя для склонения
      * @var string
      */
@@ -101,21 +26,21 @@ class NCLNameCaseCore extends NCL
     protected $firstName = "";
 
 
-    /*
+    /** DEPRECATED
      * Фамилия для склонения
      * @var string
      */
     protected $secondName = "";
 
 
-    /*
+    /** DEPRECATED
      * Отчество для склонения
      * @var string
      */
     protected $fatherName = "";
 
 
-    /*
+    /**
      * @var integer
      * Пол человека
      * <li>0 - не известно</li>
@@ -124,20 +49,20 @@ class NCLNameCaseCore extends NCL
      */
     protected $gender = 0;
 
-    /*
+    /** DEPRECATED
      * @var array()
      * Результат склонения имени
      */
     protected $firstResult = array();
 
 
-    /*
+    /** DEPRECATED
      * @var array()
      * Результат склонения фамилии
      */
     protected $secondResult = array();
 
-    /*
+    /** DEPRECATED
      * @var array()
      * Результат склонения отчества
      */
@@ -149,25 +74,17 @@ class NCLNameCaseCore extends NCL
      */
     protected $error = "";
 
-    /*
+    /** DEPRECATED
      * @var integer
      * Номер правила по которому склоняется имя
      */
     protected $frule = "";
 
-    /*
+    /** DEPRECATED
      * @var integer
      * Номер правила по которому не склоняется фамилия
      */
     protected $srule = "";
-
-
-
-    /*
-     * Кодировка библиотеки
-     * @var string
-     */
-    protected $charset = 'utf-8';
 
 
     /*
@@ -209,55 +126,9 @@ class NCLNameCaseCore extends NCL
     {
         $this->lastRule = $index;
     }
-
-    /*
-     * Обертка для substr
-     */
-
-    protected function substr($str, $start, $length=null)
-    {
-        return mb_substr($str, $start, $length, $this->charset);
-    }
-
-    /*
-     * Обертка для strpos
-     */
-
-    protected function strpos($haystack, $needle, $offset = 0)
-    {
-        return mb_strpos($haystack, $needle, $offset, $this->charset);
-    }
-
-    /*
-     * Обертка для strlen
-     */
-
-    protected function strlen($str)
-    {
-        return mb_strlen($str, $this->charset);
-    }
-
-    /*
-     * Обертка для strtolower
-     */
-
-    protected function strtolower($str)
-    {
-        return mb_strtolower($str, $this->charset);
-    }
-
-    /**
-     * Обертка для strrpos
-     * @param type $haystack
-     * @param type $needle
-     * @param type $offset
-     * @return type 
-     */
-    protected function strrpos($haystack, $needle, $offset=null)
-    {
-        return mb_strrpos($haystack, $needle, $offset, $this->charset);
-    }
-
+    
+    
+    
     /*
      * Установить текущее слово
      */
@@ -292,7 +163,7 @@ class NCLNameCaseCore extends NCL
         //Проверяем кеш
         if (!isset($this->workindLastCache[$length][$stopAfter]))
         {
-            $this->workindLastCache[$length][$stopAfter] = $this->substr($this->workingWord, -$length, $cut);
+            $this->workindLastCache[$length][$stopAfter] = NCLStr::substr($this->workingWord, -$length, $cut);
         }
         return $this->workindLastCache[$length][$stopAfter];
     }
@@ -361,7 +232,7 @@ class NCLNameCaseCore extends NCL
         }
         else
         {
-            if (!$letter or $this->strpos($string, $letter) === false)
+            if (!$letter or NCLStr::strpos($string, $letter) === false)
             {
                 return false;
             }
@@ -387,7 +258,7 @@ class NCLNameCaseCore extends NCL
 
         foreach ($names as $name)
         {
-            if ($this->strtolower($nameNeedle) == $this->strtolower($name))
+            if (NCLStr::strtolower($nameNeedle) == NCLStr::strtolower($name))
             {
                 return true;
             }
@@ -410,7 +281,7 @@ class NCLNameCaseCore extends NCL
         //Создаем массив с именительный падежом
         $result = array($word);
         //Убираем в окончание лишние буквы
-        $word = $this->substr($word, 0, $this->strlen($word) - $replaceLast);
+        $word = NCLStr::substr($word, 0, NCLStr::strlen($word) - $replaceLast);
 
         //Добавляем окончания
         for ($padegIndex = 1; $padegIndex < $this->CaseCount; $padegIndex++)
@@ -489,7 +360,7 @@ class NCLNameCaseCore extends NCL
      * Установка пола
      * 
      * @param $gender
-     * - null - не определено
+     * - 0 - не определено
      * - NCL::$MAN - мужчина
      * - NCL::$WOMAN - женщина
      * @return void
