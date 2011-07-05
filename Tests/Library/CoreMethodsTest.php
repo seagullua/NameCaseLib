@@ -93,27 +93,19 @@ class NCLNameCaseRuTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(explode(',','Чайка,Чайки,Чайке,Чайку,Чайкой,Чайке'), $this->object->qSecondName('Чайка', 15, 1));
     }
     
-    public function test11()
-    {
-        $this->object->setFatherName();
-        $this->object->setFirstName();
-        $this->object->setSecondName();
-        $this->assertEquals(explode(',',',,,,,'), $this->object->getSecondNameCase());
-        $this->assertEquals(explode(',',',,,,,'), $this->object->getFatherNameCase());
-        $this->assertEquals(explode(',',',,,,,'), $this->object->getFirstNameCase());
-    }
     
-    public function test12()
+    
+    public function test11()
     {
         $this->assertEquals(explode(',','Николаевич,Николаевича,Николаевичу,Николаевича,Николаевичем,Николаевиче'), $this->object->qFatherName('Николаевич', 15, 1));
     }
     
-    public function test13()
+    public function test12()
     {
         $this->assertEquals('на Чайке Андрее Николаевиче красивая рубашка', $this->object->qFullName("Чайка", 'Андрей', 'Николаевич', 1, 5, "на S N F красивая рубашка"));
     }
     
-    public function test14()
+    public function test13()
     {
         $this->assertEquals('комментария', $this->object->qFirstName('комментарий',NCLNameCaseRu::$RODITLN , NCLNameCaseRu::$MAN));
     }
