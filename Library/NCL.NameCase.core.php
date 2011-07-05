@@ -63,6 +63,7 @@ class NCL
     /*
      * @static integer
      */
+
     static $MAN = 1;
 
     /*
@@ -80,7 +81,6 @@ class NCL
     static $VINITELN = 3;
     static $TVORITELN = 4;
     static $PREDLOGN = 5;
-    
     static $UaNazyvnyi = 0;
     static $UaRodovyi = 1;
     static $UaDavalnyi = 2;
@@ -88,6 +88,7 @@ class NCL
     static $UaOrudnyi = 4;
     static $UaMiszevyi = 5;
     static $UaKlychnyi = 6;
+
 }
 
 class NCLNameCaseCore extends NCL
@@ -122,8 +123,8 @@ class NCLNameCaseCore extends NCL
      * <li>2 - женщина</li>
      */
     protected $gender = 0;
-    
-     /*
+
+    /*
      * @var array()
      * Результат склонения имени
      */
@@ -159,11 +160,161 @@ class NCLNameCaseCore extends NCL
      * Номер правила по которому не склоняется фамилия
      */
     protected $srule = "";
-    
-    
 
 
-   
+
+    /*
+     * Кодировка библиотеки
+     * @var string
+     */
+    protected $charset = 'utf-8';
+
+
+    /*
+     * Слово с которым работаем сейчас
+     * @var string
+     */
+    protected $workingWord = '';
+
+    /*
+     * Кеш окончаний слова
+     * @var array
+     */
+    protected $workindLastCache = array();
+    /**
+     * Последние правило
+     * @var int 
+     */
+    protected $lastRule = 0;
+    /**
+     * Просклоненое слово
+     * @var array 
+     */
+    protected $lastResult = array();
+
+    /**
+     * Сброс всех настроек
+     */
+    protected function reset()
+    {
+        $this->lastRule = 0;
+        $this->lastResult = array();
+    }
+    
+    /**
+     * Установить номер парвила
+     * @param int $index 
+     */
+    protected function Rule($index)
+    {
+        $this->lastRule = $index;
+    }
+
+    /*
+     * Обертка для substr
+     */
+
+    protected function substr($str, $start, $length=null)
+    {
+        return mb_substr($str, $start, $length, $this->charset);
+    }
+
+    /*
+     * Обертка для strpos
+     */
+
+    protected function strpos($haystack, $needle, $offset = 0)
+    {
+        return mb_strpos($haystack, $needle, $offset, $this->charset);
+    }
+
+    /*
+     * Обертка для strlen
+     */
+
+    protected function strlen($str)
+    {
+        return mb_strlen($str, $this->charset);
+    }
+
+    /*
+     * Обертка для strtolower
+     */
+
+    protected function strtolower($str)
+    {
+        return mb_strtolower($str, $this->charset);
+    }
+
+    /**
+     * Обертка для strrpos
+     * @param type $haystack
+     * @param type $needle
+     * @param type $offset
+     * @return type 
+     */
+    protected function strrpos($haystack, $needle, $offset=null)
+    {
+        return mb_strrpos($haystack, $needle, $offset, $this->charset);
+    }
+
+    /*
+     * Установить текущее слово
+     */
+
+    protected function setWorkingWord($word)
+    {
+        //Сбрасываем настройки
+        $this->reset();
+        //Ставим слово
+        $this->workingWord = $word;
+        //Чистим кеш
+        $this->workindLastCache = array();
+    }
+
+    /*
+     * Если $stopAfter = 0, тогда вырезает $length последних букв
+     * Если нет, тогда вырезает $stopAfter букв начиная от $length с конца
+     */
+
+    protected function Last($length=1, $stopAfter=0)
+    {
+        //Сколько букв нужно вырезать все или только часть
+        if (!$stopAfter)
+        {
+            $cut = $length;
+        }
+        else
+        {
+            $cut = $stopAfter;
+        }
+
+        //Проверяем кеш
+        if (!isset($this->workindLastCache[$length][$stopAfter]))
+        {
+            $this->workindLastCache[$length][$stopAfter] = $this->substr($this->workingWord, -$length, $cut);
+        }
+        return $this->workindLastCache[$length][$stopAfter];
+    }
+    
+    /**
+     * Выполняет над словом типа $gender (man / woman) в порядке указанов в $rulesArray
+     * @param string $gender - мужские/женский правила
+     * @param type $rulesArray - массив, порядок выполнения правил
+     * @return boolean 
+     */
+    protected function RulesChain($gender, $rulesArray)
+    {
+        foreach($rulesArray as $ruleID)
+        {
+            $ruleMethod = $gender.'Rule'.$ruleID;
+            if($this->$ruleMethod())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     protected function makeFirstTheSame()
     {
@@ -203,15 +354,45 @@ class NCLNameCaseCore extends NCL
 
     protected function in($letter, $string)
     {
-
-        if ($letter and mb_strpos($string, $letter) === false)
+        //Если второй параметр массив
+        if (is_array($string))
         {
-            return false;
+            return in_array($letter, $string);
         }
         else
         {
-            return true;
+            if (!$letter or $this->strpos($string, $letter) === false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
+    }
+
+    /**
+     * Функция проверяет, входит ли имя в перечень имен.
+     * 
+     * @param string $nameNeedle - имя
+     * @param string $names - перечень имен
+     */
+    protected function inNames($nameNeedle, $names)
+    {
+        if (!is_array($names))
+        {
+            $names = array($names);
+        }
+
+        foreach ($names as $name)
+        {
+            if ($this->strtolower($nameNeedle) == $this->strtolower($name))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -219,10 +400,29 @@ class NCLNameCaseCore extends NCL
      * 
      * @param $word (string) - слово
      * @param $endings (array) - окончания
-     * @param $replaceLast (boolean) - убрать последнюю букву
-     * @param $replaceTwoLast (boolean) - убрать две последних буквы
+     * @param $replaceLast (int) - сколько букв убрать
      * 
-     * @return boolean
+     * @return (array)
+     */
+
+    protected function wordForms($word, $endings, $replaceLast=0)
+    {
+        //Создаем массив с именительный падежом
+        $result = array($word);
+        //Убираем в окончание лишние буквы
+        $word = $this->substr($word, 0, $this->strlen($word) - $replaceLast);
+
+        //Добавляем окончания
+        for ($padegIndex = 1; $padegIndex < $this->CaseCount; $padegIndex++)
+        {
+            $result[$padegIndex] = $word . $endings[$padegIndex - 1];
+        }
+
+        $this->lastResult = $result;
+    }
+
+    /*
+     * DEPRECATED!!!
      */
 
     protected function padeg($word, $endings, $replaceLast=false, $replaceTwoLast=false)
@@ -239,7 +439,7 @@ class NCLNameCaseCore extends NCL
             $word = mb_substr($word, 0, mb_strlen($word, 'utf-8') - 1, 'utf-8');
         }
         $i = 0;
-        for ($i == 0; $i < ($this->CaseCount-1); $i++)
+        for ($i = 0; $i < ($this->CaseCount - 1); $i++)
         {
             $result[$i + 1] = $word . $endings[$i];
         }
@@ -392,28 +592,27 @@ class NCLNameCaseCore extends NCL
             {
                 $found[$i][0] = $this->detectNamePart($list[$i]);
                 $found[$i][1] = $list[$i];
-                if ($found[$i][0]=='N')
+                if ($found[$i][0] == 'N')
                 {
-                    $this->firstName=$found[$i][1];
+                    $this->firstName = $found[$i][1];
                 }
-                elseif ($found[$i][0]=='S')
+                elseif ($found[$i][0] == 'S')
                 {
-                    $this->secondName=$found[$i][1];
+                    $this->secondName = $found[$i][1];
                 }
-                elseif ($found[$i][0]=='F')
+                elseif ($found[$i][0] == 'F')
                 {
-                    $this->fatherName=$found[$i][1];
+                    $this->fatherName = $found[$i][1];
                 }
-                
             }
         }
-        
+
         $format = array();
         foreach ($found as $value)
         {
-            $format[]=$value;
+            $format[] = $value;
         }
-        if (count($format)==1)
+        if (count($format) == 1)
         {
             return $format[0][0];
         }
@@ -421,7 +620,6 @@ class NCLNameCaseCore extends NCL
         {
             return $format;
         }
-        
     }
 
     /*
@@ -443,7 +641,7 @@ class NCLNameCaseCore extends NCL
             {
                 $result = $this->womanFirstName();
             }
-            $this->firstResult[0]=$this->firstName;
+            $this->firstResult[0] = $this->firstName;
             return $result;
         }
         else
@@ -472,7 +670,7 @@ class NCLNameCaseCore extends NCL
             {
                 $result = $this->womanSecondName();
             }
-            $this->secondResult[0]=$this->secondName;
+            $this->secondResult[0] = $this->secondName;
             return $result;
         }
         else
@@ -501,7 +699,7 @@ class NCLNameCaseCore extends NCL
             {
                 $result = $this->womanFatherName();
             }
-            $this->fatherResult[0]=$this->fatherName;
+            $this->fatherResult[0] = $this->fatherName;
             return $result;
         }
         else
@@ -523,7 +721,7 @@ class NCLNameCaseCore extends NCL
         {
             $this->FirstName();
         }
-        if ($number < 0 or $number > ($this->CaseCount-1))
+        if ($number < 0 or $number > ($this->CaseCount - 1))
         {
             $number = null;
         }
@@ -551,7 +749,7 @@ class NCLNameCaseCore extends NCL
         {
             $this->SecondName();
         }
-        if ($number < 0 or $number > ($this->CaseCount-1))
+        if ($number < 0 or $number > ($this->CaseCount - 1))
         {
             $number = null;
         }
@@ -579,7 +777,7 @@ class NCLNameCaseCore extends NCL
         {
             $this->FatherName();
         }
-        if ($number < 0 or $number > ($this->CaseCount-1))
+        if ($number < 0 or $number > ($this->CaseCount - 1))
         {
             $number = null;
         }
@@ -697,16 +895,16 @@ class NCLNameCaseCore extends NCL
         }
         return $result;
     }
-    
+
     public function getFormattedArrayHard($format)
     {
-        
+
         $result = array();
         $cases = array();
         foreach ($format as $value)
         {
             $symbol = $value[0];
-            
+
             if ($symbol == 'S')
             {
                 $this->setSecondName($value[1]);
@@ -720,7 +918,7 @@ class NCLNameCaseCore extends NCL
             elseif ($symbol == 'F')
             {
                 $this->setFatherName($value[1]);
-                $cases[] = array('F',$this->getFatherNameCase());
+                $cases[] = array('F', $this->getFatherNameCase());
             }
         }
 
@@ -732,47 +930,47 @@ class NCLNameCaseCore extends NCL
                 $symbol = $value[0];
                 if ($symbol == 'S')
                 {
-                    $line.=$value[1][$curCase].' ';
+                    $line.=$value[1][$curCase] . ' ';
                 }
                 elseif ($symbol == 'N')
                 {
-                    $line.=$value[1][$curCase].' ';
+                    $line.=$value[1][$curCase] . ' ';
                 }
                 elseif ($symbol == 'F')
                 {
-                    $line.=$value[1][$curCase].' ';
+                    $line.=$value[1][$curCase] . ' ';
                 }
             }
             $result[] = trim($line);
         }
         return $result;
     }
-    
+
     public function getFormattedHard($caseNum=0, $format=array())
     {
-            $result = "";
-            foreach ($format as $value)
+        $result = "";
+        foreach ($format as $value)
+        {
+            $symbol = $value[0];
+            if ($symbol == 'S')
             {
-                $symbol = $value[0];
-                if ($symbol == 'S')
-                {
-                    $this->setSecondName($value[1]);
-                    $result.=$this->getSecondNameCase($caseNum).' ';
-                }
-                elseif ($symbol == 'N')
-                {
-                    $this->setFirstName($value[1]);
-                    $result.=$this->getFirstNameCase($caseNum).' ';
-                }
-                elseif ($symbol == 'F')
-                {
-                    $this->setFatherName($value[1]);
-                    $result.=$this->getFatherNameCase($caseNum).' ';
-                }
+                $this->setSecondName($value[1]);
+                $result.=$this->getSecondNameCase($caseNum) . ' ';
             }
-            return trim($result);
+            elseif ($symbol == 'N')
+            {
+                $this->setFirstName($value[1]);
+                $result.=$this->getFirstNameCase($caseNum) . ' ';
+            }
+            elseif ($symbol == 'F')
+            {
+                $this->setFatherName($value[1]);
+                $result.=$this->getFatherNameCase($caseNum) . ' ';
+            }
+        }
+        return trim($result);
     }
-    
+
     /*
      * Склоняет в падеж $caseNum, и форматирует по шаблону $format
      * Шаблон $format

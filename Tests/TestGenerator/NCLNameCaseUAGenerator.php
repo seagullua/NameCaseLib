@@ -26,7 +26,7 @@ class TestGeneratorDB
         //$this->resultArr=file('Names/'.$gender.'_full_result.txt');
         $this->count = 0;
         $fnewname = $fname;
-        if($fnewname=='Sirnames')
+        if ($fnewname == 'Sirnames')
         {
             $fnewname = 'second';
         }
@@ -38,7 +38,7 @@ class TestGeneratorDB
         else
         {
             $this->gender = 2;
-            $this->dbTable = 'girl' . strtolower($fnewname) ;
+            $this->dbTable = 'girl' . strtolower($fnewname);
         }
         $this->resultArr = mysql_query("SELECT * FROM {$this->dbTable}");
         //foreach ($this->resultArr as $key=>$value)
@@ -53,8 +53,10 @@ class TestGeneratorDB
             $secondRes = array();
             $fatherRes = array();
             $secondRes = $fatherRes = $firstRes = explode('#', $row['nameCase']);
-
-            $this->generateTest($firstRes, $secondRes, $fatherRes);
+            if ($row['nameCase'])
+            {
+                $this->generateTest($firstRes, $secondRes, $fatherRes);
+            }
         }
         //}
         $res = str_replace('{% tests %}', $this->tests, $this->maintemplate);
@@ -66,9 +68,9 @@ class TestGeneratorDB
     {
         $tpl = $this->testtemplate;
         $tpl = str_replace('{% id %}', $this->count, $tpl);
-        $tpl=str_replace('{% second %}', $secondRes[0], $tpl);
+        $tpl = str_replace('{% second %}', $secondRes[0], $tpl);
         $tpl = str_replace('{% first %}', $firstRes[0], $tpl);
-        $tpl=str_replace('{% father %}', $fatherRes[0], $tpl);
+        $tpl = str_replace('{% father %}', $fatherRes[0], $tpl);
         $tpl = str_replace('{% gender %}', $this->gender, $tpl);
         $tpl = str_replace('{% firstOK %}', implode(',', $firstRes), $tpl);
         $tpl = str_replace('{% secondOK %}', implode(',', $secondRes), $tpl);
