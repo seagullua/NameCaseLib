@@ -1,55 +1,65 @@
 <?php
 
 /**
- * NCL NameCase Ukranian Language
+ * <b>NCL NameCase Ukranian Language</b>
  * 
- * Клас, которые позволяет склонять украинские Имена, Фамили Отчества по падежам.
+ * Украинские правила склонений ФИО. 
+ * Правила определения пола человека по ФИО для украинского языка
+ * Система разделения фамилий имен и отчеств для украинского языка
  * 
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
  * @version 0.4 05.07.2011 
+ * @package NameCaseLib
  * 
  */
 require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
 
 class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 {
-    /*
-     * @static string
-     * Количество падежов
-     */
 
+    /**
+     * @var int Количество падежей в языке
+     */
     protected $CaseCount = 7;
 
-    /*
-     * @static string
-     * Список гласных
+    /**
+     * @var string Список гласных украинского языка
      */
-    private $vowels = "аеиоуіїєюя";
+    private $vowels = 'аеиоуіїєюя';
 
-    /*
-     * @static string
-     * Список согласных
+    /**
+     * @var string Список согласных украинского языка 
      */
     private $consonant = "бвгджзйклмнпрстфхцчшщ";
 
-    /*
-     * @static string
-     * Шиплячі приголосні
+    /**
+     * @var string Українські шиплячі приголосні 
      */
     private $shyplyachi = "жчшщ";
+    
+    /**
+     * @var string Українські нешиплячі приголосні 
+     */
     private $neshyplyachi = "бвгдзклмнпрстфхц";
+    
+    /**
+     * @var string Українські завжди м’які звуки 
+     */
     private $myaki = 'ьюяєї';
+    
+    /**
+     * @var string Українські губні звуки
+     */
     private $gubni = 'мвпбф';
 
-
-
-    /*
+    
+    /**
+     * Чергування українських приголосних
      * Чергування г к х —» з ц с
-     * 
-     * @return boolean
+     * @param string $letter літера, яку необхідно перевірити на чергування
+     * @return string літера, де вже відбулося чергування
      */
-
     private function inverseGKH($letter)
     {
         switch ($letter)
@@ -60,13 +70,13 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return $letter;
     }
-
-    /*
-     * Чергування к —» ч
-     * 
-     * @return boolean
+    
+    /**
+     * Чергування українських приголосних
+     * Чергування г к —» ж ч
+     * @param string $letter літера, яку необхідно перевірити на чергування
+     * @return string літера, де вже відбулося чергування 
      */
-
     private function inverse2($letter)
     {
         switch ($letter)
@@ -76,21 +86,24 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return $letter;
     }
-
-    /*
-     * Визначення групи для іменників 2-ї відміни
+    
+    /**
+     * <b>Визначення групи для іменників 2-ї відміни</b>
      * 1 - тверда
      * 2 - мішана
      * 3 - м’яка
      * 
-     * Правило:
-     * Іменники з основою на твердий нешиплячий належать до твердої групи: береза, дорога, Дніпро, шлях, віз, село, яблуко.
-     * Іменники з основою на твердий шиплячий належать до мішаної групи: пожеж-а, пущ-а, тиш-а, алич-а, вуж, кущ, плющ, ключ, плече, прізвище.
-     * Іменники з основою на будь-який м'який чи пом'якше­ний належать до м'якої групи: земля [земл'а], зоря [зор'а], армія [арм'ійа], сім'я [с'імйа], серпень, фахівець, трамвай, су­зір'я [суз'ірйа], насіння [насін'н'а], узвишшя Іузвиш'ш'а
-     * 
-     * @return integer
+     * <b>Правило:</b>
+     * - Іменники з основою на твердий нешиплячий належать до твердої групи: 
+     *   береза, дорога, Дніпро, шлях, віз, село, яблуко.
+     * - Іменники з основою на твердий шиплячий належать до мішаної групи: 
+     *   пожеж-а, пущ-а, тиш-а, алич-а, вуж, кущ, плющ, ключ, плече, прізвище.
+     * - Іменники з основою на будь-який м'який чи пом'якше­ний належать до м'якої групи: 
+     *   земля [земл'а], зоря [зор'а], армія [арм'ійа], сім'я [с'імйа], серпень, фахівець, 
+     *   трамвай, су­зір'я [суз'ірйа], насіння [насін'н'а], узвишшя Іузвиш'ш'а
+     * @param string $word іменник, групу якого необхідно визначити
+     * @return int номер групи іменника 
      */
-
     private function detect2Group($word)
     {
         $osnova = $word;
@@ -123,12 +136,12 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
     }
 
-    /*
-     * Повертає перший з кінця голосний
-     * 
-     * @return char
+    /**
+     * Шукаємо в слові <var>$word</var> перше входження літери з переліку <var>$vowels</var> з кінця
+     * @param string $word слово, якому необхідно знайти голосні
+     * @param string $vowels перелік літер, які треба знайти
+     * @return string(1) перша з кінця літера з переліку <var>$vowels</var>
      */
-
     private function FirstLastVowel($word, $vowels)
     {
         $length = NCLStr::strlen($word);
@@ -142,12 +155,12 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
     }
 
-    /*
-     * Повертає основу слова
-     * 
-     * @return boolean
+    /**
+     * Пошук основи іменника <var>$word</var>
+     * <b>Основа слова</b> - це частина слова (як правило незмінна), яка вказує на його лексичне значення.
+     * @param string $word слово, в якому необхідно знати основу
+     * @return string основа іменника <var>$word</var>
      */
-
     private function getOsnova($word)
     {
         $osnova = $word;
@@ -160,14 +173,16 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     }
 
     /**
-     * Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я), 
-     * відмінються як відповідні іменники І відміни.  
-     * - Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах 
+     * Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я),
+     * відмінються як відповідні іменники І відміни.
+     * <ul>
+     * <li>Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах 
      *   у давальному та місцевому відмінках однини перед закінченням -і 
-     *   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.
-     * - Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини 
-     *   в кінці основи між приголосними з'являється звук о: Одарок, Парасок 
-     * @return boolean 
+     *   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.</li>
+     * <li>Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини 
+     *   в кінці основи між приголосними з'являється звук о: Одарок, Парасок. </li>
+     * </ul>
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manRule1()
     {
@@ -204,7 +219,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Імена, що в називному відмінку закінчуються на -р, у родовому мають закінчення -а: 
      * Віктор - Віктора, Макар - Макара, але: Ігор - Ігоря, Лазар - Лазаря.
-     * @return boolean 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manRule2()
     {
@@ -234,7 +249,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Українські чоловічі імена, що в називному відмінку однини закінчуються на приголосний та -о, 
      * відмінюються як відповідні іменники ІІ відміни.
-     * @return boolean 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
      */
     protected function manRule3()
     {
@@ -345,7 +360,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Якщо слово закінчується на і, то відмінюємо як множину
-     * @return boolean 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manRule4()
     {
@@ -360,7 +375,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Якщо слово закінчується на ий або ой
-     * @return boolena 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
      */
     protected function manRule5()
     {
@@ -381,7 +396,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
      *   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.
      * - Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини 
      *   в кінці основи між приголосними з'являється звук о: Одарок, Парасок 
-     * @return boolean 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
      */
     protected function womanRule1()
     {
@@ -427,7 +442,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Українські жіночі імена, що в називному відмінку однини закінчуються на приголосний, 
      * відмінюються як відповідні іменники ІІІ відміни
-     * @return boolean 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
      */
     protected function womanRule2()
     {
@@ -471,7 +486,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Якщо слово на ськ або це російське прізвище
-     * @return boolean 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
      */
     protected function womanRule3()
     {
@@ -498,8 +513,8 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     }
 
     /**
-     * Функция, которая склоняет имя записаное в $this->firstName, по правилам склонения мужских имен.
-     * @return boolean
+     * Функція намагається застосувати ланцюг правил для чоловічих імен
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manFirstName()
     {
@@ -507,19 +522,17 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     }
 
     /**
-     * Функция, которая склоняет имя записаное в $this->firstName, по правилам склонения женских имен.
-     * 
-     * @return boolean
+     * Функція намагається застосувати ланцюг правил для жіночих імен
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function womanFirstName()
     {
         return $this->RulesChain('woman', array(1, 2));
     }
 
-    /*
-     * Функция, которая склоняет фамилию записаное в $this->secondName, по правилам склонения мужских фамилий.
-     * 
-     * @return boolean
+    /**
+     * Функція намагається застосувати ланцюг правил для чоловічих прізвищ
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
 
     protected function manSecondName()
@@ -527,23 +540,19 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         return $this->RulesChain('man', array(5, 1, 2, 3, 4));
     }
 
-    /*
-     * Функция, которая склоняет фамилию записаное в $this->secondName, по правилам склонения женских фамилий.
-     * 
-     * @return boolean
+    /**
+     * Функція намагається застосувати ланцюг правил для жіночих прізвищ
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
-
     protected function womanSecondName()
     {
         return $this->RulesChain('woman', array(3, 1));
     }
 
-    /*
-     * Функция, которая склоняет отчество записаное в $this->secondName, по правилам склонения мужских отчеств.
-     * 
-     * @return boolean
+    /**
+     * Фунція відмінює чоловічі по-батькові
+     * @return boolean true - якщо слово успішно змінене, false - якщо невдалося провідміняти слово
      */
-
     protected function manFatherName()
     {
         if ($this->in($this->Last(2), array('ич', 'іч')))
@@ -554,12 +563,10 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         return false;
     }
 
-    /*
-     * Функция, которая склоняет отчество записаное в $this->fatherName, по правилам склонения женских отчеств.
-     * 
-     * @return boolean
+    /**
+     * Фунція відмінює жіночі по-батькові
+     * @return boolean true - якщо слово успішно змінене, false - якщо невдалося провідміняти слово
      */
-
     protected function womanFatherName()
     {
         if ($this->in($this->Last(3), array('вна')))
@@ -569,7 +576,11 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return false;
     }
-
+    
+    /**
+     * Визначення статі, за правилами імені
+     * @param NCLNameCaseWord $word об’єкт класу зі словом, для якого необхідно визначити стать
+     */
     protected function GenderByFirstName(NCLNameCaseWord $word)
     {
         $this->setWorkingWord($word->getWord());
@@ -615,7 +626,11 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-
+    
+    /**
+     * Визначення статі, за правилами прізвища
+     * @param NCLNameCaseWord $word об’єкт класу зі словом, для якого необхідно визначити стать
+     */
     protected function GenderBySecondName(NCLNameCaseWord $word)
     {
         $this->setWorkingWord($word->getWord());
@@ -640,7 +655,11 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-
+    
+    /**
+     * Визначення статі, за правилами по-батькові
+     * @param NCLNameCaseWord $word об’єкт класу зі словом, для якого необхідно визначити стать
+     */
     protected function GenderByFatherName(NCLNameCaseWord $word)
     {
         $this->setWorkingWord($word->getWord());
@@ -655,11 +674,13 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
     }
 
-    /*
-     * Определение текущее слово есть фамилией, именем или отчеством
-     * @return integer $number - 1-фамили 2-имя 3-отчество
+    /**
+     * Ідентифікує слово визначаючи чи це ім’я, чи це прізвище, чи це побатькові
+     * - <b>N</b> - ім’я
+     * - <b>S</b> - прізвище
+     * - <b>F</b> - по-батькові
+     * @param NCLNameCaseWord $word об’єкт класу зі словом, яке необхідно ідентифікувати
      */
-
     protected function detectNamePart(NCLNameCaseWord $word)
     {
         $namepart = $word->getWord();
