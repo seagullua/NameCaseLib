@@ -1,5 +1,6 @@
 <?php
-if(!defined('NCL_DIR'))
+
+if (!defined('NCL_DIR'))
 {
     define('NCL_DIR', dirname(__FILE__));
 }
@@ -11,81 +12,22 @@ require_once NCL_DIR . '/NCLNameCaseWord.php';
 
 class NCLNameCaseCore extends NCL
 {
+
+    /**
+     * Система уже готово к склонению или нет
+     * @var bool 
+     */
+    protected $ready = false;
+    /**
+     * Все слова уже просклонялись
+     * @var bool 
+     */
+    protected $finished = false;
     /**
      * Список всех слов
      * @var array
      */
     protected $words = array();
-
-
-    /** DEPRECATED
-     * Имя для склонения
-     * @var string
-     */
-
-    protected $firstName = "";
-
-
-    /** DEPRECATED
-     * Фамилия для склонения
-     * @var string
-     */
-    protected $secondName = "";
-
-
-    /** DEPRECATED
-     * Отчество для склонения
-     * @var string
-     */
-    protected $fatherName = "";
-
-
-    /**
-     * @var integer
-     * Пол человека
-     * <li>0 - не известно</li>
-     * <li>1 - мужчина</li>
-     * <li>2 - женщина</li>
-     */
-    protected $gender = 0;
-
-    /** DEPRECATED
-     * @var array()
-     * Результат склонения имени
-     */
-    protected $firstResult = array();
-
-
-    /** DEPRECATED
-     * @var array()
-     * Результат склонения фамилии
-     */
-    protected $secondResult = array();
-
-    /** DEPRECATED
-     * @var array()
-     * Результат склонения отчества
-     */
-    protected $fatherResult = array();
-
-    /*
-     * @var integer
-     * Номер правила по которому не склоняется имя/фамилия
-     */
-    protected $error = "";
-
-    /** DEPRECATED
-     * @var integer
-     * Номер правила по которому склоняется имя
-     */
-    protected $frule = "";
-
-    /** DEPRECATED
-     * @var integer
-     * Номер правила по которому не склоняется фамилия
-     */
-    protected $srule = "";
-
 
     /*
      * Слово с которым работаем сейчас
@@ -108,6 +50,7 @@ class NCLNameCaseCore extends NCL
      * @var array 
      */
     protected $lastResult = array();
+    protected $index = array();
 
     /**
      * Сброс всех настроек
@@ -117,7 +60,21 @@ class NCLNameCaseCore extends NCL
         $this->lastRule = 0;
         $this->lastResult = array();
     }
-    
+
+    protected function fullReset()
+    {
+        $this->words = array();
+        $this->index = array('N' => array(), 'F' => array(), 'S' => array());
+        $this->reset();
+        $this->notReady();
+    }
+
+    protected function notReady()
+    {
+        $this->ready = false;
+        $this->finished = false;
+    }
+
     /**
      * Установить номер парвила
      * @param int $index 
@@ -126,9 +83,7 @@ class NCLNameCaseCore extends NCL
     {
         $this->lastRule = $index;
     }
-    
-    
-    
+
     /*
      * Установить текущее слово
      */
@@ -167,7 +122,7 @@ class NCLNameCaseCore extends NCL
         }
         return $this->workindLastCache[$length][$stopAfter];
     }
-    
+
     /**
      * Выполняет над словом типа $gender (man / woman) в порядке указанов в $rulesArray
      * @param string $gender - мужские/женский правила
@@ -176,42 +131,15 @@ class NCLNameCaseCore extends NCL
      */
     protected function RulesChain($gender, $rulesArray)
     {
-        foreach($rulesArray as $ruleID)
+        foreach ($rulesArray as $ruleID)
         {
-            $ruleMethod = $gender.'Rule'.$ruleID;
-            if($this->$ruleMethod())
+            $ruleMethod = $gender . 'Rule' . $ruleID;
+            if ($this->$ruleMethod())
             {
                 return true;
             }
         }
         return false;
-    }
-
-    protected function makeFirstTheSame()
-    {
-        $this->firstResult = array_fill(0, $this->CaseCount, $this->firstName);
-    }
-
-    /*
-     * Функция, которая ставит фамилию во всех падежах в форме именительного падежа.
-     * 
-     * @return void
-     */
-
-    protected function makeSecondTheSame()
-    {
-        $this->secondResult = array_fill(0, $this->CaseCount, $this->secondName);
-    }
-
-    /*
-     * Функция, которая ставит фамилию во всех падежах в форме именительного падежа.
-     * 
-     * @return void
-     */
-
-    protected function makeFatherTheSame()
-    {
-        $this->fatherResult = array_fill(0, $this->CaseCount, $this->fatherName);
     }
 
     /*
@@ -279,7 +207,7 @@ class NCLNameCaseCore extends NCL
     protected function wordForms($word, $endings, $replaceLast=0)
     {
         //Создаем массив с именительный падежом
-        $result = array($word);
+        $result = array($this->workingWord);
         //Убираем в окончание лишние буквы
         $word = NCLStr::substr($word, 0, NCLStr::strlen($word) - $replaceLast);
 
@@ -293,31 +221,6 @@ class NCLNameCaseCore extends NCL
     }
 
     /*
-     * DEPRECATED!!!
-     */
-
-    protected function padeg($word, $endings, $replaceLast=false, $replaceTwoLast=false)
-    {
-        $result = array($word);
-        if ($replaceTwoLast == true)
-        {
-            //убираем последнею букву
-            $word = mb_substr($word, 0, mb_strlen($word, 'utf-8') - 2, 'utf-8');
-        }
-        elseif ($replaceLast == true)
-        {
-            //убираем последнею букву
-            $word = mb_substr($word, 0, mb_strlen($word, 'utf-8') - 1, 'utf-8');
-        }
-        $i = 0;
-        for ($i = 0; $i < ($this->CaseCount - 1); $i++)
-        {
-            $result[$i + 1] = $word . $endings[$i];
-        }
-        return $result;
-    }
-
-    /*
      * Установка имени
      * 
      * @param $firstname
@@ -327,7 +230,13 @@ class NCLNameCaseCore extends NCL
 
     public function setFirstName($firstname="")
     {
-        $this->firstName = $firstname;
+        if ($firstname)
+        {
+            $index = count($this->words);
+            $this->words[$index] = new NCLNameCaseWord($firstname);
+            $this->words[$index]->setNamePart('N');
+            $this->notReady();
+        }
     }
 
     /*
@@ -340,7 +249,13 @@ class NCLNameCaseCore extends NCL
 
     public function setSecondName($secondname="")
     {
-        $this->secondName = $secondname;
+        if ($secondname)
+        {
+            $index = count($this->words);
+            $this->words[$index] = new NCLNameCaseWord($secondname);
+            $this->words[$index]->setNamePart('S');
+            $this->notReady();
+        }
     }
 
     /*
@@ -353,7 +268,13 @@ class NCLNameCaseCore extends NCL
 
     public function setFatherName($fathername="")
     {
-        $this->fatherName = $fathername;
+        if ($fathername)
+        {
+            $index = count($this->words);
+            $this->words[$index] = new NCLNameCaseWord($fathername);
+            $this->words[$index]->setNamePart('F');
+            $this->notReady();
+        }
     }
 
     /*
@@ -368,7 +289,10 @@ class NCLNameCaseCore extends NCL
 
     public function setGender($gender=0)
     {
-        $this->gender = $gender;
+        foreach ($this->words as $word)
+        {
+            $word->setTrueGender($gender);
+        }
     }
 
     /*
@@ -427,6 +351,96 @@ class NCLNameCaseCore extends NCL
         $this->setSecondName($secondname);
     }
 
+    protected function prepareNamePart(NCLNameCaseWord $word)
+    {
+        if (!$word->getNamePart())
+        {
+            $this->detectNamePart($word);
+        }
+    }
+
+    protected function prepareAllNameParts()
+    {
+        foreach ($this->words as $word)
+        {
+            $this->prepareNamePart($word);
+        }
+    }
+
+    protected function prepareGender(NCLNameCaseWord $word)
+    {
+        if (!$word->isGenderSolved())
+        {
+            $namePart = $word->getNamePart();
+            switch ($namePart)
+            {
+                case 'N': $this->GenderByFirstName($word);
+                    break;
+                case 'F': $this->GenderByFatherName($word);
+                    break;
+                case 'S': $this->GenderBySecondName($word);
+                    break;
+            }
+        }
+    }
+
+    protected function solveGender()
+    {
+        //Ищем, может гдето пол уже установлен
+        foreach ($this->words as $word)
+        {
+            if ($word->isGenderSolved())
+            {
+                $this->setGender($word->gender());
+                return true;
+            }
+        }
+
+        //Если нет тогда определяем у каждого слова и потом сумируем
+        $man = 0;
+        $woman = 0;
+
+        foreach ($this->words as $word)
+        {
+            $this->prepareGender($word);
+            $gender = $word->getGender();
+            $man+=$gender[NCL::$MAN];
+            $woman+=$gender[NCL::$WOMAN];
+        }
+
+        if ($man > $woman)
+        {
+            $this->setGender(NCL::$MAN);
+        }
+        else
+        {
+            $this->setGender(NCL::$WOMAN);
+        }
+
+        return true;
+    }
+
+    protected function generateIndex()
+    {
+        $this->index = array('N' => array(), 'S' => array(), 'F' => array());
+        foreach ($this->words as $index => $word)
+        {
+            $namepart = $word->getNamePart();
+            $this->index[$namepart][] = $index;
+        }
+    }
+
+    protected function prepareEverything()
+    {
+        if (!$this->ready)
+        {
+            $this->prepareAllNameParts();
+            $this->solveGender();
+            $this->generateIndex();
+            $this->ready = true;
+        }
+    }
+
     /*
      * Автоматическое определение пола
      * Возвращает пол по ФИО
@@ -435,9 +449,12 @@ class NCLNameCaseCore extends NCL
 
     public function genderAutoDetect()
     {
-        $this->gender = null;
-        $this->genderDetect();
-        return $this->gender;
+        $this->prepareEverything();
+        if (isset($this->words[0]))
+        {
+            return $this->words[0]->gender();
+        }
+        return false;
     }
 
     /*
@@ -447,137 +464,120 @@ class NCLNameCaseCore extends NCL
 
     public function splitFullName($fullname)
     {
-        $this->firstName = '';
-        $this->secondName = '';
-        $this->fatherName = '';
-        $this->gender = null;
 
         $fullname = trim($fullname);
         $list = explode(' ', $fullname);
-        $found = array();
-        $duplicate = array();
-        $c = count($list);
-        for ($i = 0; $i < $c; $i++)
+
+        foreach ($list as $word)
         {
-            if (trim($list[$i]))
-            {
-                $found[$i][0] = $this->detectNamePart($list[$i]);
-                $found[$i][1] = $list[$i];
-                if ($found[$i][0] == 'N')
-                {
-                    $this->firstName = $found[$i][1];
-                }
-                elseif ($found[$i][0] == 'S')
-                {
-                    $this->secondName = $found[$i][1];
-                }
-                elseif ($found[$i][0] == 'F')
-                {
-                    $this->fatherName = $found[$i][1];
-                }
-            }
+            $this->words[] = new NCLNameCaseWord($word);
         }
 
-        $format = array();
-        foreach ($found as $value)
+        $this->prepareEverything();
+        $formatArr = array();
+
+        foreach ($this->words as $word)
         {
-            $format[] = $value;
+            $formatArr[] = $word->getNamePart();
         }
-        if (count($format) == 1)
+
+        return implode(' ', $formatArr);
+    }
+
+    protected function WordCase(NCLNameCaseWord $word)
+    {
+        $gender = ($word->gender() == NCL::$MAN ? 'man' : 'woman');
+
+        $namepart = '';
+
+        switch ($word->getNamePart())
         {
-            return $format[0][0];
+            case 'F': $namepart = 'Father'; break;
+            case 'N': $namepart = 'First'; break;
+            case 'S': $namepart = 'Second'; break;
+        }
+
+        $method = $gender . $namepart . 'Name';
+
+        $this->setWorkingWord($word->getWord());
+
+        if ($this->$method())
+        {
+            $word->setNameCases($this->lastResult);
+            $word->setRule($this->lastRule);
         }
         else
         {
-            return $format;
+            $word->setNameCases(array_fill(0, $this->CaseCount, $word->getWord()));
+            $word->setRule(-1);
         }
     }
 
-    /*
-     * Склонение имени
-     * 
-     * @return boolean
-     */
-
-    protected function FirstName()
+    protected function AllWordCases()
     {
-        $this->genderDetect();
-        if ($this->firstName)
+        if (!$this->finished)
         {
-            if ($this->gender == 1)
+            $this->prepareEverything();
+
+            foreach ($this->words as $word)
             {
-                $result = $this->manFirstName();
+                $this->WordCase($word);
             }
-            else
-            {
-                $result = $this->womanFirstName();
-            }
-            $this->firstResult[0] = $this->firstName;
-            return $result;
-        }
-        else
-        {
-            $this->firstResult = array_fill(0, $this->CaseCount, "");
-            return false;
+
+            $this->finished = true;
         }
     }
 
-    /*
-     * Склонение фамилии
-     * 
-     * @return boolean
-     */
-
-    protected function SecondName()
+    private function getWordCase(NCLNameCaseWord $word, $number=null)
     {
-        $this->genderDetect();
-        if ($this->secondName)
+        $cases = $word->getNameCases();
+        if (is_null($number) or $number < 0 or $number > ($this->CaseCount - 1))
         {
-            if ($this->gender == 1)
-            {
-                $result = $this->manSecondName();
-            }
-            else
-            {
-                $result = $this->womanSecondName();
-            }
-            $this->secondResult[0] = $this->secondName;
-            return $result;
+            return $cases;
         }
         else
         {
-            $this->secondResult = array_fill(0, $this->CaseCount, "");
-            return false;
+            return $cases[$number];
         }
     }
 
-    /*
-     * Склонение отчеств
-     * 
-     * @return boolean
+    /**
+     * Возвращает склееные результаты склонения
+     * @param array $indexArray - индексы слов, которые необходимо склеить
+     * @param int $number - 
      */
-
-    protected function FatherName()
+    private function getCasesConnected($indexArray, $number=null)
     {
-        $this->genderDetect();
-        if ($this->fatherName)
+        $readyArr = array();
+        foreach ($indexArray as $index)
         {
-            if ($this->gender == 1)
+            $readyArr[] = $this->getWordCase($this->words[$index], $number);
+        }
+
+        $all = count($readyArr);
+        if ($all)
+        {
+            if (is_array($readyArr[0]))
             {
-                $result = $this->manFatherName();
+                //Масив нужно скелить каждый падеж
+                $resultArr = array();
+                for ($case = 0; $case < $this->CaseCount; $case++)
+                {
+                    $tmp = array();
+                    for ($i = 0; $i < $all; $i++)
+                    {
+                        $tmp[] = $readyArr[$i][$case];
+                    }
+                    $resultArr[$case] = implode(' ', $tmp);
+                }
+                return $resultArr;
             }
             else
             {
-                $result = $this->womanFatherName();
+                return implode(' ', $readyArr);
             }
-            $this->fatherResult[0] = $this->fatherName;
-            return $result;
         }
-        else
-        {
-            $this->fatherResult = array_fill(0, $this->CaseCount, "");
-            return false;
-        }
+        return '';
     }
 
     /*
@@ -588,24 +588,9 @@ class NCLNameCaseCore extends NCL
 
     public function getFirstNameCase($number=null)
     {
-        if (!isset($this->firstResult[0]) or $this->firstResult[0] <> $this->firstName)
-        {
-            $this->FirstName();
-        }
-        if ($number < 0 or $number > ($this->CaseCount - 1))
-        {
-            $number = null;
-        }
+        $this->AllWordCases();
 
-        if (is_null($number))
-        {
-            //Возвращаем все падежи
-            return $this->firstResult;
-        }
-        else
-        {
-            return $this->firstResult[$number];
-        }
+        return $this->getCasesConnected($this->index['N'], $number);
     }
 
     /*
@@ -616,24 +601,9 @@ class NCLNameCaseCore extends NCL
 
     public function getSecondNameCase($number=null)
     {
-        if (!isset($this->secondResult[0]) or $this->secondResult[0] <> $this->secondName)
-        {
-            $this->SecondName();
-        }
-        if ($number < 0 or $number > ($this->CaseCount - 1))
-        {
-            $number = null;
-        }
+        $this->AllWordCases();
 
-        if (is_null($number))
-        {
-            //Возвращаем все падежи
-            return $this->secondResult;
-        }
-        else
-        {
-            return $this->secondResult[$number];
-        }
+        return $this->getCasesConnected($this->index['S'], $number);
     }
 
     /*
@@ -644,24 +614,9 @@ class NCLNameCaseCore extends NCL
 
     public function getFatherNameCase($number=null)
     {
-        if (!isset($this->fatherResult[0]) or $this->fatherResult[0] <> $this->fatherName)
-        {
-            $this->FatherName();
-        }
-        if ($number < 0 or $number > ($this->CaseCount - 1))
-        {
-            $number = null;
-        }
+        $this->AllWordCases();
 
-        if (is_null($number))
-        {
-            //Возвращаем все падежи
-            return $this->fatherResult;
-        }
-        else
-        {
-            return $this->fatherResult[$number];
-        }
+        return $this->getCasesConnected($this->index['F'], $number);
     }
 
     /*
@@ -672,8 +627,12 @@ class NCLNameCaseCore extends NCL
 
     public function qFirstName($firstName, $CaseNumber=null, $gender=0)
     {
-        $this->gender = $gender;
-        $this->firstName = $firstName;
+        $this->fullReset();
+        $this->setFirstName($firstName);
+        if ($gender)
+        {
+            $this->setGender($gender);
+        }
         return $this->getFirstNameCase($CaseNumber);
     }
 
@@ -685,8 +644,13 @@ class NCLNameCaseCore extends NCL
 
     public function qSecondName($secondName, $CaseNumber=null, $gender=0)
     {
-        $this->gender = $gender;
-        $this->secondName = $secondName;
+        $this->fullReset();
+        $this->setSecondName($secondName);
+        if ($gender)
+        {
+            $this->setGender($gender);
+        }
+
         return $this->getSecondNameCase($CaseNumber);
     }
 
@@ -698,8 +662,12 @@ class NCLNameCaseCore extends NCL
 
     public function qFatherName($fatherName, $CaseNumber=null, $gender=0)
     {
-        $this->gender = $gender;
-        $this->fatherName = $fatherName;
+        $this->fullReset();
+        $this->setFatherName($fatherName);
+        if ($gender)
+        {
+            $this->setGender($gender);
+        }
         return $this->getFatherNameCase($CaseNumber);
     }
 
@@ -719,12 +687,13 @@ class NCLNameCaseCore extends NCL
         {
             return $this->getFormattedArrayHard($format);
         }
-        $length = mb_strlen($format);
+
+        $length = NCLStr::strlen($format);
         $result = array();
         $cases = array();
         for ($i = 0; $i < $length; $i++)
         {
-            $symbol = mb_substr($format, $i, 1);
+            $symbol = NCLStr::substr($format, $i, 1);
             if ($symbol == 'S')
             {
                 $cases['S'] = $this->getSecondNameCase();
@@ -744,7 +713,7 @@ class NCLNameCaseCore extends NCL
             $line = "";
             for ($i = 0; $i < $length; $i++)
             {
-                $symbol = mb_substr($format, $i, 1);
+                $symbol = NCLStr::substr($format, $i, 1);
                 if ($symbol == 'S')
                 {
                     $line.=$cases['S'][$curCase];
@@ -857,7 +826,7 @@ class NCLNameCaseCore extends NCL
 
     public function getFormatted($caseNum=0, $format="S N F")
     {
-        //Если не указан формат используем другую функцию
+        //Если не указан падеж используем другую функцию
         if (is_null($caseNum))
         {
             return $this->getFormattedArray($format);
@@ -869,11 +838,11 @@ class NCLNameCaseCore extends NCL
         }
         else
         {
-            $length = mb_strlen($format);
+            $length = NCLStr::strlen($format);
             $result = "";
             for ($i = 0; $i < $length; $i++)
             {
-                $symbol = mb_substr($format, $i, 1);
+                $symbol = NCLStr::substr($format, $i, 1);
                 if ($symbol == 'S')
                 {
                     $result.=$this->getSecondNameCase($caseNum);
@@ -907,22 +876,16 @@ class NCLNameCaseCore extends NCL
 
     public function qFullName($secondName="", $firstName="", $fatherName="", $gender=0, $caseNum=0, $format="S N F")
     {
-        $this->gender = $gender;
-        $this->firstName = $firstName;
-        $this->secondName = $secondName;
-        $this->fatherName = $fatherName;
+        $this->fullReset();
+        $this->setFirstName($firstName);
+        $this->setSecondName($secondName);
+        $this->setFatherName($fatherName);
+        if ($gender)
+        {
+            $this->setGender($gender);
+        }
 
         return $this->getFormatted($caseNum, $format);
-    }
-
-    public function getFirstNameRule()
-    {
-        return $this->frule;
-    }
-
-    public function getSecondNameRule()
-    {
-        return $this->srule;
     }
 
     /*
@@ -933,9 +896,12 @@ class NCLNameCaseCore extends NCL
 
     public function q($fullname, $caseNum=null, $gender=null)
     {
+        $this->fullReset();
         $format = $this->splitFullName($fullname);
-        $this->gender = $gender;
-        $this->genderAutoDetect();
+        if ($gender)
+        {
+            $this->setGender($gender);
+        }
         return $this->getFormatted($caseNum, $format);
     }
 

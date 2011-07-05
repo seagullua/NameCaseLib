@@ -256,7 +256,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
 
             //Випадання букви е при відмінюванні слів типу Орел
-            if (NCLStr::substr($osnova, 0, 1) == 'О' and $this->FirstLastVowel($osnova, $this->vowels . 'гк') == 'е' and $this->Last(2) != 'сь')
+            if (NCLStr::substr($osnova, 0, 1) == 'о' and $this->FirstLastVowel($osnova, $this->vowels . 'гк') == 'е' and $this->Last(2) != 'сь')
             {
                 $delim = NCLStr::strrpos($osnova, 'е');
                 $osnova = NCLStr::substr($osnova, 0, $delim) . NCLStr::substr($osnova, $delim + 1, NCLStr::strlen($osnova) - $delim);
@@ -433,7 +433,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
     {
         if ($this->in($this->Last(1), $this->consonant . 'ь'))
         {
-            $osnova = $this->getOsnova($this->firstName);
+            $osnova = $this->getOsnova($this->workingWord);
             $apostrof = '';
             $duplicate = '';
             $osLast = NCLStr::substr($osnova, -1, 1);
@@ -503,18 +503,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
      */
     protected function manFirstName()
     {
-
-        $this->setWorkingWord($this->firstName);
-
-        if ($this->RulesChain('man', array(1, 2, 3)))
-        {
-            $this->frule = $this->lastRule;
-            $this->firstResult = $this->lastResult;
-        }
-        else
-        {
-            $this->makeFirstTheSame();
-        }
+        return $this->RulesChain('man', array(1, 2, 3));
     }
 
     /**
@@ -524,17 +513,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
      */
     protected function womanFirstName()
     {
-        $this->setWorkingWord($this->firstName);
-
-        if ($this->RulesChain('woman', array(1, 2)))
-        {
-            $this->frule = $this->lastRule;
-            $this->firstResult = $this->lastResult;
-        }
-        else
-        {
-            $this->makeFirstTheSame();
-        }
+        return $this->RulesChain('woman', array(1, 2));
     }
 
     /*
@@ -545,17 +524,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     protected function manSecondName()
     {
-        $this->setWorkingWord($this->secondName);
-
-        if ($this->RulesChain('man', array(5, 1, 2, 3, 4)))
-        {
-            $this->srule = $this->lastRule;
-            $this->secondResult = $this->lastResult;
-        }
-        else
-        {
-            $this->makeSecondTheSame();
-        }
+        return $this->RulesChain('man', array(5, 1, 2, 3, 4));
     }
 
     /*
@@ -566,17 +535,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     protected function womanSecondName()
     {
-        $this->setWorkingWord($this->secondName);
-
-        if ($this->RulesChain('woman', array(3, 1)))
-        {
-            $this->srule = $this->lastRule;
-            $this->secondResult = $this->lastResult;
-        }
-        else
-        {
-            $this->makeSecondTheSame();
-        }
+        return $this->RulesChain('woman', array(3, 1));
     }
 
     /*
@@ -587,18 +546,12 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     protected function manFatherName()
     {
-        $this->setWorkingWord($this->fatherName);
         if ($this->in($this->Last(2), array('ич', 'іч')))
         {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ем', 'у', 'у'));
-            $this->fatherResult = $this->lastResult;
             return true;
         }
-        else
-        {
-            $this->makeFatherTheSame();
-            return false;
-        }
+        return false;
     }
 
     /*
@@ -609,127 +562,97 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
     protected function womanFatherName()
     {
-        $this->setWorkingWord($this->fatherName);
         if ($this->in($this->Last(3), array('вна')))
         {
             $this->wordForms($this->workingWord, array('и', 'і', 'у', 'ою', 'і', 'о'), 1);
-            $this->fatherResult = $this->lastResult;
             return true;
         }
-        else
-        {
-            $this->makeFatherTheSame();
-            return false;
-        }
+        return false;
     }
 
-    /*
-     * Автоматическое определение пола
-     * @return void
-     */
-
-    protected function genderDetect()
+    protected function GenderByFirstName(NCLNameCaseWord $word)
     {
+        $this->setWorkingWord($word->getWord());
 
-        //$this->gender = NCL::$MAN; // мужчина
-        if (!$this->gender)
+        $man = 0; //Мужчина
+        $woman = 0; //Женщина
+        //Попробуем выжать максимум из имени
+        //Если имя заканчивается на й, то скорее всего мужчина
+        if ($this->Last(1) == 'й')
         {
-            //Определение пола по отчеству
-            if (isset($this->fatherName) and $this->fatherName)
-            {
-                $LastTwo = mb_substr($this->fatherName, -2, 2, 'utf-8');
-                if ($LastTwo == 'ич')
-                {
-                    $this->gender = NCL::$MAN; // мужчина
-                    return true;
-                }
-                if ($LastTwo == 'на')
-                {
-                    $this->gender = NCL::$WOMAN; // женщина
-                    return true;
-                }
-            }
-            $man = 0; //Мужчина
-            $woman = 0; //Женщина
-
-            $FLastSymbol = mb_substr($this->firstName, -1, 1, 'utf-8');
-            $FLastTwo = mb_substr($this->firstName, -2, 2, 'utf-8');
-            $FLastThree = mb_substr($this->firstName, -3, 3, 'utf-8');
-            $FLastFour = mb_substr($this->firstName, -4, 4, 'utf-8');
-
-            $SLastSymbol = mb_substr($this->secondName, -1, 1, 'utf-8');
-            $SLastTwo = mb_substr($this->secondName, -2, 2, 'utf-8');
-            $SLastThree = mb_substr($this->secondName, -3, 3, 'utf-8');
-
-            //Если нет отчества, то определяем по имени и фамилии, будем считать вероятность
-            if (isset($this->firstName) and $this->firstName)
-            {
-                //Попробуем выжать максимум из имени
-                //Если имя заканчивается на й, то скорее всего мужчина
-                if ($FLastSymbol == 'й')
-                {
-                    $man+=0.9;
-                }
-                if (in_array($FLastTwo, array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
-                {
-                    $man+=0.5;
-                }
-                if (in_array($FLastThree, array('бов', 'нка', 'яра', 'ила')))
-                {
-                    $woman+=0.5;
-                }
-                if ($this->in($FLastSymbol, $this->consonant))
-                {
-                    $man+=0.01;
-                }
-                if ($FLastSymbol == 'ь')
-                {
-                    $man+=0.02;
-                }
-
-                if (in_array($FLastTwo, array('дь')))
-                {
-                    $woman+=0.1;
-                }
-
-                if (in_array($FLastThree, array('ель', 'бов')))
-                {
-                    $woman+=0.4;
-                }
-            }
-
-//            $man*=1.2;
-//            $woman*=1.2;
-
-            if (isset($this->secondName) and $this->secondName)
-            {
-                if (in_array($SLastTwo, array('ов', 'ин', 'ев', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ой', 'ей')))
-                {
-                    $man+=0.4;
-                }
-
-                if (in_array($SLastThree, array('ова', 'ина', 'ева', 'єва', 'іна')))
-                {
-                    $woman+=0.4;
-                }
-
-                if (in_array($SLastTwo, array('ая')))
-                {
-                    $woman+=0.4;
-                }
-            }
-
-            //Теперь смотрим, кто больше набрал
-            if ($man > $woman)
-            {
-                $this->gender = NCL::$MAN;
-            }
-            else
-            {
-                $this->gender = NCL::$WOMAN;
-            }
+            $man+=0.9;
         }
-        return true;
+
+        if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
+        {
+            $man+=0.5;
+        }
+
+        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила')))
+        {
+            $woman+=0.5;
+        }
+
+        if ($this->in($this->Last(1), $this->consonant))
+        {
+            $man+=0.01;
+        }
+
+        if ($this->Last(1) == 'ь')
+        {
+            $man+=0.02;
+        }
+
+        if ($this->in($this->Last(2), array('дь')))
+        {
+            $woman+=0.1;
+        }
+
+        if ($this->in($this->Last(3), array('ель', 'бов')))
+        {
+            $woman+=0.4;
+        }
+
+        $word->setGender($man, $woman);
+    }
+
+    protected function GenderBySecondName(NCLNameCaseWord $word)
+    {
+        $this->setWorkingWord($word->getWord());
+
+        $man = 0; //Мужчина
+        $woman = 0; //Женщина
+
+        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ой', 'ей')))
+        {
+            $man+=0.4;
+        }
+
+        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'єва', 'іна')))
+        {
+            $woman+=0.4;
+        }
+
+        if ($this->in($this->Last(2), array('ая')))
+        {
+            $woman+=0.4;
+        }
+
+        $word->setGender($man, $woman);
+    }
+
+    protected function GenderByFatherName(NCLNameCaseWord $word)
+    {
+        $this->setWorkingWord($word->getWord());
+
+        if ($this->Last(2) == 'ич')
+        {
+            $word->setGender(10, 0); // мужчина
+        }
+        if ($this->Last(2) == 'на')
+        {
+            $word->setGender(0, 12); // женщина
+        }
     }
 
     /*
@@ -737,8 +660,9 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
      * @return integer $number - 1-фамили 2-имя 3-отчество
      */
 
-    protected function detectNamePart($namepart)
+    protected function detectNamePart(NCLNameCaseWord $word)
     {
+        $namepart = $word->getWord();
         $this->setWorkingWord($namepart);
 
         //Считаем вероятность
@@ -785,15 +709,15 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
         if ($first == $max)
         {
-            return 'N';
+            $word->setNamePart('N');
         }
         elseif ($second == $max)
         {
-            return 'S';
+            $word->setNamePart('S');
         }
         else
         {
-            return 'F';
+            $word->setNamePart('F');
         }
     }
 

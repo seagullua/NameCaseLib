@@ -45,10 +45,6 @@ interface NCLNameCaseInterface
 
     public function qFullName($secondName="", $firstName="", $fatherName="", $gender=0, $caseNum=0, $format="S N F");
 
-    public function getFirstNameRule();
-
-    public function getSecondNameRule();
-
     public function q($fullname, $caseNum=null, $gender=null);
 }
 

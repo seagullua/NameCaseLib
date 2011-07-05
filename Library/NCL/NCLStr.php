@@ -72,6 +72,11 @@ class NCLStr
     {
         return ($phrase == NCLStr::strtolower($phrase));
     }
+    
+    static function isUpperCase($phrase)
+    {
+        return ($phrase == NCLStr::strtoupper($phrase));
+    }
 
     static function splitLetters($phrase)
     {
@@ -82,6 +87,11 @@ class NCLStr
             $resultArr[] = NCLStr::substr($phrase, $idx, 1);
         }
         return $resultArr;
+    }
+    
+    static function connectLetters($lettersArr)
+    {
+        return implode('', $lettersArr);
     }
     
     static function explode($pattern, $string)
