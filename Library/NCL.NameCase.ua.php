@@ -9,8 +9,7 @@
  * 
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
- * @version 0.4 05.07.2011 
- * @package NameCaseLib
+ * @version 0.4 05.07.2011
  * 
  */
 require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
@@ -19,37 +18,44 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 {
 
     /**
-     * @var int Количество падежей в языке
+     * Количество падежей в языке
+     * @var int
      */
     protected $CaseCount = 7;
 
     /**
-     * @var string Список гласных украинского языка
+     * Список гласных украинского языка
+     * @var string 
      */
     private $vowels = 'аеиоуіїєюя';
 
     /**
-     * @var string Список согласных украинского языка 
+     * Список согласных украинского языка
+     * @var string  
      */
     private $consonant = "бвгджзйклмнпрстфхцчшщ";
 
     /**
-     * @var string Українські шиплячі приголосні 
+     * Українські шиплячі приголосні 
+     * @var string 
      */
     private $shyplyachi = "жчшщ";
     
     /**
-     * @var string Українські нешиплячі приголосні 
+     * Українські нешиплячі приголосні
+     * @var string  
      */
     private $neshyplyachi = "бвгдзклмнпрстфхц";
     
     /**
-     * @var string Українські завжди м’які звуки 
+     * Українські завжди м’які звуки
+     * @var string  
      */
     private $myaki = 'ьюяєї';
     
     /**
-     * @var string Українські губні звуки
+     * Українські губні звуки
+     * @var string 
      */
     private $gubni = 'мвпбф';
 
