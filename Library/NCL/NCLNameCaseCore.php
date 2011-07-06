@@ -966,6 +966,18 @@ class NCLNameCaseCore extends NCL
         $this->AllWordCases();
         return $this->getFormatted($caseNum, $format);
     }
+    
+    /**
+     * Определяет пол человека по ФИО
+     * @param string $fullname ФИО
+     * @return int пол человека
+     */
+    public function genderDetect($fullname)
+    {
+        $this->fullReset();
+        $this->splitFullName($fullname);
+        return $this->genderAutoDetect();
+    }
 
 }
 

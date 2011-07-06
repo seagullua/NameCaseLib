@@ -6,5 +6,6 @@ $ob = new NCLNameCaseUa;
 
 print_r($ob->q("Іванцов Микола Микита Андрій Петро Михайлович Миколайович Антонівна"));
 echo $ob->getFullNameFormat("Мая");
+echo $ob->genderDetect("Іванцов Микола Микита Андрій Петро Михайлович Миколайович Антонівна");
 //echo $ob->getSecondNameRule();
 ?>
