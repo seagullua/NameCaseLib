@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @package NameCaseLib
  */
-
 /**
  * 
  */
@@ -16,8 +16,6 @@ require_once NCL_DIR . '/NCL.php';
 require_once NCL_DIR . '/NCLStr.php';
 require_once NCL_DIR . '/NCLNameCaseInterface.php';
 require_once NCL_DIR . '/NCLNameCaseWord.php';
-
-
 
 /**
  * <b>NCL NameCase Core</b>
@@ -40,45 +38,38 @@ class NCLNameCaseCore extends NCL
      * @var bool 
      */
     private $ready = false;
-    
     /**
      * Если все текущие слова было просклонены и в каждом слове уже есть результат склонения,
      * тогда true. Если было добавлено новое слово флаг збрасывается на false
      * @var bool 
      */
     private $finished = false;
-    
     /**
      * Массив содержит елементы типа NCLNameCaseWord. Это все слова которые нужно обработать и просклонять
      * @var array
      */
     private $words = array();
-
     /**
      * Переменная, в которую заносится слово с которым сейчас идет работа
      * @var string
      */
     protected $workingWord = '';
-
     /**
      * Метод Last() вырезает подстроки разной длины. Посколько одинаковых вызовов бывает несколько,
      * то все результаты выполнения кешируются в этом массиве.
      * @var array
      */
     protected $workindLastCache = array();
-    
     /**
      * Номер последнего использованого правила, устанавливается методом Rule()
      * @var int 
      */
     private $lastRule = 0;
-    
     /**
      * Массив содержит результат склонения слова - слово во всех падежах
      * @var array 
      */
     protected $lastResult = array();
-    
     /**
      * Массив содержит информацию о том какие слова из массива <var>$this->words</var> относятся к
      * фамилии, какие к отчеству а какие к имени. Массив нужен потому, что при добавлении слов мы не
@@ -96,7 +87,7 @@ class NCLNameCaseCore extends NCL
         $this->lastRule = 0;
         $this->lastResult = array();
     }
-    
+
     /**
      * Сбрасывает все информацию на начальную. Очищает все слова добавленые в систему.
      * После выполнения система готова работать с начала. 
@@ -108,7 +99,7 @@ class NCLNameCaseCore extends NCL
         $this->reset();
         $this->notReady();
     }
-    
+
     /**
      * Устанавливает флаги о том, что система не готово и слова еще не были просклонены
      */
@@ -127,7 +118,6 @@ class NCLNameCaseCore extends NCL
         $this->lastRule = $index;
     }
 
-    
     /**
      * Устанавливает слово текущим для работы системы. Очищает кеш слова.
      * @param string $word слово, которое нужно установить
@@ -188,7 +178,7 @@ class NCLNameCaseCore extends NCL
         }
         return false;
     }
-    
+
     /**
      * Если <var>$string</var> строка, тогда проверяется входит ли буква <var>$letter</var> в строку <var>$string</var>
      * Если <var>$string</var> массив, тогда проверяется входит ли строка <var>$letter</var> в массив <var>$string</var>
@@ -366,7 +356,7 @@ class NCLNameCaseCore extends NCL
     {
         $this->setSecondName($secondname);
     }
-    
+
     /**
      * Если слово <var>$word</var> не идентифицировано, тогда определяется это имя, фамилия или отчество
      * @param NCLNameCaseWord $word слово которое нужно идентифицировать
@@ -378,7 +368,7 @@ class NCLNameCaseCore extends NCL
             $this->detectNamePart($word);
         }
     }
-    
+
     /**
      * Проверяет все ли слова идентифицированы, если нет тогда для каждого определяется это имя, фамилия или отчество
      */
@@ -389,7 +379,7 @@ class NCLNameCaseCore extends NCL
             $this->prepareNamePart($word);
         }
     }
-    
+
     /**
      * Определяет пол для слова <var>$word</var>
      * @param NCLNameCaseWord $word слово для которого нужно определить пол
@@ -410,7 +400,7 @@ class NCLNameCaseCore extends NCL
             }
         }
     }
-    
+
     /**
      * Для всех слов проверяет определен ли пол, если нет - определяет его
      * После этого расчитывает пол для всех слов и устанавливает такой пол всем словам
@@ -451,7 +441,7 @@ class NCLNameCaseCore extends NCL
 
         return true;
     }
-    
+
     /**
      * Генерируется массив, который содержит информацию о том какие слова из массива <var>$this->words</var> относятся к
      * фамилии, какие к отчеству а какие к имени. Массив нужен потому, что при добавлении слов мы не
@@ -467,7 +457,7 @@ class NCLNameCaseCore extends NCL
             $this->index[$namepart][] = $index;
         }
     }
-    
+
     /**
      * Выполнет все необходимые подготовления для склонения.
      * Все слова идентфицируются. Определяется пол.
@@ -508,7 +498,7 @@ class NCLNameCaseCore extends NCL
      * - N - Имя
      * - F - Отчество
      * @param string $fullname строка, для которой необходимо определить формат
-     * @return string формат в котором записано имя например 'N F S' 
+     * @return array формат в котором записано имя массив типа <var>$this->words</var> 
      */
     public function splitFullName($fullname)
     {
@@ -529,9 +519,9 @@ class NCLNameCaseCore extends NCL
             $formatArr[] = $word->getNamePart();
         }
 
-        return implode(' ', $formatArr);
+        return $this->words;
     }
-    
+
     /**
      * Склоняет слово <var>$word</var> по нужным правилам в зависимости от пола и типа слова
      * @param NCLNameCaseWord $word слово, которое нужно просклонять
@@ -544,9 +534,12 @@ class NCLNameCaseCore extends NCL
 
         switch ($word->getNamePart())
         {
-            case 'F': $namepart = 'Father'; break;
-            case 'N': $namepart = 'First'; break;
-            case 'S': $namepart = 'Second'; break;
+            case 'F': $namepart = 'Father';
+                break;
+            case 'N': $namepart = 'First';
+                break;
+            case 'S': $namepart = 'Second';
+                break;
         }
 
         $method = $gender . $namepart . 'Name';
@@ -564,7 +557,7 @@ class NCLNameCaseCore extends NCL
             $word->setRule(-1);
         }
     }
-    
+
     /**
      * Производит склонение всех слов, который хранятся в массиве <var>$this->words</var>
      */
@@ -582,7 +575,7 @@ class NCLNameCaseCore extends NCL
             $this->finished = true;
         }
     }
-    
+
     /**
      * Если указан номер падежа <var>$number</var>, тогда возвращается строка с таким номером падежа,
      * если нет, тогда возвращается массив со всеми падежами текущего слова.
@@ -816,7 +809,7 @@ class NCLNameCaseCore extends NCL
         }
         return $result;
     }
-    
+
     /**
      * Склоняет текущие слова во все падежи и форматирует слово по шаблону <var>$format</var>
      * <b>Формат:</b>
@@ -831,25 +824,9 @@ class NCLNameCaseCore extends NCL
 
         $result = array();
         $cases = array();
-        foreach ($format as $value)
+        foreach ($format as $word)
         {
-            $symbol = $value[0];
-
-            if ($symbol == 'S')
-            {
-                $this->setSecondName($value[1]);
-                $cases[] = array('S', $this->getSecondNameCase());
-            }
-            elseif ($symbol == 'N')
-            {
-                $this->setFirstName($value[1]);
-                $cases[] = array('N', $this->getFirstNameCase());
-            }
-            elseif ($symbol == 'F')
-            {
-                $this->setFatherName($value[1]);
-                $cases[] = array('F', $this->getFatherNameCase());
-            }
+            $cases[] = $word->getNameCases();
         }
 
         for ($curCase = 0; $curCase < $this->CaseCount; $curCase++)
@@ -857,25 +834,13 @@ class NCLNameCaseCore extends NCL
             $line = "";
             foreach ($cases as $value)
             {
-                $symbol = $value[0];
-                if ($symbol == 'S')
-                {
-                    $line.=$value[1][$curCase] . ' ';
-                }
-                elseif ($symbol == 'N')
-                {
-                    $line.=$value[1][$curCase] . ' ';
-                }
-                elseif ($symbol == 'F')
-                {
-                    $line.=$value[1][$curCase] . ' ';
-                }
+                $line.=$value[$curCase] . ' ';
             }
             $result[] = trim($line);
         }
         return $result;
     }
-    
+
     /**
      * Склоняет текущие слова в падеж <var>$caseNum</var> и форматирует слово по шаблону <var>$format</var>
      * <b>Формат:</b>
@@ -888,24 +853,10 @@ class NCLNameCaseCore extends NCL
     public function getFormattedHard($caseNum=0, $format=array())
     {
         $result = "";
-        foreach ($format as $value)
+        foreach ($format as $word)
         {
-            $symbol = $value[0];
-            if ($symbol == 'S')
-            {
-                $this->setSecondName($value[1]);
-                $result.=$this->getSecondNameCase($caseNum) . ' ';
-            }
-            elseif ($symbol == 'N')
-            {
-                $this->setFirstName($value[1]);
-                $result.=$this->getFirstNameCase($caseNum) . ' ';
-            }
-            elseif ($symbol == 'F')
-            {
-                $this->setFatherName($value[1]);
-                $result.=$this->getFatherNameCase($caseNum) . ' ';
-            }
+            $cases = $word->getNameCases();
+            $result.= $cases[$caseNum] . ' ';
         }
         return trim($result);
     }
@@ -1004,6 +955,7 @@ class NCLNameCaseCore extends NCL
         {
             $this->setGender($gender);
         }
+        $this->AllWordCases();
         return $this->getFormatted($caseNum, $format);
     }
 
