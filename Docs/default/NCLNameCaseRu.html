@@ -62,7 +62,7 @@
 		<div class="info-box-body">
 			<div class="var-summary">
 																								<div class="var-title">
-					<span class="var-type">mixed</span>
+					<span class="var-type">int</span>
 					<a href="#$CaseCount" title="details" class="var-name">$CaseCount</a>
 				</div>
 											</div>
@@ -103,12 +103,12 @@
 											(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">boolean</span>
 										<a href="#manFatherName" title="details" class="method-name">manFatherName</a>
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">boolean</span>
 										<a href="#manFirstName" title="details" class="method-name">manFirstName</a>
 										()
 									</div>
@@ -153,17 +153,17 @@
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">boolean</span>
 										<a href="#manSecondName" title="details" class="method-name">manSecondName</a>
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">boolean</span>
 										<a href="#womanFatherName" title="details" class="method-name">womanFatherName</a>
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">boolean</span>
 										<a href="#womanFirstName" title="details" class="method-name">womanFirstName</a>
 										()
 									</div>
@@ -188,7 +188,7 @@
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">boolean</span>
 										<a href="#womanSecondName" title="details" class="method-name">womanSecondName</a>
 										()
 									</div>
@@ -214,13 +214,14 @@
 
 	<div class="var-header">
 		<span class="var-title">
-			<span class="var-type">mixed</span>
+			<span class="var-type">int</span>
 			<span class="var-name">$CaseCount</span>
-			 = <span class="var-default"> 6</span>			(line <span class="line-number">22</span>)
+			 = <span class="var-default"> 6</span>			(line <span class="line-number">21</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Количество падежей в языке</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -235,22 +236,7 @@
 									<p>Inherited from <span class="classname"><a href="../default/NCLNameCaseCore.html">NCLNameCaseCore</a></span></p>
 					<blockquote>
 													<span class="var-title">
-								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$finished">NCLNameCaseCore::$finished</a></span><br>
-							</span>
-													<span class="var-title">
-								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$index">NCLNameCaseCore::$index</a></span><br>
-							</span>
-													<span class="var-title">
 								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$lastResult">NCLNameCaseCore::$lastResult</a></span><br>
-							</span>
-													<span class="var-title">
-								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$lastRule">NCLNameCaseCore::$lastRule</a></span><br>
-							</span>
-													<span class="var-title">
-								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$ready">NCLNameCaseCore::$ready</a></span><br>
-							</span>
-													<span class="var-title">
-								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$words">NCLNameCaseCore::$words</a></span><br>
 							</span>
 													<span class="var-title">
 								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$workindLastCache">NCLNameCaseCore::$workindLastCache</a></span><br>
@@ -327,10 +313,12 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">detectNamePart</span> (line <span class="line-number">595</span>)
+		<span class="method-title">detectNamePart</span> (line <span class="line-number">592</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Идетифицирует слово определяе имя это, или фамилия, или отчество</p>
+<p class="description"><p><ul><li><strong>N</strong> - имя</li><li><strong>S</strong> - фамилия</li><li><strong>F</strong> - отчество</li></ul></p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -346,7 +334,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
-				<span class="var-name">$word</span>			</li>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, который необходимо идентифицировать</span>			</li>
 				</ul>
 		
 			
@@ -355,10 +343,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">GenderByFatherName</span> (line <span class="line-number">574</span>)
+		<span class="method-title">GenderByFatherName</span> (line <span class="line-number">571</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Определение пола по правилам отчеств</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -374,7 +363,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
-				<span class="var-name">$word</span>			</li>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, для которого нужно определить пол</span>			</li>
 				</ul>
 		
 			
@@ -383,10 +372,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">GenderByFirstName</span> (line <span class="line-number">486</span>)
+		<span class="method-title">GenderByFirstName</span> (line <span class="line-number">475</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Определение пола по правилам имен</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -402,7 +392,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
-				<span class="var-name">$word</span>			</li>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, для которого нужно определить пол</span>			</li>
 				</ul>
 		
 			
@@ -411,10 +401,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">GenderBySecondName</span> (line <span class="line-number">549</span>)
+		<span class="method-title">GenderBySecondName</span> (line <span class="line-number">542</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Определение пола по правилам фамилий</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
 			</ul>
@@ -430,7 +421,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
-				<span class="var-name">$word</span>			</li>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, для которого нужно определить пол</span>			</li>
 				</ul>
 		
 			
@@ -439,16 +430,18 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">manFatherName</span> (line <span class="line-number">453</span>)
+		<span class="method-title">manFatherName</span> (line <span class="line-number">440</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция склоняет мужский отчества</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true - если слово было успешно изменено, false - если не получилось этого сделать</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">boolean</span>
 		<span class="method-name">
 			manFatherName
 		</span>
@@ -462,16 +455,18 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">manFirstName</span> (line <span class="line-number">409</span>)
+		<span class="method-title">manFirstName</span> (line <span class="line-number">404</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для мужских имен</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">boolean</span>
 		<span class="method-name">
 			manFirstName
 		</span>
@@ -485,13 +480,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule1</span> (line <span class="line-number">54</span>)
+		<span class="method-title">manRule1</span> (line <span class="line-number">52</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские имена, оканчивающиеся на любой ь и -й,</p>
 <p class="description"><p>скло­няются так же, как обычные существительные мужского рода</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -510,13 +506,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule2</span> (line <span class="line-number">79</span>)
+		<span class="method-title">manRule2</span> (line <span class="line-number">77</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские имена, оканчивающиеся на любой твердый согласный,</p>
 <p class="description"><p>склоняются так же, как обычные существительные мужского рода</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -535,13 +532,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule3</span> (line <span class="line-number">112</span>)
+		<span class="method-title">manRule3</span> (line <span class="line-number">110</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские и женские имена, оканчивающиеся на -а, склоняются, как и любые</p>
 <p class="description"><p>существительные с таким же окончанием  Мужские и женские имена, оканчивающиеся иа -я, -ья, -ия, -ея, независимо от языка,  из которого они происходят, склоняются как существительные с соответствующими окончаниями</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -560,13 +558,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule4</span> (line <span class="line-number">143</span>)
+		<span class="method-title">manRule4</span> (line <span class="line-number">141</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские фамилии, оканчивающиеся на -ь -й, склоняются так же,</p>
 <p class="description"><p>как обычные существительные мужского рода</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -585,12 +584,13 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule5</span> (line <span class="line-number">182</span>)
+		<span class="method-title">manRule5</span> (line <span class="line-number">180</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские фамилии, оканчивающиеся на -к</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -609,12 +609,13 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule6</span> (line <span class="line-number">213</span>)
+		<span class="method-title">manRule6</span> (line <span class="line-number">211</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские фамили на согласный выбираем ем/ом/ым</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -633,12 +634,13 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule7</span> (line <span class="line-number">240</span>)
+		<span class="method-title">manRule7</span> (line <span class="line-number">238</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские фамили на -а -я</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -657,12 +659,13 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">manRule8</span> (line <span class="line-number">277</span>)
+		<span class="method-title">manRule8</span> (line <span class="line-number">275</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Не склоняются мужский фамилии</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -681,16 +684,18 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">manSecondName</span> (line <span class="line-number">431</span>)
+		<span class="method-title">manSecondName</span> (line <span class="line-number">422</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для мужских фамилий</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">boolean</span>
 		<span class="method-name">
 			manSecondName
 		</span>
@@ -704,16 +709,18 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanFatherName</span> (line <span class="line-number">475</span>)
+		<span class="method-title">womanFatherName</span> (line <span class="line-number">460</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция склоняет женские отчества</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true - если слово было успешно изменено, false - если не получилось этого сделать</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">boolean</span>
 		<span class="method-name">
 			womanFatherName
 		</span>
@@ -727,16 +734,18 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanFirstName</span> (line <span class="line-number">420</span>)
+		<span class="method-title">womanFirstName</span> (line <span class="line-number">413</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для женских имен</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">boolean</span>
 		<span class="method-name">
 			womanFirstName
 		</span>
@@ -750,13 +759,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanRule1</span> (line <span class="line-number">293</span>)
+		<span class="method-title">womanRule1</span> (line <span class="line-number">291</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские и женские имена, оканчивающиеся на -а, склоняются,</p>
 <p class="description"><p>как и любые существительные с таким же окончанием</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -775,13 +785,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanRule2</span> (line <span class="line-number">328</span>)
+		<span class="method-title">womanRule2</span> (line <span class="line-number">326</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Мужские и женские имена, оканчивающиеся иа -я, -ья, -ия, -ея, независимо от языка,</p>
 <p class="description"><p>из которого они происходят, склоняются как сущест­вительные с соответствующими окончаниями</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -800,13 +811,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanRule3</span> (line <span class="line-number">353</span>)
+		<span class="method-title">womanRule3</span> (line <span class="line-number">351</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Русские женские имена, оканчивающиеся на мягкий согласный, склоняются,</p>
 <p class="description"><p>как существительные женского рода типа дочь, тень</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -825,13 +837,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanRule4</span> (line <span class="line-number">369</span>)
+		<span class="method-title">womanRule4</span> (line <span class="line-number">367</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Женские фамилия, оканчивающиеся на -а -я, склоняются,</p>
 <p class="description"><p>как и любые существительные с таким же окончанием</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true если правило было задействовано и false если нет.</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
@@ -850,16 +863,18 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">womanSecondName</span> (line <span class="line-number">442</span>)
+		<span class="method-title">womanSecondName</span> (line <span class="line-number">431</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для женских фамилий</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
 				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">boolean</span>
 		<span class="method-name">
 			womanSecondName
 		</span>
@@ -874,10 +889,8 @@
 									<!-- =========== Summary =========== -->
 					<p>Inherited From <span class="classname"><a href="../default/NCLNameCaseCore.html">NCLNameCaseCore</a></span></p>
 					<blockquote>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodAllWordCases">NCLNameCaseCore::AllWordCases()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodfullReset">NCLNameCaseCore::fullReset()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgenderAutoDetect">NCLNameCaseCore::genderAutoDetect()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgenerateIndex">NCLNameCaseCore::generateIndex()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFatherNameCase">NCLNameCaseCore::getFatherNameCase()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFirstNameCase">NCLNameCaseCore::getFirstNameCase()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFormatted">NCLNameCaseCore::getFormatted()</a></span><br>
@@ -888,17 +901,11 @@
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodin">NCLNameCaseCore::in()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodinNames">NCLNameCaseCore::inNames()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodLast">NCLNameCaseCore::Last()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodnotReady">NCLNameCaseCore::notReady()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodprepareAllNameParts">NCLNameCaseCore::prepareAllNameParts()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodprepareEverything">NCLNameCaseCore::prepareEverything()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodprepareGender">NCLNameCaseCore::prepareGender()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodprepareNamePart">NCLNameCaseCore::prepareNamePart()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodq">NCLNameCaseCore::q()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqFatherName">NCLNameCaseCore::qFatherName()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqFirstName">NCLNameCaseCore::qFirstName()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqFullName">NCLNameCaseCore::qFullName()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqSecondName">NCLNameCaseCore::qSecondName()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodreset">NCLNameCaseCore::reset()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodRule">NCLNameCaseCore::Rule()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodRulesChain">NCLNameCaseCore::RulesChain()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetFatherName">NCLNameCaseCore::setFatherName()</a></span><br>
@@ -908,11 +915,9 @@
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetLastName">NCLNameCaseCore::setLastName()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetName">NCLNameCaseCore::setName()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetSecondName">NCLNameCaseCore::setSecondName()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetSirname">NCLNameCaseCore::setSirname()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetSirName">NCLNameCaseCore::setSirName()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetWorkingWord">NCLNameCaseCore::setWorkingWord()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsolveGender">NCLNameCaseCore::solveGender()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsplitFullName">NCLNameCaseCore::splitFullName()</a></span><br>
-													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodWordCase">NCLNameCaseCore::WordCase()</a></span><br>
 													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodwordForms">NCLNameCaseCore::wordForms()</a></span><br>
 											</blockquote>
 										
@@ -921,7 +926,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 06 Jul 2011 00:21:03 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 06 Jul 2011 13:46:15 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

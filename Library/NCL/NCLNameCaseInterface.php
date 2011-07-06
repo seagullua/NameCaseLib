@@ -1,8 +1,15 @@
 <?php
+/**
+ * @license Dual licensed under the MIT or GPL Version 2 licenses.
+ * @package NameCaseLib
+ */
 
 /**
- *
- * @author seagull
+ * Интерфейс для русского и украинского языка
+ * 
+ * @author Андрей Чайка <bymer3@gmail.com>
+ * @version 0.4
+ * @package NameCaseLib
  */
 interface NCLNameCaseInterface
 {

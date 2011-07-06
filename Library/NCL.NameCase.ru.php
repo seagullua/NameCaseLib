@@ -1,55 +1,61 @@
 <?php
-
-/*
- * NCL NameCase Russian Language
- * 
- * Клас, которые позволяет склонять русские Имена, Фамили Отчества по падежам.
- * 
+/**
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
- * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
- * @version 0.1.2 05.05.2011 
+ * @package NameCaseLib
+ */
+
+/**
  * 
  */
 require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
 
+/**
+ * <b>NCL NameCase Russian Language</b>
+ * 
+ * Русские правила склонения ФИО
+ * Правила определения пола человека по ФИО для русского языка
+ * Система разделения фамилий имен и отчеств для русского языка
+ * 
+ * @author Андрей Чайка <bymer3@gmail.com>
+ * @version 0.4
+ * @package NameCaseLib
+ */
 class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 {
-    /*
-     * @static string
-     * Количество падежов
+    /**
+     * Количество падежей в языке
+     * @var int
      */
-
     protected $CaseCount = 6;
 
-    /*
-     * @static string
-     * Список гласных
+    /**
+     * Список гласных русского языка
+     * @var string 
      */
     private $vowels = "аеёиоуыэюя";
 
-    /*
-     * @static string
-     * Список согласных
+    /**
+     * Список согласных русского языка
+     * @var string  
      */
     private $consonant = "бвгджзйклмнпрстфхцчшщ";
 
-
-    /*
-     * @static array()
-     * Список окончание для неизменяемых имен
+    /**
+     * Окончания имен/фамилий, который не склоняются
+     * @var array 
      */
     private $ovo = array('ово', 'аго', 'яго', 'ирь');
 
-    /*
-     * @static array()
-     * Список окончание для неизменяемых имен
+    /**
+     * Окончания имен/фамилий, который не склоняются
+     * @var array 
      */
     private $ih = array('их', 'ых', 'ко');
 
     /**
      * Мужские имена, оканчивающиеся на любой ь и -й, 
      * скло­няются так же, как обычные существительные мужского рода
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function manRule1()
     {
@@ -74,7 +80,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Мужские имена, оканчивающиеся на любой твердый согласный, 
      * склоняются так же, как обычные существительные мужского рода
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function manRule2()
     {
@@ -107,7 +113,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
      * существительные с таким же окончанием
      * Мужские и женские имена, оканчивающиеся иа -я, -ья, -ия, -ея, независимо от языка, 
      * из которого они происходят, склоняются как существительные с соответствующими окончаниями
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function manRule3()
     {
@@ -138,7 +144,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Мужские фамилии, оканчивающиеся на -ь -й, склоняются так же, 
      * как обычные существительные мужского рода
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function manRule4()
     {
@@ -177,7 +183,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Мужские фамилии, оканчивающиеся на -к
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function manRule5()
     {
@@ -208,7 +214,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Мужские фамили на согласный выбираем ем/ом/ым
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function manRule6()
     {
@@ -235,7 +241,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Мужские фамили на -а -я
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет.  
      */
     protected function manRule7()
     {
@@ -272,7 +278,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
     /**
      * Не склоняются мужский фамилии
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет.  
      */
     protected function manRule8()
     {
@@ -288,7 +294,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Мужские и женские имена, оканчивающиеся на -а, склоняются, 
      * как и любые существительные с таким же окончанием
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function womanRule1()
     {
@@ -323,7 +329,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Мужские и женские имена, оканчивающиеся иа -я, -ья, -ия, -ея, независимо от языка, 
      * из которого они происходят, склоняются как сущест­вительные с соответствующими окончаниями
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет.  
      */
     protected function womanRule2()
     {
@@ -348,7 +354,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Русские женские имена, оканчивающиеся на мягкий согласный, склоняются, 
      * как существительные женского рода типа дочь, тень
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function womanRule3()
     {
@@ -364,7 +370,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
     /**
      * Женские фамилия, оканчивающиеся на -а -я, склоняются,
      * как и любые существительные с таким же окончанием
-     * @return bool 
+     * @return bool true если правило было задействовано и false если нет. 
      */
     protected function womanRule4()
     {
@@ -390,7 +396,6 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
                 return true;
             }
         }
-        //Мужские и женские имена, оканчивающиеся иа -я, -ья, -ия, -ея, независимо от языка, из которого они происходят, склоняются как сущест­вительные с соответствующими окончаниями
         elseif ($this->Last(1) == "я")
         {
             $this->wordForms($this->workingWord, array('ой', 'ой', 'ую', 'ой', 'ой'), 2);
@@ -400,56 +405,46 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
         return false;
     }
 
-    /*
-     * Функция, которая склоняет имя записаное в $this->firstName, по правилам склонения мужских имен.
-     * 
-     * @return boolean
+    /**
+     * Функция пытается применить цыпочку правил для мужских имен
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
-
     protected function manFirstName()
     {
         return $this->RulesChain('man', array(1, 2, 3));
     }
 
-    /*
-     * Функция, которая склоняет имя записаное в $this->firstName, по правилам склонения женских имен.
-     * 
-     * @return boolean
+    /**
+     * Функция пытается применить цыпочку правил для женских имен
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
-
     protected function womanFirstName()
     {
         return $this->RulesChain('woman', array(1, 2, 3));
     }
 
-    /*
-     * Функция, которая склоняет фамилию записаное в $this->secondName, по правилам склонения мужских фамилий.
-     * 
-     * @return boolean
+    /**
+     * Функция пытается применить цыпочку правил для мужских фамилий
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
-
     protected function manSecondName()
     {
         return $this->RulesChain('man', array(8, 4, 5, 6, 7));
     }
 
-    /*
-     * Функция, которая склоняет фамилию записаное в $this->secondName, по правилам склонения женских фамилий.
-     * 
-     * @return boolean
+    /**
+     * Функция пытается применить цыпочку правил для женских фамилий
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
-
     protected function womanSecondName()
     {
         return $this->RulesChain('woman', array(4));
     }
 
-    /*
-     * Функция, которая склоняет отчество записаное в $this->secondName, по правилам склонения мужских отчеств.
-     * 
-     * @return boolean
+    /**
+     * Функция склоняет мужский отчества
+     * @return boolean true - если слово было успешно изменено, false - если не получилось этого сделать
      */
-
     protected function manFatherName()
     {
         //Проверяем действительно ли отчество
@@ -466,12 +461,10 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
         return false;
     }
 
-    /*
-     * Функция, которая склоняет отчество записаное в $this->fatherName, по правилам склонения женских отчеств.
-     * 
-     * @return boolean
+    /**
+     * Функция склоняет женские отчества
+     * @return boolean true - если слово было успешно изменено, false - если не получилось этого сделать
      */
-
     protected function womanFatherName()
     {
         //Проверяем действительно ли отчество
@@ -482,7 +475,11 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return false;
     }
-
+    
+    /**
+     * Определение пола по правилам имен
+     * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
+     */
     protected function GenderByFirstName(NCLNameCaseWord $word)
     {
         $this->setWorkingWord($word->getWord());
@@ -545,7 +542,11 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-
+    
+     /**
+     * Определение пола по правилам фамилий
+     * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
+     */
     protected function GenderBySecondName(NCLNameCaseWord $word)
     {
         $this->setWorkingWord($word->getWord());
@@ -570,7 +571,11 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-
+    
+     /**
+     * Определение пола по правилам отчеств
+     * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
+     */
     protected function GenderByFatherName(NCLNameCaseWord $word)
     {
         $this->setWorkingWord($word->getWord());
@@ -585,13 +590,13 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
         }
     }
 
-    
-
-    /*
-     * Определение текущее слово есть фамилией, именем или отчеством
-     * @return integer $number - 1-фамили 2-имя 3-отчество
+   /**
+     * Идетифицирует слово определяе имя это, или фамилия, или отчество 
+     * - <b>N</b> - имя
+     * - <b>S</b> - фамилия
+     * - <b>F</b> - отчество
+     * @param NCLNameCaseWord $word обьект класса слов, который необходимо идентифицировать
      */
-
    protected function detectNamePart(NCLNameCaseWord $word)
     {
         $namepart = $word->getWord();

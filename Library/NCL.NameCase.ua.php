@@ -1,19 +1,25 @@
 <?php
+/**
+ * @license Dual licensed under the MIT or GPL Version 2 licenses.
+ * @package NameCaseLib
+ */
+
+/**
+ * 
+ */
+require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
 
 /**
  * <b>NCL NameCase Ukranian Language</b>
  * 
  * Украинские правила склонений ФИО. 
  * Правила определения пола человека по ФИО для украинского языка
- * Система разделения фамилий имен и отчеств для украинского языка
+ * Система разделения фамилий имен и отчеств для украинского языка 
  * 
- * @license Dual licensed under the MIT or GPL Version 2 licenses.
- * @author Андрей Чайка http://seagull.net.ua/ bymer3@gmail.com
- * @version 0.4 05.07.2011
- * 
+ * @author Андрей Чайка <bymer3@gmail.com>
+ * @version 0.4
+ * @package NameCaseLib
  */
-require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
-
 class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 {
 

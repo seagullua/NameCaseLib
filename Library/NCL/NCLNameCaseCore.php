@@ -1,5 +1,12 @@
 <?php
+/**
+ * @license Dual licensed under the MIT or GPL Version 2 licenses.
+ * @package NameCaseLib
+ */
 
+/**
+ * 
+ */
 if (!defined('NCL_DIR'))
 {
     define('NCL_DIR', dirname(__FILE__));
@@ -10,84 +17,121 @@ require_once NCL_DIR . '/NCLStr.php';
 require_once NCL_DIR . '/NCLNameCaseInterface.php';
 require_once NCL_DIR . '/NCLNameCaseWord.php';
 
+
+
+/**
+ * <b>NCL NameCase Core</b>
+ * 
+ * Набор основных функций, который позволяют сделать интерфейс слонения русского и украниского языка
+ * абсолютно одинаковым. Содержит все функции для внешнего взаимодействия с библиотекой.
+ * 
+ * @author Андрей Чайка <bymer3@gmail.com>
+ * @version 0.4
+ * @package NameCaseLib
+ */
 class NCLNameCaseCore extends NCL
 {
 
     /**
-     * Система уже готово к склонению или нет
+     * Готовность системы:
+     * - Все слова идентифицированы (известо к какой части ФИО относится слово)
+     * - У всех слов определен пол
+     * Если все сделано стоит флаг true, при добавлении нового слова флаг сбрасывается на false
      * @var bool 
      */
-    protected $ready = false;
+    private $ready = false;
+    
     /**
-     * Все слова уже просклонялись
+     * Если все текущие слова было просклонены и в каждом слове уже есть результат склонения,
+     * тогда true. Если было добавлено новое слово флаг збрасывается на false
      * @var bool 
      */
-    protected $finished = false;
+    private $finished = false;
+    
     /**
-     * Список всех слов
+     * Массив содержит елементы типа NCLNameCaseWord. Это все слова которые нужно обработать и просклонять
      * @var array
      */
-    protected $words = array();
+    private $words = array();
 
-    /*
-     * Слово с которым работаем сейчас
+    /**
+     * Переменная, в которую заносится слово с которым сейчас идет работа
      * @var string
      */
     protected $workingWord = '';
 
-    /*
-     * Кеш окончаний слова
+    /**
+     * Метод Last() вырезает подстроки разной длины. Посколько одинаковых вызовов бывает несколько,
+     * то все результаты выполнения кешируются в этом массиве.
      * @var array
      */
     protected $workindLastCache = array();
+    
     /**
-     * Последние правило
+     * Номер последнего использованого правила, устанавливается методом Rule()
      * @var int 
      */
-    protected $lastRule = 0;
+    private $lastRule = 0;
+    
     /**
-     * Просклоненое слово
+     * Массив содержит результат склонения слова - слово во всех падежах
      * @var array 
      */
     protected $lastResult = array();
-    protected $index = array();
+    
+    /**
+     * Массив содержит информацию о том какие слова из массива <var>$this->words</var> относятся к
+     * фамилии, какие к отчеству а какие к имени. Массив нужен потому, что при добавлении слов мы не
+     * всегда знаем какая часть ФИО сейчас, поэтому после идентификации всех слов генерируется массив
+     * индексов для быстрого поиска в дальнейшем.
+     * @var array 
+     */
+    private $index = array();
 
     /**
-     * Сброс всех настроек
+     * Метод очищает результаты последнего склонения слова. Нужен при склонении нескольких слов.
      */
-    protected function reset()
+    private function reset()
     {
         $this->lastRule = 0;
         $this->lastResult = array();
     }
-
-    protected function fullReset()
+    
+    /**
+     * Сбрасывает все информацию на начальную. Очищает все слова добавленые в систему.
+     * После выполнения система готова работать с начала. 
+     */
+    public function fullReset()
     {
         $this->words = array();
         $this->index = array('N' => array(), 'F' => array(), 'S' => array());
         $this->reset();
         $this->notReady();
     }
-
-    protected function notReady()
+    
+    /**
+     * Устанавливает флаги о том, что система не готово и слова еще не были просклонены
+     */
+    private function notReady()
     {
         $this->ready = false;
         $this->finished = false;
     }
 
     /**
-     * Установить номер парвила
-     * @param int $index 
+     * Устанавливает номер последнего правила
+     * @param int $index номер правила которое нужно установить 
      */
     protected function Rule($index)
     {
         $this->lastRule = $index;
     }
 
-    /*
-     * Установить текущее слово
+    
+    /**
+     * Устанавливает слово текущим для работы системы. Очищает кеш слова.
+     * @param string $word слово, которое нужно установить
      */
-
     protected function setWorkingWord($word)
     {
         //Сбрасываем настройки
@@ -98,11 +142,13 @@ class NCLNameCaseCore extends NCL
         $this->workindLastCache = array();
     }
 
-    /*
-     * Если $stopAfter = 0, тогда вырезает $length последних букв
-     * Если нет, тогда вырезает $stopAfter букв начиная от $length с конца
+    /**
+     * Если <var>$stopAfter</var> = 0, тогда вырезает $length последних букв с текущего слова (<var>$this->workingWord</var>)
+     * Если нет, тогда вырезает <var>$stopAfter</var> букв начиная от <var>$length</var> с конца
+     * @param int $length количество букв с конца
+     * @param int $stopAfter количество букв которые нужно вырезать (0 - все)
+     * @return string требуемая подстрока
      */
-
     protected function Last($length=1, $stopAfter=0)
     {
         //Сколько букв нужно вырезать все или только часть
@@ -124,10 +170,11 @@ class NCLNameCaseCore extends NCL
     }
 
     /**
-     * Выполняет над словом типа $gender (man / woman) в порядке указанов в $rulesArray
-     * @param string $gender - мужские/женский правила
-     * @param type $rulesArray - массив, порядок выполнения правил
-     * @return boolean 
+     * Над текущим словом (<var>$this->workingWord</var>) выполняются правила в порядке указаном в <var>$rulesArray</var>.
+     * <var>$gender</var> служит для указания какие правила использовать мужские ('man') или женские ('woman')
+     * @param string $gender - префикс мужских/женских правил
+     * @param array $rulesArray - массив, порядок выполнения правил
+     * @return boolean если правило было задествовано, тогда true, если нет - тогда false
      */
     protected function RulesChain($gender, $rulesArray)
     {
@@ -141,16 +188,14 @@ class NCLNameCaseCore extends NCL
         }
         return false;
     }
-
-    /*
-     * Функция проверяет, входит ли буква в строку.
-     * 
-     * @param $letter - буква
-     * @param $string - строка
-     * 
-     * @return boolean
+    
+    /**
+     * Если <var>$string</var> строка, тогда проверяется входит ли буква <var>$letter</var> в строку <var>$string</var>
+     * Если <var>$string</var> массив, тогда проверяется входит ли строка <var>$letter</var> в массив <var>$string</var>
+     * @param string $letter буква или строка, которую нужно искать
+     * @param mixed $string строка или массив, в котором нужно искать
+     * @return bool true если искомое значение найдено
      */
-
     protected function in($letter, $string)
     {
         //Если второй параметр массив
@@ -172,10 +217,9 @@ class NCLNameCaseCore extends NCL
     }
 
     /**
-     * Функция проверяет, входит ли имя в перечень имен.
-     * 
-     * @param string $nameNeedle - имя
-     * @param string $names - перечень имен
+     * Функция проверяет, входит ли имя <var>$nameNeedle</var> в перечень имен <var>$names</var>.
+     * @param string $nameNeedle - имя которое нужно найти
+     * @param array $names - перечень имен в котором нужно найти имя
      */
     protected function inNames($nameNeedle, $names)
     {
@@ -194,16 +238,13 @@ class NCLNameCaseCore extends NCL
         return false;
     }
 
-    /*
-     * Функция дополняет переданое слово нужными окончаниями.
-     * 
-     * @param $word (string) - слово
-     * @param $endings (array) - окончания
-     * @param $replaceLast (int) - сколько букв убрать
-     * 
-     * @return (array)
+    /**
+     * Склоняет слово <var>$word</var>, удаляя из него <var>$replaceLast</var> последних букв
+     * и добавляя в каждый падеж окончание из массива <var>$endings</var>.
+     * @param string $word слово, к которому нужно добавить окончания
+     * @param array $endings массив окончаний
+     * @param int $replaceLast сколько последних букв нужно убрать с начального слова
      */
-
     protected function wordForms($word, $endings, $replaceLast=0)
     {
         //Создаем массив с именительный падежом
@@ -220,14 +261,11 @@ class NCLNameCaseCore extends NCL
         $this->lastResult = $result;
     }
 
-    /*
-     * Установка имени
-     * 
-     * @param $firstname
-     * 
-     * @return void
+    /**
+     * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
+     * со словом <var>$firstname</var> и пометкой, что это имя
+     * @param string $firstname имя
      */
-
     public function setFirstName($firstname="")
     {
         if ($firstname)
@@ -239,14 +277,11 @@ class NCLNameCaseCore extends NCL
         }
     }
 
-    /*
-     * Установка Фамилии
-     * 
-     * @param $secondname
-     * 
-     * @return void
+    /**
+     * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
+     * со словом <var>$secondname</var> и пометкой, что это фамилия
+     * @param string $secondname фамилия
      */
-
     public function setSecondName($secondname="")
     {
         if ($secondname)
@@ -258,14 +293,11 @@ class NCLNameCaseCore extends NCL
         }
     }
 
-    /*
-     * Установка Отчества
-     * 
-     * @param $secondname
-     * 
-     * @return void
+    /**
+     * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
+     * со словом <var>$fathername</var> и пометкой, что это отчество
+     * @param string $fathername отчество
      */
-
     public function setFatherName($fathername="")
     {
         if ($fathername)
@@ -277,16 +309,13 @@ class NCLNameCaseCore extends NCL
         }
     }
 
-    /*
-     * Установка пола
-     * 
-     * @param $gender
+    /**
+     * Всем словам устанавливается пол, который может иметь следующие значения
      * - 0 - не определено
      * - NCL::$MAN - мужчина
      * - NCL::$WOMAN - женщина
-     * @return void
+     * @param int $gender пол, который нужно установить
      */
-
     public function setGender($gender=0)
     {
         foreach ($this->words as $word)
@@ -295,16 +324,12 @@ class NCLNameCaseCore extends NCL
         }
     }
 
-    /*
-     * Установка Имени, Фамилии, Отчества
-     * 
-     * @param $firstName - имя
-     * @param $secondName - фамилия
-     * @param $fatherName - отчество
-     * 
-     * @return void
+    /**
+     * В система заносится сразу фамилия, имя, отчество
+     * @param string $secondName фамилия
+     * @param string $firstName имя
+     * @param string $fatherName отчество
      */
-
     public function setFullName($secondName="", $firstName="", $fatherName="")
     {
         $this->setFirstName($firstName);
@@ -312,62 +337,64 @@ class NCLNameCaseCore extends NCL
         $this->setFatherName($fatherName);
     }
 
-    /*
-     * Установка имени
-     * 
-     * @param $firstname
-     * 
-     * @return void
+    /**
+     * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
+     * со словом <var>$firstname</var> и пометкой, что это имя
+     * @param string $firstname имя
      */
-
     public function setName($firstname="")
     {
         $this->setFirstName($firstname);
     }
 
-    /*
-     * Установка Фамилии
-     * 
-     * @param $secondname
-     * 
-     * @return void
+    /**
+     * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
+     * со словом <var>$secondname</var> и пометкой, что это фамилия
+     * @param string $secondname фамилия
      */
-
     public function setLastName($secondname="")
     {
         $this->setSecondName($secondname);
     }
 
-    /*
-     * Установка Фамилии
-     * 
-     * @param $secondname
-     * 
-     * @return void
+    /**
+     * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
+     * со словом <var>$secondname</var> и пометкой, что это фамилия
+     * @param string $secondname фамилия
      */
-
-    public function setSirname($secondname="")
+    public function setSirName($secondname="")
     {
         $this->setSecondName($secondname);
     }
-
-    protected function prepareNamePart(NCLNameCaseWord $word)
+    
+    /**
+     * Если слово <var>$word</var> не идентифицировано, тогда определяется это имя, фамилия или отчество
+     * @param NCLNameCaseWord $word слово которое нужно идентифицировать
+     */
+    private function prepareNamePart(NCLNameCaseWord $word)
     {
         if (!$word->getNamePart())
         {
             $this->detectNamePart($word);
         }
     }
-
-    protected function prepareAllNameParts()
+    
+    /**
+     * Проверяет все ли слова идентифицированы, если нет тогда для каждого определяется это имя, фамилия или отчество
+     */
+    private function prepareAllNameParts()
     {
         foreach ($this->words as $word)
         {
             $this->prepareNamePart($word);
         }
     }
-
-    protected function prepareGender(NCLNameCaseWord $word)
+    
+    /**
+     * Определяет пол для слова <var>$word</var>
+     * @param NCLNameCaseWord $word слово для которого нужно определить пол
+     */
+    private function prepareGender(NCLNameCaseWord $word)
     {
         if (!$word->isGenderSolved())
         {
@@ -383,8 +410,13 @@ class NCLNameCaseCore extends NCL
             }
         }
     }
-
-    protected function solveGender()
+    
+    /**
+     * Для всех слов проверяет определен ли пол, если нет - определяет его
+     * После этого расчитывает пол для всех слов и устанавливает такой пол всем словам
+     * @return bool был ли определен пол
+     */
+    private function solveGender()
     {
         //Ищем, может гдето пол уже установлен
         foreach ($this->words as $word)
@@ -419,8 +451,14 @@ class NCLNameCaseCore extends NCL
 
         return true;
     }
-
-    protected function generateIndex()
+    
+    /**
+     * Генерируется массив, который содержит информацию о том какие слова из массива <var>$this->words</var> относятся к
+     * фамилии, какие к отчеству а какие к имени. Массив нужен потому, что при добавлении слов мы не
+     * всегда знаем какая часть ФИО сейчас, поэтому после идентификации всех слов генерируется массив
+     * индексов для быстрого поиска в дальнейшем.
+     */
+    private function generateIndex()
     {
         $this->index = array('N' => array(), 'S' => array(), 'F' => array());
         foreach ($this->words as $index => $word)
@@ -429,8 +467,13 @@ class NCLNameCaseCore extends NCL
             $this->index[$namepart][] = $index;
         }
     }
-
-    protected function prepareEverything()
+    
+    /**
+     * Выполнет все необходимые подготовления для склонения.
+     * Все слова идентфицируются. Определяется пол.
+     * Обновляется индекс.
+     */
+    private function prepareEverything()
     {
         if (!$this->ready)
         {
@@ -441,12 +484,13 @@ class NCLNameCaseCore extends NCL
         }
     }
 
-    /*
-     * Автоматическое определение пола
-     * Возвращает пол по ФИО
-     * @return integer
+    /**
+     * По указаным словам определяется пол человека:
+     * - 0 - не определено
+     * - NCL::$MAN - мужчина
+     * - NCL::$WOMAN - женщина
+     * @return int текущий пол человека
      */
-
     public function genderAutoDetect()
     {
         $this->prepareEverything();
@@ -457,11 +501,15 @@ class NCLNameCaseCore extends NCL
         return false;
     }
 
-    /*
-     * Разбиение фразы на слова и определение, где имя, где фамилия, где отчество
-     * @return string $format - формат имен и фамилий
+    /**
+     * Разбивает строку <var>$fullname</var> на слова и возвращает формат в котором записано имя
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param string $fullname строка, для которой необходимо определить формат
+     * @return string формат в котором записано имя например 'N F S' 
      */
-
     public function splitFullName($fullname)
     {
 
@@ -483,8 +531,12 @@ class NCLNameCaseCore extends NCL
 
         return implode(' ', $formatArr);
     }
-
-    protected function WordCase(NCLNameCaseWord $word)
+    
+    /**
+     * Склоняет слово <var>$word</var> по нужным правилам в зависимости от пола и типа слова
+     * @param NCLNameCaseWord $word слово, которое нужно просклонять
+     */
+    private function WordCase(NCLNameCaseWord $word)
     {
         $gender = ($word->gender() == NCL::$MAN ? 'man' : 'woman');
 
@@ -512,8 +564,11 @@ class NCLNameCaseCore extends NCL
             $word->setRule(-1);
         }
     }
-
-    protected function AllWordCases()
+    
+    /**
+     * Производит склонение всех слов, который хранятся в массиве <var>$this->words</var>
+     */
+    private function AllWordCases()
     {
         if (!$this->finished)
         {
@@ -527,7 +582,14 @@ class NCLNameCaseCore extends NCL
             $this->finished = true;
         }
     }
-
+    
+    /**
+     * Если указан номер падежа <var>$number</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param NCLNameCaseWord $word слово для котрого нужно вернуть падеж
+     * @param int $number номер падежа, который нужно вернуть
+     * @return mixed массив или строка с нужным падежом 
+     */
     private function getWordCase(NCLNameCaseWord $word, $number=null)
     {
         $cases = $word->getNameCases();
@@ -542,9 +604,11 @@ class NCLNameCaseCore extends NCL
     }
 
     /**
-     * Возвращает склееные результаты склонения
-     * @param array $indexArray - индексы слов, которые необходимо склеить
-     * @param int $number - 
+     * Если нужно было просклонять несколько слов, то их необходимо собрать в одну строку.
+     * Эта функция собирает все слова указаные в <var>$indexArray</var>  в одну строку.
+     * @param array $indexArray индексы слов, которые необходимо собрать вместе
+     * @param int $number номер падежа 
+     * @return mixed либо массив со всеми падежами, либо строка с одним падежом
      */
     private function getCasesConnected($indexArray, $number=null)
     {
@@ -580,12 +644,14 @@ class NCLNameCaseCore extends NCL
         return '';
     }
 
-    /*
-     * Поставить имя в определенный падеж
+    /**
+     * Функция ставит имя в нужный падеж.
      * 
-     * @return string
+     * Если указан номер падежа <var>$number</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param int $number номер падежа
+     * @return mixed массив или строка с нужным падежом 
      */
-
     public function getFirstNameCase($number=null)
     {
         $this->AllWordCases();
@@ -593,12 +659,14 @@ class NCLNameCaseCore extends NCL
         return $this->getCasesConnected($this->index['N'], $number);
     }
 
-    /*
-     * Поставить фамилию в определенный падеж
+    /**
+     * Функция ставит фамилию в нужный падеж.
      * 
-     * @return string
+     * Если указан номер падежа <var>$number</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param int $number номер падежа
+     * @return mixed массив или строка с нужным падежом 
      */
-
     public function getSecondNameCase($number=null)
     {
         $this->AllWordCases();
@@ -606,12 +674,14 @@ class NCLNameCaseCore extends NCL
         return $this->getCasesConnected($this->index['S'], $number);
     }
 
-    /*
-     * Поставить отчество в определенный падеж
+    /**
+     * Функция ставит отчество в нужный падеж.
      * 
-     * @return string
+     * Если указан номер падежа <var>$number</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param int $number номер падежа
+     * @return mixed массив или строка с нужным падежом 
      */
-
     public function getFatherNameCase($number=null)
     {
         $this->AllWordCases();
@@ -619,12 +689,16 @@ class NCLNameCaseCore extends NCL
         return $this->getCasesConnected($this->index['F'], $number);
     }
 
-    /*
-     * Поставить фамилию в определенный падеж
+    /**
+     * Функция ставит имя <var>$firstName</var> в нужный падеж <var>$CaseNumber</var> по правилам пола <var>$gender</var>.
      * 
-     * @return string
+     * Если указан номер падежа <var>$CaseNumber</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param string $firstName имя, которое нужно просклонять
+     * @param int $CaseNumber номер падежа
+     * @param int $gender пол, который нужно использовать
+     * @return mixed массив или строка с нужным падежом 
      */
-
     public function qFirstName($firstName, $CaseNumber=null, $gender=0)
     {
         $this->fullReset();
@@ -636,12 +710,16 @@ class NCLNameCaseCore extends NCL
         return $this->getFirstNameCase($CaseNumber);
     }
 
-    /*
-     * Поставить фамилию в определенный падеж
+    /**
+     * Функция ставит фамилию <var>$secondName</var> в нужный падеж <var>$CaseNumber</var> по правилам пола <var>$gender</var>.
      * 
-     * @return string
+     * Если указан номер падежа <var>$CaseNumber</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param string $secondName фамилия, которую нужно просклонять
+     * @param int $CaseNumber номер падежа
+     * @param int $gender пол, который нужно использовать
+     * @return mixed массив или строка с нужным падежом 
      */
-
     public function qSecondName($secondName, $CaseNumber=null, $gender=0)
     {
         $this->fullReset();
@@ -654,12 +732,16 @@ class NCLNameCaseCore extends NCL
         return $this->getSecondNameCase($CaseNumber);
     }
 
-    /*
-     * Поставить отчество в определенный падеж
+    /**
+     * Функция ставит отчество <var>$fatherName</var> в нужный падеж <var>$CaseNumber</var> по правилам пола <var>$gender</var>.
      * 
-     * @return string
+     * Если указан номер падежа <var>$CaseNumber</var>, тогда возвращается строка с таким номером падежа,
+     * если нет, тогда возвращается массив со всеми падежами текущего слова.
+     * @param string $fatherName отчество, которое нужно просклонять
+     * @param int $CaseNumber номер падежа
+     * @param int $gender пол, который нужно использовать
+     * @return mixed массив или строка с нужным падежом 
      */
-
     public function qFatherName($fatherName, $CaseNumber=null, $gender=0)
     {
         $this->fullReset();
@@ -671,16 +753,15 @@ class NCLNameCaseCore extends NCL
         return $this->getFatherNameCase($CaseNumber);
     }
 
-    /*
-     * Склоняет во все падежи и форматирует по шаблону $format
-     * Шаблон $format
-     * S - Фамилия
-     * N - Имя
-     * F - Отчество
-     * 
-     * @return array
+    /**
+     * Склоняет текущие слова во все падежи и форматирует слово по шаблону <var>$format</var>
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param string $format строка формат
+     * @return array массив со всеми падежами
      */
-
     public function getFormattedArray($format)
     {
         if (is_array($format))
@@ -735,7 +816,16 @@ class NCLNameCaseCore extends NCL
         }
         return $result;
     }
-
+    
+    /**
+     * Склоняет текущие слова во все падежи и форматирует слово по шаблону <var>$format</var>
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param array $format массив с форматом
+     * @return array массив со всеми падежами
+     */
     public function getFormattedArrayHard($format)
     {
 
@@ -785,7 +875,16 @@ class NCLNameCaseCore extends NCL
         }
         return $result;
     }
-
+    
+    /**
+     * Склоняет текущие слова в падеж <var>$caseNum</var> и форматирует слово по шаблону <var>$format</var>
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param array $format массив с форматом
+     * @return string строка в нужном падеже
+     */
     public function getFormattedHard($caseNum=0, $format=array())
     {
         $result = "";
@@ -811,19 +910,15 @@ class NCLNameCaseCore extends NCL
         return trim($result);
     }
 
-    /*
-     * Склоняет в падеж $caseNum, и форматирует по шаблону $format
-     * Шаблон $format
-     * S - Фамилия
-     * N - Имя
-     * F - Отчество
-     * 
-     * Например getFormatted(1, 'N F')
-     * Выведет имя и отчество в родительном падиже
-     * 
-     * @return string
+    /**
+     * Склоняет текущие слова в падеж <var>$caseNum</var> и форматирует слово по шаблону <var>$format</var>
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param string $format строка с форматом
+     * @return string строка в нужном падеже
      */
-
     public function getFormatted($caseNum=0, $format="S N F")
     {
         //Если не указан падеж используем другую функцию
@@ -864,16 +959,21 @@ class NCLNameCaseCore extends NCL
         }
     }
 
-    /*
-     * Склоняет фамилию имя отчество в падеж $caseNum, и форматирует по шаблону $format
-     * Шаблон $format
-     * S - Фамилия
-     * N - Имя
-     * F - Отчество
-     * 
-     * @return string
+    /**
+     * Склоняет фамилию <var>$secondName</var>, имя <var>$firstName</var>, отчество <var>$fatherName</var>
+     * в падеж <var>$caseNum</var> по правилам пола <var>$gender</var> и форматирует результат по шаблону <var>$format</var>
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param string $secondName фамилия
+     * @param string $firstName имя
+     * @param string $fatherName отчество
+     * @param int $gender пол
+     * @param int $caseNum номер падежа
+     * @param string $format формат
+     * @return mixed либо массив со всеми падежами, либо строка 
      */
-
     public function qFullName($secondName="", $firstName="", $fatherName="", $gender=0, $caseNum=0, $format="S N F")
     {
         $this->fullReset();
@@ -888,12 +988,14 @@ class NCLNameCaseCore extends NCL
         return $this->getFormatted($caseNum, $format);
     }
 
-    /*
-     * Быстрое склонение имени. Передается один параметр строка, где может быть ФИО в любом виде. Есть необязательный параметр пол. И так ще необязательный параметр падеж. Если падеж указан, тогда возвращается строка в том падеже, если нет тогда все возможные падежи.
-     * 
-     * @return string
+    /**
+     * Склоняет ФИО <var>$fullname</var> в падеж <var>$caseNum</var> по правилам пола <var>$gender</var>.
+     * Возвращает результат в таком же формате, как он и был.
+     * @param string $fullname ФИО
+     * @param int $caseNum номер падежа
+     * @param int $gender пол человека
+     * @return mixed либо массив со всеми падежами, либо строка
      */
-
     public function q($fullname, $caseNum=null, $gender=null)
     {
         $this->fullReset();

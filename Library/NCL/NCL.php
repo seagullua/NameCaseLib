@@ -1,10 +1,17 @@
 <?php
 /**
+ * @license Dual licensed under the MIT or GPL Version 2 licenses.
+ * @package NameCaseLib
+ */
+
+/**
  * Класс, который содержит основные константы библиотеки:
  * - индексы мужского и женского пола
  * - индексы всех падежей
+ * 
  * @author Андрей Чайка <bymer3@gmail.com>
  * @version 0.4
+ * @package NameCaseLib
  */
 class NCL
 {

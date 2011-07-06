@@ -1,9 +1,15 @@
 <?php
+/**
+ * @license Dual licensed under the MIT or GPL Version 2 licenses.
+ * @package NameCaseLib
+ */
 
 /**
  * NCLNameCaseWord - класс, который служит для хранения всей информации о каждом слове
+ * 
  * @author Андрей Чайка <bymer3@gmail.com>
  * @version 0.4
+ * @package NameCaseLib
  */
 class NCLNameCaseWord
 {
@@ -73,15 +79,21 @@ class NCLNameCaseWord
     private $rule = 0;
     
     /**
-     * Создать запись из слова
-     * @param string $word 
+     * Создание нового обьекта со словом <var>$word</var>
+     * @param string $word слово
      */
     public function __construct($word)
     {
         $this->generateMask($word);
         $this->word = NCLStr::strtolower($word);
     }
-
+    
+    /**
+     * Генерирует маску, которая содержит информацию о том, какие буквы в слове были большими, а какие маленькими:
+     * - x - маленькая буква
+     * - X - больная буква
+     * @param string $word слово, для которого генерировать маску 
+     */
     private function generateMask($word)
     {
         $letters = NCLStr::splitLetters($word);
@@ -101,7 +113,12 @@ class NCLNameCaseWord
         }
         $this->letterMask = $mask;
     }
-
+    
+    /**
+     * Возвращает все падежи слова в начальную маску:
+     * - x - маленькая буква
+     * - X - больная буква
+     */
     private function returnMask()
     {
         if ($this->isUpperCase)
@@ -134,18 +151,30 @@ class NCLNameCaseWord
             }
         }
     }
-
+    
+    /**
+     * Сохраняет результат склонения текущего слова
+     * @param array $nameCases массив со всеми падежами
+     */
     public function setNameCases($nameCases)
     {
         $this->NameCases = $nameCases;
         $this->returnMask();
     }
-
+    
+    /**
+     * Возвращает массив со всеми падежами текущего слова
+     * @return array массив со всеми падежами 
+     */
     public function getNameCases()
     {
         return $this->NameCases;
     }
-
+    
+    /**
+     * Расчитывает и возвращает пол текущего слова
+     * @return int пол текущего слова 
+     */
     public function gender()
     {
         if (!$this->genderSolved)
@@ -161,43 +190,88 @@ class NCLNameCaseWord
         }
         return $this->genderSolved;
     }
-
+    
+    /**
+     * Устанавливает вероятности того, что даное слово является мужчиной или женщиной
+     * @param int $man вероятность того, что слово мужчина
+     * @param int $woman верятность того, что слово женщина
+     */
     public function setGender($man, $woman)
     {
         $this->genderMan = $man;
         $this->genderWoman = $woman;
     }
     
+    /**
+     * Окончательно устанавливает пол человека
+     * - 0 - не определено
+     * - NCL::$MAN - мужчина
+     * - NCL::$WOMAN - женщина
+     * @param int $gender пол человека
+     */
     public function setTrueGender($gender)
     {
         $this->genderSolved = $gender;
     }
-
+    
+    /**
+     * Возвращает массив вероятности того, что даное слово является мужчиной или женщиной
+     * @return array массив вероятностей 
+     */
     public function getGender()
     {
         return array(NCL::$MAN => $this->genderMan, NCL::$WOMAN => $this->genderWoman);
     }
-
+    
+    /**
+     * Устанавливает тип текущего слова
+     * <b>Тип слова:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param string $namePart тип слова
+     */
     public function setNamePart($namePart)
     {
         $this->namePart = $namePart;
     }
-
+    
+    /**
+     * Возвращает тип текущего слова
+     * <b>Тип слова:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @return string $namePart тип слова
+     */
     public function getNamePart()
     {
         return $this->namePart;
     }
-
+    
+    /**
+     * Возвращает текущее слово.
+     * @return string текущее слово 
+     */
     public function getWord()
     {
         return $this->word;
     }
     
+    /**
+     * Если уже был расчитан пол для всех слов системы, тогда каждому слову предается окончательное
+     * решение. Эта функция определяет было ли принято окончательное решение.
+     * @return bool было ли принято окончательное решение по поводу пола текущего слова 
+     */
     public function isGenderSolved()
     {
         return ($this->genderSolved ? true : false);
     }
     
+    /**
+     * Устанавливает номер правила по которому склонялось текущее слово.
+     * @param int $ruleID номер правила
+     */
     public function setRule($ruleID)
     {
         $this->rule = $ruleID;
