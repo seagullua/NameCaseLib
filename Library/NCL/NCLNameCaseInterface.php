@@ -32,7 +32,7 @@ interface NCLNameCaseInterface
 
     public function genderAutoDetect();
 
-    public function splitFullName($fullname);
+    public function getFullNameFormat($fullname);
 
     public function getFirstNameCase($number=null);
 

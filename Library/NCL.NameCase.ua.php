@@ -716,7 +716,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
 
         //Исключения
-        if ($this->inNames($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь', 'Микола')))
+        if ($this->inNames($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь', 'Микола', 'Мая')))
         {
             $first+=10;
         }

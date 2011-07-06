@@ -500,7 +500,7 @@ class NCLNameCaseCore extends NCL
      * @param string $fullname строка, для которой необходимо определить формат
      * @return array формат в котором записано имя массив типа <var>$this->words</var> 
      */
-    public function splitFullName($fullname)
+    private function splitFullName($fullname)
     {
 
         $fullname = trim($fullname);
@@ -520,6 +520,27 @@ class NCLNameCaseCore extends NCL
         }
 
         return $this->words;
+    }
+
+    /**
+     * Разбивает строку <var>$fullname</var> на слова и возвращает формат в котором записано имя
+     * <b>Формат:</b>
+     * - S - Фамилия
+     * - N - Имя
+     * - F - Отчество
+     * @param string $fullname строка, для которой необходимо определить формат
+     * @return string формат в котором записано имя 
+     */
+    public function getFullNameFormat($fullname)
+    {
+        $this->fullReset();
+        $words = $this->splitFullName($fullname);
+        $format = '';
+        foreach ($words as $word)
+        {
+            $format .= $word->getNamePart() . ' ';
+        }
+        return $format;
     }
 
     /**
@@ -765,22 +786,9 @@ class NCLNameCaseCore extends NCL
         $length = NCLStr::strlen($format);
         $result = array();
         $cases = array();
-        for ($i = 0; $i < $length; $i++)
-        {
-            $symbol = NCLStr::substr($format, $i, 1);
-            if ($symbol == 'S')
-            {
-                $cases['S'] = $this->getSecondNameCase();
-            }
-            elseif ($symbol == 'N')
-            {
-                $cases['N'] = $this->getFirstNameCase();
-            }
-            elseif ($symbol == 'F')
-            {
-                $cases['F'] = $this->getFatherNameCase();
-            }
-        }
+        $cases['S'] = $this->getCasesConnected($this->index['S']);
+        $cases['N'] = $this->getCasesConnected($this->index['N']);
+        $cases['F'] = $this->getCasesConnected($this->index['F']);
 
         for ($curCase = 0; $curCase < $this->CaseCount; $curCase++)
         {
