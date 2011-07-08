@@ -264,6 +264,7 @@ class NCLNameCaseCore extends NCL
             $this->words[$index]->setNamePart('N');
             $this->notReady();
         }
+        return $this;
     }
 
     /**
@@ -280,6 +281,7 @@ class NCLNameCaseCore extends NCL
             $this->words[$index]->setNamePart('S');
             $this->notReady();
         }
+        return $this;
     }
 
     /**
@@ -296,6 +298,7 @@ class NCLNameCaseCore extends NCL
             $this->words[$index]->setNamePart('F');
             $this->notReady();
         }
+        return $this;
     }
 
     /**
@@ -311,6 +314,7 @@ class NCLNameCaseCore extends NCL
         {
             $word->setTrueGender($gender);
         }
+        return $this;
     }
 
     /**
@@ -324,6 +328,7 @@ class NCLNameCaseCore extends NCL
         $this->setFirstName($firstName);
         $this->setSecondName($secondName);
         $this->setFatherName($fatherName);
+        return $this;
     }
 
     /**
@@ -333,7 +338,7 @@ class NCLNameCaseCore extends NCL
      */
     public function setName($firstname="")
     {
-        $this->setFirstName($firstname);
+        return $this->setFirstName($firstname);
     }
 
     /**
@@ -343,7 +348,7 @@ class NCLNameCaseCore extends NCL
      */
     public function setLastName($secondname="")
     {
-        $this->setSecondName($secondname);
+        return $this->setSecondName($secondname);
     }
 
     /**
@@ -353,7 +358,7 @@ class NCLNameCaseCore extends NCL
      */
     public function setSirName($secondname="")
     {
-        $this->setSecondName($secondname);
+        return $this->setSecondName($secondname);
     }
 
     /**
