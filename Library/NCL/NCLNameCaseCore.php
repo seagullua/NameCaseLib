@@ -978,7 +978,15 @@ class NCLNameCaseCore extends NCL
         $this->splitFullName($fullname);
         return $this->genderAutoDetect();
     }
-
+    
+    /**
+     * Возвращает внутренний массив $this->words каждая запись имеет тип NCLNameCaseWord
+     * @return array Массив всех слов в системе 
+     */
+    public function getWordsArray()
+    {
+       return $this->words; 
+    }
 }
 
 ?>

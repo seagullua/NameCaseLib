@@ -297,27 +297,27 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                 if ($this->Last(2) == 'ок' and $this->Last(3) != 'оок')
                 {
                     $this->wordForms($this->workingWord, array('ка', 'кові', 'ка', 'ком', 'кові', 'че'), 2);
-                    $this->Rule(30101);
+                    $this->Rule(301);
                     return true;
                 }
                 //Російські прізвища на ов, ев, єв
                 elseif ($this->in($this->Last(2), array('ов', 'ев', 'єв')) and !$this->inNames($this->workingWord, array('Лев', 'Остромов')))
                 {
                     $this->wordForms($osnova, array($osLast . 'а', $osLast . 'у', $osLast . 'а', $osLast . 'им', $osLast . 'у', $this->inverse2($osLast) . 'е'), 1);
-                    $this->Rule(30102);
+                    $this->Rule(302);
                     return true;
                 }
                 //Російські прізвища на ін
                 elseif ($this->in($this->Last(2), array('ін')))
                 {
                     $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'у', 'е'));
-                    $this->Rule(30103);
+                    $this->Rule(303);
                     return true;
                 }
                 else
                 {
                     $this->wordForms($osnova, array($osLast . 'а', $osLast . 'ові', $osLast . 'а', $osLast . 'ом', $osLast . 'ові', $this->inverse2($osLast) . 'е'), 1);
-                    $this->Rule(301);
+                    $this->Rule(304);
                     return true;
                 }
             }
@@ -325,7 +325,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
             {
                 //Мішана група
                 $this->wordForms($osnova, array('а', 'еві', 'а', 'ем', 'еві', 'е'));
-                $this->Rule(302);
+                $this->Rule(305);
                 return true;
             }
             if ($group == 3)
@@ -336,33 +336,40 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
                 {
                     $osnova = NCLStr::substr($this->workingWord, 0, NCLStr::strlen($this->workingWord) - 2) . '’';
                     $this->wordForms($osnova, array('я', 'єві', 'я', 'єм', 'єві', 'ю'));
-                    $this->Rule(303);
+                    $this->Rule(306);
                     return true;
                 }
                 elseif ($this->Last(1) == 'й' or $BeforeLast == 'і')
                 {
                     $this->wordForms($this->workingWord, array('я', 'єві', 'я', 'єм', 'єві', 'ю'), 1);
-                    $this->Rule(304);
+                    $this->Rule(307);
+                    return true;
+                }
+                //Швець
+                elseif ($this->workingWord == 'швець')
+                {
+                    $this->wordForms($this->workingWord, array('евця', 'евцеві', 'евця', 'евцем', 'евцеві', 'евцю'), 4);
+                    $this->Rule(308);
                     return true;
                 }
                 //Слова що закінчуються на ець
                 elseif ($this->Last(3) == 'ець')
                 {
                     $this->wordForms($this->workingWord, array('ця', 'цеві', 'ця', 'цем', 'цеві', 'цю'), 3);
-                    $this->Rule(305);
+                    $this->Rule(309);
                     return true;
                 }
                 //Слова що закінчуються на єць яць
                 elseif ($this->in($this->Last(3), array('єць', 'яць')))
                 {
                     $this->wordForms($this->workingWord, array('йця', 'йцеві', 'йця', 'йцем', 'йцеві', 'йцю'), 3);
-                    $this->Rule(306);
+                    $this->Rule(310);
                     return true;
                 }
                 else
                 {
                     $this->wordForms($osnova, array('я', 'еві', 'я', 'ем', 'еві', 'ю'));
-                    $this->Rule(305);
+                    $this->Rule(311);
                     return true;
                 }
             }
@@ -428,7 +435,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         elseif ($this->Last(1) == 'а')
         {
             $this->wordForms($this->workingWord, array($BeforeLast . 'и', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'у', $BeforeLast . 'ою', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'о'), 2);
-            $this->Rule(101);
+            $this->Rule(102);
             return true;
         }
         //Остання літера я
@@ -444,7 +451,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
             else
             {
                 $this->wordForms($this->workingWord, array($BeforeLast . 'і', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'ю', $BeforeLast . 'ею', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'е'), 2);
-                $this->Rule(102);
+                $this->Rule(104);
                 return true;
             }
         }
@@ -483,13 +490,13 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
             if ($this->Last(1) == 'ь')
             {
                 $this->wordForms($osnova, array('і', 'і', 'ь', $duplicate . $apostrof . 'ю', 'і', 'е'));
-                $this->Rule(402);
+                $this->Rule(201);
                 return true;
             }
             else
             {
                 $this->wordForms($osnova, array('і', 'і', '', $duplicate . $apostrof . 'ю', 'і', 'е'));
-                $this->Rule(401);
+                $this->Rule(202);
                 return true;
             }
         }
@@ -605,7 +612,12 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         {
             $man+=0.9;
         }
-
+        
+        if($this->inNames($this->workingWord, 'Петро'))
+        {
+            $man+=30;
+        }
+        
         if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
         {
             $man+=0.5;
