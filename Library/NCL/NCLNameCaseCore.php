@@ -97,6 +97,7 @@ class NCLNameCaseCore extends NCL
         $this->index = array('N' => array(), 'F' => array(), 'S' => array());
         $this->reset();
         $this->notReady();
+        return $this;
     }
 
     /**
