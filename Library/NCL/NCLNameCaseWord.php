@@ -172,6 +172,20 @@ class NCLNameCaseWord
     }
     
     /**
+     * Возвращает строку с нужным падежом текущего слова
+     * @param int $number нужный падеж
+     * @return string строка с нужным падежом текущего слова 
+     */
+    public function getNameCase($number)
+    {
+        if(isset($this->NameCases[$number]))
+        {
+            return $this->NameCases[$number];
+        }
+        return false;
+    }
+    
+    /**
      * Расчитывает и возвращает пол текущего слова
      * @return int пол текущего слова 
      */

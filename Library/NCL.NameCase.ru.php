@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @package NameCaseLib
  */
-
 /**
  * 
  */
@@ -20,32 +20,29 @@ require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
  * @version 0.4
  * @package NameCaseLib
  */
-class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
+class NCLNameCaseRu extends NCLNameCaseCore
 {
+
     /**
      * Количество падежей в языке
      * @var int
      */
     protected $CaseCount = 6;
-
     /**
      * Список гласных русского языка
      * @var string 
      */
     private $vowels = "аеёиоуыэюя";
-
     /**
      * Список согласных русского языка
      * @var string  
      */
     private $consonant = "бвгджзйклмнпрстфхцчшщ";
-
     /**
      * Окончания имен/фамилий, который не склоняются
      * @var array 
      */
     private $ovo = array('ово', 'аго', 'яго', 'ирь');
-
     /**
      * Окончания имен/фамилий, который не склоняются
      * @var array 
@@ -475,7 +472,7 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return false;
     }
-    
+
     /**
      * Определение пола по правилам имен
      * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
@@ -542,8 +539,8 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-    
-     /**
+
+    /**
      * Определение пола по правилам фамилий
      * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
      */
@@ -571,8 +568,8 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-    
-     /**
+
+    /**
      * Определение пола по правилам отчеств
      * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
      */
@@ -590,14 +587,14 @@ class NCLNameCaseRu extends NCLNameCaseCore implements NCLNameCaseInterface
         }
     }
 
-   /**
+    /**
      * Идетифицирует слово определяе имя это, или фамилия, или отчество 
      * - <b>N</b> - имя
      * - <b>S</b> - фамилия
      * - <b>F</b> - отчество
      * @param NCLNameCaseWord $word обьект класса слов, который необходимо идентифицировать
      */
-   protected function detectNamePart(NCLNameCaseWord $word)
+    protected function detectNamePart(NCLNameCaseWord $word)
     {
         $namepart = $word->getWord();
         $this->setWorkingWord($namepart);

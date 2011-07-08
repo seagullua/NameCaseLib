@@ -14,7 +14,6 @@ if (!defined('NCL_DIR'))
 
 require_once NCL_DIR . '/NCL.php';
 require_once NCL_DIR . '/NCLStr.php';
-require_once NCL_DIR . '/NCLNameCaseInterface.php';
 require_once NCL_DIR . '/NCLNameCaseWord.php';
 
 /**
@@ -966,7 +965,7 @@ class NCLNameCaseCore extends NCL
         $this->AllWordCases();
         return $this->getFormatted($caseNum, $format);
     }
-    
+
     /**
      * Определяет пол человека по ФИО
      * @param string $fullname ФИО
@@ -978,15 +977,109 @@ class NCLNameCaseCore extends NCL
         $this->splitFullName($fullname);
         return $this->genderAutoDetect();
     }
-    
+
     /**
      * Возвращает внутренний массив $this->words каждая запись имеет тип NCLNameCaseWord
      * @return array Массив всех слов в системе 
      */
     public function getWordsArray()
     {
-       return $this->words; 
+        return $this->words;
     }
+
+    /**
+     * Функция пытается применить цыпочку правил для мужских имен
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
+     */
+    protected function manFirstName()
+    {
+        return false;
+    }
+
+    /**
+     * Функция пытается применить цыпочку правил для женских имен
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
+     */
+    protected function womanFirstName()
+    {
+        return false;
+    }
+
+    /**
+     * Функция пытается применить цыпочку правил для мужских фамилий
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
+     */
+    protected function manSecondName()
+    {
+        return false;
+    }
+
+    /**
+     * Функция пытается применить цыпочку правил для женских фамилий
+     * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
+     */
+    protected function womanSecondName()
+    {
+        return false;
+    }
+
+    /**
+     * Функция склоняет мужский отчества
+     * @return boolean true - если слово было успешно изменено, false - если не получилось этого сделать
+     */
+    protected function manFatherName()
+    {
+        return false;
+    }
+
+    /**
+     * Функция склоняет женские отчества
+     * @return boolean true - если слово было успешно изменено, false - если не получилось этого сделать
+     */
+    protected function womanFatherName()
+    {
+        return false;
+    }
+
+    /**
+     * Определение пола по правилам имен
+     * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
+     */
+    protected function GenderByFirstName(NCLNameCaseWord $word)
+    {
+        
+    }
+
+    /**
+     * Определение пола по правилам фамилий
+     * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
+     */
+    protected function GenderBySecondName(NCLNameCaseWord $word)
+    {
+        
+    }
+
+    /**
+     * Определение пола по правилам отчеств
+     * @param NCLNameCaseWord $word обьект класса слов, для которого нужно определить пол
+     */
+    protected function GenderByFatherName(NCLNameCaseWord $word)
+    {
+        
+    }
+
+    /**
+     * Идетифицирует слово определяе имя это, или фамилия, или отчество 
+     * - <b>N</b> - имя
+     * - <b>S</b> - фамилия
+     * - <b>F</b> - отчество
+     * @param NCLNameCaseWord $word обьект класса слов, который необходимо идентифицировать
+     */
+    protected function detectNamePart(NCLNameCaseWord $word)
+    {
+        
+    }
+
 }
 
 ?>

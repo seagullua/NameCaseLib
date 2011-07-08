@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @package NameCaseLib
  */
-
 /**
  * 
  */
@@ -20,7 +20,7 @@ require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
  * @version 0.4
  * @package NameCaseLib
  */
-class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
+class NCLNameCaseUa extends NCLNameCaseCore
 {
 
     /**
@@ -28,44 +28,37 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
      * @var int
      */
     protected $CaseCount = 7;
-
     /**
      * Список гласных украинского языка
      * @var string 
      */
     private $vowels = 'аеиоуіїєюя';
-
     /**
      * Список согласных украинского языка
      * @var string  
      */
     private $consonant = "бвгджзйклмнпрстфхцчшщ";
-
     /**
      * Українські шиплячі приголосні 
      * @var string 
      */
     private $shyplyachi = "жчшщ";
-    
     /**
      * Українські нешиплячі приголосні
      * @var string  
      */
     private $neshyplyachi = "бвгдзклмнпрстфхц";
-    
     /**
      * Українські завжди м’які звуки
      * @var string  
      */
     private $myaki = 'ьюяєї';
-    
     /**
      * Українські губні звуки
      * @var string 
      */
     private $gubni = 'мвпбф';
 
-    
     /**
      * Чергування українських приголосних
      * Чергування г к х —» з ц с
@@ -82,7 +75,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return $letter;
     }
-    
+
     /**
      * Чергування українських приголосних
      * Чергування г к —» ж ч
@@ -98,7 +91,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return $letter;
     }
-    
+
     /**
      * <b>Визначення групи для іменників 2-ї відміни</b>
      * 1 - тверда
@@ -553,7 +546,6 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
      * Функція намагається застосувати ланцюг правил для чоловічих прізвищ
      * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
-
     protected function manSecondName()
     {
         return $this->RulesChain('man', array(5, 1, 2, 3, 4));
@@ -595,7 +587,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         }
         return false;
     }
-    
+
     /**
      * Визначення статі, за правилами імені
      * @param NCLNameCaseWord $word об’єкт класу зі словом, для якого необхідно визначити стать
@@ -612,12 +604,12 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
         {
             $man+=0.9;
         }
-        
-        if($this->inNames($this->workingWord, 'Петро'))
+
+        if ($this->inNames($this->workingWord, 'Петро'))
         {
             $man+=30;
         }
-        
+
         if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
         {
             $man+=0.5;
@@ -650,7 +642,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-    
+
     /**
      * Визначення статі, за правилами прізвища
      * @param NCLNameCaseWord $word об’єкт класу зі словом, для якого необхідно визначити стать
@@ -679,7 +671,7 @@ class NCLNameCaseUa extends NCLNameCaseCore implements NCLNameCaseInterface
 
         $word->setGender($man, $woman);
     }
-    
+
     /**
      * Визначення статі, за правилами по-батькові
      * @param NCLNameCaseWord $word об’єкт класу зі словом, для якого необхідно визначити стать
