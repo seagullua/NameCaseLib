@@ -90,6 +90,7 @@ class NCLNameCaseCore extends NCL
     /**
      * Сбрасывает все информацию на начальную. Очищает все слова добавленые в систему.
      * После выполнения система готова работать с начала. 
+     * @return NCLNameCaseCore
      */
     public function fullReset()
     {
@@ -255,6 +256,7 @@ class NCLNameCaseCore extends NCL
      * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
      * со словом <var>$firstname</var> и пометкой, что это имя
      * @param string $firstname имя
+     * @return NCLNameCaseCore
      */
     public function setFirstName($firstname="")
     {
@@ -272,6 +274,7 @@ class NCLNameCaseCore extends NCL
      * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
      * со словом <var>$secondname</var> и пометкой, что это фамилия
      * @param string $secondname фамилия
+     * @return NCLNameCaseCore
      */
     public function setSecondName($secondname="")
     {
@@ -289,6 +292,7 @@ class NCLNameCaseCore extends NCL
      * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
      * со словом <var>$fathername</var> и пометкой, что это отчество
      * @param string $fathername отчество
+     * @return NCLNameCaseCore
      */
     public function setFatherName($fathername="")
     {
@@ -308,6 +312,7 @@ class NCLNameCaseCore extends NCL
      * - NCL::$MAN - мужчина
      * - NCL::$WOMAN - женщина
      * @param int $gender пол, который нужно установить
+     * @return NCLNameCaseCore
      */
     public function setGender($gender=0)
     {
@@ -323,6 +328,7 @@ class NCLNameCaseCore extends NCL
      * @param string $secondName фамилия
      * @param string $firstName имя
      * @param string $fatherName отчество
+     * @return NCLNameCaseCore
      */
     public function setFullName($secondName="", $firstName="", $fatherName="")
     {
@@ -336,6 +342,7 @@ class NCLNameCaseCore extends NCL
      * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
      * со словом <var>$firstname</var> и пометкой, что это имя
      * @param string $firstname имя
+     * @return NCLNameCaseCore
      */
     public function setName($firstname="")
     {
@@ -346,6 +353,7 @@ class NCLNameCaseCore extends NCL
      * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
      * со словом <var>$secondname</var> и пометкой, что это фамилия
      * @param string $secondname фамилия
+     * @return NCLNameCaseCore
      */
     public function setLastName($secondname="")
     {
@@ -356,6 +364,7 @@ class NCLNameCaseCore extends NCL
      * В массив <var>$this->words</var> добавляется новый об’єкт класса NCLNameCaseWord
      * со словом <var>$secondname</var> и пометкой, что это фамилия
      * @param string $secondname фамилия
+     * @return NCLNameCaseCore
      */
     public function setSirName($secondname="")
     {
@@ -885,8 +894,9 @@ class NCLNameCaseCore extends NCL
      */
     public function getFormatted($caseNum=0, $format="S N F")
     {
+        $this->AllWordCases();
         //Если не указан падеж используем другую функцию
-        if (is_null($caseNum))
+        if (is_null($caseNum) or !$caseNum)
         {
             return $this->getFormattedArray($format);
         }
@@ -968,7 +978,7 @@ class NCLNameCaseCore extends NCL
         {
             $this->setGender($gender);
         }
-        $this->AllWordCases();
+        
         return $this->getFormatted($caseNum, $format);
     }
 
