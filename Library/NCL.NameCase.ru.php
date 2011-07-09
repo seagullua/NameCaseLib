@@ -295,7 +295,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      */
     protected function womanRule1()
     {
-        if ($this->Last(1) == "а")
+        if ($this->Last(1) == "а" and $this->Last(2, 1)!='и')
         {
             if (!$this->in($this->Last(2, 1), 'шхкг'))
             {
