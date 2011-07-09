@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class NCLNameCaseUa</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class NCLNameCaseUa</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+                <p class="implements">
+            Implements interfaces:
+            <ul>
+                <li><a href="../default/NCLNameCaseInterface.html">NCLNameCaseInterface</a></li>            </ul>
+        </p>
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Класс, который содержит основные константы библиотеки:</p>
+<p class="description"><p><ul><li>индексы мужского и женского пола</li><li>индексы всех падежей</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Андрей Чайка &lt;<a href="mailto:bymer3@gmail.com">bymer3@gmail.com</a>&gt;</li>
+				<li><span class="field">version:</span> 0.4</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_NCL.NameCase.ua.php.html">/NCL.NameCase.ua.php</a> (line <span class="field">17</span>)
+		</p>
+		
+				
+		<pre><a href="../default/NCL.html">NCL</a>
+   |
+   --<a href="../default/NCLNameCaseCore.html">NCLNameCaseCore</a>
+      |
+      --NCLNameCaseUa</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$CaseCount" title="details" class="var-name">$CaseCount</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#detectNamePart" title="details" class="method-name">detectNamePart</a>
+											(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#GenderByFatherName" title="details" class="method-name">GenderByFatherName</a>
+											(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#GenderByFirstName" title="details" class="method-name">GenderByFirstName</a>
+											(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#GenderBySecondName" title="details" class="method-name">GenderBySecondName</a>
+											(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manFatherName" title="details" class="method-name">manFatherName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manFirstName" title="details" class="method-name">manFirstName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manRule1" title="details" class="method-name">manRule1</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manRule2" title="details" class="method-name">manRule2</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manRule3" title="details" class="method-name">manRule3</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manRule4" title="details" class="method-name">manRule4</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manRule5" title="details" class="method-name">manRule5</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manSecondName" title="details" class="method-name">manSecondName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanFatherName" title="details" class="method-name">womanFatherName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanFirstName" title="details" class="method-name">womanFirstName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanRule1" title="details" class="method-name">womanRule1</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanRule2" title="details" class="method-name">womanRule2</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanRule3" title="details" class="method-name">womanRule3</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanSecondName" title="details" class="method-name">womanSecondName</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$CaseCount" id="$CaseCount"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$CaseCount</span>
+			 = <span class="var-default"> 7</span>			(line <span class="line-number">24</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Количество падежей в языке</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../default/NCLNameCaseCore.html">NCLNameCaseCore</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$lastResult">NCLNameCaseCore::$lastResult</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$workindLastCache">NCLNameCaseCore::$workindLastCache</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCLNameCaseCore.html#var$workingWord">NCLNameCaseCore::$workingWord</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../default/NCL.html">NCL</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$DATELN">NCL::$DATELN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$IMENITLN">NCL::$IMENITLN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$MAN">NCL::$MAN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$PREDLOGN">NCL::$PREDLOGN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$RODITLN">NCL::$RODITLN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$TVORITELN">NCL::$TVORITELN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaDavalnyi">NCL::$UaDavalnyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaKlychnyi">NCL::$UaKlychnyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaMiszevyi">NCL::$UaMiszevyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaNazyvnyi">NCL::$UaNazyvnyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaOrudnyi">NCL::$UaOrudnyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaRodovyi">NCL::$UaRodovyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$UaZnahidnyi">NCL::$UaZnahidnyi</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$VINITELN">NCL::$VINITELN</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../default/NCL.html#var$WOMAN">NCL::$WOMAN</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methoddetectNamePart" id="detectNamePart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">detectNamePart</span> (line <span class="line-number">690</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Ідентифікує слово визначаючи чи це ім’я, чи це прізвище, чи це побатькові</p>
+<p class="description"><p><ul><li><strong>N</strong> - ім’я</li><li><strong>S</strong> - прізвище</li><li><strong>F</strong> - по-батькові</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			detectNamePart
+		</span>
+					(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: об’єкт класу зі словом, яке необхідно ідентифікувати</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodGenderByFatherName" id="GenderByFatherName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">GenderByFatherName</span> (line <span class="line-number">669</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Визначення статі, за правилами по-батькові</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			GenderByFatherName
+		</span>
+					(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: об’єкт класу зі словом, для якого необхідно визначити стать</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodGenderByFirstName" id="GenderByFirstName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">GenderByFirstName</span> (line <span class="line-number">590</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Визначення статі, за правилами імені</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			GenderByFirstName
+		</span>
+					(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: об’єкт класу зі словом, для якого необхідно визначити стать</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodGenderBySecondName" id="GenderBySecondName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">GenderBySecondName</span> (line <span class="line-number">640</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Визначення статі, за правилами прізвища</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			GenderBySecondName
+		</span>
+					(<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../default/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: об’єкт класу зі словом, для якого необхідно визначити стать</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmanFatherName" id="manFatherName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">manFatherName</span> (line <span class="line-number">562</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Фунція відмінює чоловічі по-батькові</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо слово успішно змінене, false - якщо невдалося провідміняти слово</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manFatherName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanFirstName" id="manFirstName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">manFirstName</span> (line <span class="line-number">525</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функція намагається застосувати ланцюг правил для чоловічих імен</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manFirstName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanRule1" id="manRule1"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">manRule1</span> (line <span class="line-number">193</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я),  відмінються як відповідні іменники І відміни.</p>
+<p class="description"><p><ul><li>Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах
+   у давальному та місцевому відмінках однини перед закінченням -і
+   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.</li><li>Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини
+   в кінці основи між приголосними з'являється звук о: Одарок, Парасок.</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manRule1
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanRule2" id="manRule2"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">manRule2</span> (line <span class="line-number">230</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Імена, що в називному відмінку закінчуються на -р, у родовому мають закінчення -а:  Віктор - Віктора, Макар - Макара, але: Ігор - Ігоря, Лазар - Лазаря.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manRule2
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanRule3" id="manRule3"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">manRule3</span> (line <span class="line-number">260</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Українські чоловічі імена, що в називному відмінку однини закінчуються на приголосний та -о,  відмінюються як відповідні іменники ІІ відміни.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manRule3
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanRule4" id="manRule4"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">manRule4</span> (line <span class="line-number">371</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Якщо слово закінчується на і, то відмінюємо як множину</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manRule4
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanRule5" id="manRule5"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">manRule5</span> (line <span class="line-number">386</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Якщо слово закінчується на ий або ой</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manRule5
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmanSecondName" id="manSecondName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">manSecondName</span> (line <span class="line-number">544</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функція намагається застосувати ланцюг правил для чоловічих прізвищ</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manSecondName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodwomanFatherName" id="womanFatherName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanFatherName</span> (line <span class="line-number">576</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Фунція відмінює жіночі по-батькові</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо слово успішно змінене, false - якщо невдалося провідміняти слово</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanFatherName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodwomanFirstName" id="womanFirstName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanFirstName</span> (line <span class="line-number">534</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функція намагається застосувати ланцюг правил для жіночих імен</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanFirstName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodwomanRule1" id="womanRule1"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanRule1</span> (line <span class="line-number">407</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я),  відмінються як відповідні іменники І відміни.</p>
+<p class="description"><p><ul><li>Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах
+   у давальному та місцевому відмінках однини перед закінченням -і
+   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.</li><li>Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини
+   в кінці основи між приголосними з'являється звук о: Одарок, Парасок</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanRule1
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodwomanRule2" id="womanRule2"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanRule2</span> (line <span class="line-number">453</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Українські жіночі імена, що в називному відмінку однини закінчуються на приголосний,</p>
+<p class="description"><p>відмінюються як відповідні іменники ІІІ відміни</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanRule2
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodwomanRule3" id="womanRule3"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanRule3</span> (line <span class="line-number">497</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Якщо слово на ськ або це російське прізвище</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanRule3
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodwomanSecondName" id="womanSecondName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanSecondName</span> (line <span class="line-number">553</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функція намагається застосувати ланцюг правил для жіночих прізвищ</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - якщо було задіяно правило з переліку, false - якщо правило не знайдено</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanSecondName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../default/NCLNameCaseCore.html">NCLNameCaseCore</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodfullReset">NCLNameCaseCore::fullReset()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgenderAutoDetect">NCLNameCaseCore::genderAutoDetect()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFatherNameCase">NCLNameCaseCore::getFatherNameCase()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFirstNameCase">NCLNameCaseCore::getFirstNameCase()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFormatted">NCLNameCaseCore::getFormatted()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFormattedArray">NCLNameCaseCore::getFormattedArray()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFormattedArrayHard">NCLNameCaseCore::getFormattedArrayHard()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetFormattedHard">NCLNameCaseCore::getFormattedHard()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodgetSecondNameCase">NCLNameCaseCore::getSecondNameCase()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodin">NCLNameCaseCore::in()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodinNames">NCLNameCaseCore::inNames()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodLast">NCLNameCaseCore::Last()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodq">NCLNameCaseCore::q()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqFatherName">NCLNameCaseCore::qFatherName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqFirstName">NCLNameCaseCore::qFirstName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqFullName">NCLNameCaseCore::qFullName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodqSecondName">NCLNameCaseCore::qSecondName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodRule">NCLNameCaseCore::Rule()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodRulesChain">NCLNameCaseCore::RulesChain()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetFatherName">NCLNameCaseCore::setFatherName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetFirstName">NCLNameCaseCore::setFirstName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetFullName">NCLNameCaseCore::setFullName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetGender">NCLNameCaseCore::setGender()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetLastName">NCLNameCaseCore::setLastName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetName">NCLNameCaseCore::setName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetSecondName">NCLNameCaseCore::setSecondName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetSirName">NCLNameCaseCore::setSirName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsetWorkingWord">NCLNameCaseCore::setWorkingWord()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodsplitFullName">NCLNameCaseCore::splitFullName()</a></span><br>
+													<span class="method-name"><a href="../default/NCLNameCaseCore.html#methodwordForms">NCLNameCaseCore::wordForms()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 06 Jul 2011 13:46:16 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

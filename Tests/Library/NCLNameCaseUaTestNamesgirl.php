@@ -1204,7 +1204,7 @@ class NCLNameCaseUaTest extends PHPUnit_Framework_TestCase
         $this->object->setFirstName('Любов');
         $this->object->setGender(2);
         
-        $this->assertEquals(explode(',','Любов,Любові,Любові,Любов,Любов`ю,Любові,Любове'), $this->object->getFirstNameCase());
+        $this->assertEquals(explode(',','Любов,Любові,Любові,Любов,Любов’ю,Любові,Любове'), $this->object->getFirstNameCase());
     }
     public function testNameWoman168()
     {

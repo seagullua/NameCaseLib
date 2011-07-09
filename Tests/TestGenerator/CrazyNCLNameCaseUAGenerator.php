@@ -22,7 +22,7 @@ class TestGeneratorDB
     public function generate($fname, $gender)
     {
         $this->maintemplate = file_get_contents('Template/NCLNameCaseUaTest.main');
-        $this->testtemplate = file_get_contents('Template/NCLNameCaseRuTest' . $fname . $gender . '.test');
+        $this->testtemplate = file_get_contents('Template/NCLNameCaseCrazyTest.test');
         //$this->resultArr=file('Names/'.$gender.'_full_result.txt');
         $this->count = 0;
         $fnewname = $fname;
@@ -55,26 +55,23 @@ class TestGeneratorDB
             $secondRes = $fatherRes = $firstRes = explode('#', $row['nameCase']);
             if ($row['nameCase'])
             {
-                $this->generateTest($firstRes, $secondRes, $fatherRes);
+                $this->generateTest($firstRes);
             }
         }
         //}
         $res = str_replace('{% tests %}', $this->tests, $this->maintemplate);
         $res = str_replace('{% name %}', $fname, $res);
-        file_put_contents('../Library/NCLNameCaseUaTest' . $fname . $gender . '.php', $res);
+        file_put_contents('../Library/CrazyTest' . $fname . $gender . '.php', $res);
     }
 
-    private function generateTest($firstRes, $secondRes, $fatherRes)
+    private function generateTest($firstRes)
     {
         $tpl = $this->testtemplate;
         $tpl = str_replace('{% id %}', $this->count, $tpl);
-        $tpl = str_replace('{% second %}', $secondRes[0], $tpl);
-        $tpl = str_replace('{% first %}', $firstRes[0], $tpl);
-        $tpl = str_replace('{% father %}', $fatherRes[0], $tpl);
-        $tpl = str_replace('{% gender %}', $this->gender, $tpl);
-        $tpl = str_replace('{% firstOK %}', implode(',', $firstRes), $tpl);
-        $tpl = str_replace('{% secondOK %}', implode(',', $secondRes), $tpl);
-        $tpl = str_replace('{% fatherOK %}', implode(',', $fatherRes), $tpl);
+
+        $tpl = str_replace('{% name %}', $firstRes[0], $tpl);
+        $tpl = str_replace('{% OK %}', implode(',', $firstRes), $tpl);
+
         $this->tests.=$tpl;
         $this->count++;
     }
