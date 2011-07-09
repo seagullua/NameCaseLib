@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class NCLNameCaseInterface</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Interface NCLNameCaseInterface</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Интерфейс для русского и украинского языка</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Андрей Чайка &lt;<a href="mailto:bymer3@gmail.com">bymer3@gmail.com</a>&gt;</li>
+				<li><span class="field">version:</span> 0.4</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_NCL---NCLNameCaseInterface.php.html">/NCL/NCLNameCaseInterface.php</a> (line <span class="field">14</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#genderAutoDetect" title="details" class="method-name">genderAutoDetect</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFatherNameCase" title="details" class="method-name">getFatherNameCase</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFirstNameCase" title="details" class="method-name">getFirstNameCase</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFormatted" title="details" class="method-name">getFormatted</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$caseNum</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$format</span> = <span class="var-default">&quot;S N F&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFormattedArray" title="details" class="method-name">getFormattedArray</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$format</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getFullNameFormat" title="details" class="method-name">getFullNameFormat</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$fullname</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSecondNameCase" title="details" class="method-name">getSecondNameCase</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#q" title="details" class="method-name">q</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$fullname</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$caseNum</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#qFatherName" title="details" class="method-name">qFatherName</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$fatherName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$CaseNumber</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#qFirstName" title="details" class="method-name">qFirstName</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$firstName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$CaseNumber</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#qFullName" title="details" class="method-name">qFullName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$secondName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$firstName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$fatherName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$caseNum</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$format</span> = <span class="var-default">&quot;S N F&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#qSecondName" title="details" class="method-name">qSecondName</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$secondName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$CaseNumber</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFatherName" title="details" class="method-name">setFatherName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$fathername</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFirstName" title="details" class="method-name">setFirstName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$firstname</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setFullName" title="details" class="method-name">setFullName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$secondName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$firstName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$fatherName</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setGender" title="details" class="method-name">setGender</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setLastName" title="details" class="method-name">setLastName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setName" title="details" class="method-name">setName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$firstname</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSecondName" title="details" class="method-name">setSecondName</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSirname" title="details" class="method-name">setSirname</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodgenderAutoDetect" id="genderAutoDetect"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">genderAutoDetect</span> (line <span class="line-number">33</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			genderAutoDetect
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFatherNameCase" id="getFatherNameCase"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFatherNameCase</span> (line <span class="line-number">41</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFatherNameCase
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$number</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFirstNameCase" id="getFirstNameCase"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFirstNameCase</span> (line <span class="line-number">37</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFirstNameCase
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$number</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFormatted" id="getFormatted"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFormatted</span> (line <span class="line-number">51</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFormatted
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$caseNum</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$format</span> = <span class="var-default">&quot;S N F&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$caseNum</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFormattedArray" id="getFormattedArray"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFormattedArray</span> (line <span class="line-number">49</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFormattedArray
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$format</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFullNameFormat" id="getFullNameFormat"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFullNameFormat</span> (line <span class="line-number">35</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getFullNameFormat
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$fullname</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fullname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSecondNameCase" id="getSecondNameCase"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSecondNameCase</span> (line <span class="line-number">39</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSecondNameCase
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$number</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodq" id="q"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">q</span> (line <span class="line-number">55</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			q
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$fullname</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$caseNum</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fullname</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$caseNum</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$gender</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodqFatherName" id="qFatherName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">qFatherName</span> (line <span class="line-number">47</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			qFatherName
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$fatherName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$CaseNumber</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fatherName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$CaseNumber</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$gender</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodqFirstName" id="qFirstName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">qFirstName</span> (line <span class="line-number">43</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			qFirstName
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$firstName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$CaseNumber</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$firstName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$CaseNumber</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$gender</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodqFullName" id="qFullName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">qFullName</span> (line <span class="line-number">53</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			qFullName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$secondName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$firstName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$fatherName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$caseNum</span> = <span class="var-default">0</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$format</span> = <span class="var-default">&quot;S N F&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$secondName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$firstName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fatherName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$gender</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$caseNum</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodqSecondName" id="qSecondName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">qSecondName</span> (line <span class="line-number">45</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			qSecondName
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$secondName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$CaseNumber</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$secondName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$CaseNumber</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$gender</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFatherName" id="setFatherName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFatherName</span> (line <span class="line-number">21</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFatherName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$fathername</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fathername</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFirstName" id="setFirstName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFirstName</span> (line <span class="line-number">17</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFirstName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$firstname</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$firstname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetFullName" id="setFullName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setFullName</span> (line <span class="line-number">25</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setFullName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$secondName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$firstName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$fatherName</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$secondName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$firstName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fatherName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetGender" id="setGender"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setGender</span> (line <span class="line-number">23</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setGender
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$gender</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetLastName" id="setLastName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setLastName</span> (line <span class="line-number">29</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setLastName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$secondname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetName" id="setName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setName</span> (line <span class="line-number">27</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$firstname</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$firstname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSecondName" id="setSecondName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSecondName</span> (line <span class="line-number">19</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSecondName
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$secondname</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSirname" id="setSirname"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSirname</span> (line <span class="line-number">31</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSirname
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$secondname</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 07 Jul 2011 00:01:02 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
