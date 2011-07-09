@@ -30,7 +30,7 @@
 				<li><span class="field">version:</span> 0.4</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_NCL---NCLNameCaseCore.php.html">/NCL/NCLNameCaseCore.php</a> (line <span class="field">30</span>)
+			Located in <a class="field" href="_NCL---NCLNameCaseCore.php.html">/NCL/NCLNameCaseCore.php</a> (line <span class="field">29</span>)
 		</p>
 		
 				
@@ -116,9 +116,14 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																																																																																																																																																																																												
+																																																																																																																																																																																																																																																																																																																																																				
 												<div class="method-definition">
 											<span class="method-result">void</span>
+										<a href="#detectNamePart" title="details" class="method-name">detectNamePart</a>
+											(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#fullReset" title="details" class="method-name">fullReset</a>
 										()
 									</div>
@@ -126,6 +131,21 @@
 											<span class="method-result">int</span>
 										<a href="#genderAutoDetect" title="details" class="method-name">genderAutoDetect</a>
 										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#GenderByFatherName" title="details" class="method-name">GenderByFatherName</a>
+											(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#GenderByFirstName" title="details" class="method-name">GenderByFirstName</a>
+											(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#GenderBySecondName" title="details" class="method-name">GenderBySecondName</a>
+											(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">int</span>
@@ -173,6 +193,11 @@
 											([<span class="var-type">int</span>&nbsp;<span class="var-name">$number</span> = <span class="var-default">null</span>])
 									</div>
 																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getWordsArray" title="details" class="method-name">getWordsArray</a>
+										()
+									</div>
+																<div class="method-definition">
 											<span class="method-result">bool</span>
 										<a href="#in" title="details" class="method-name">in</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$letter</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$string</span>)
@@ -186,6 +211,21 @@
 											<span class="method-result">string</span>
 										<a href="#Last" title="details" class="method-name">Last</a>
 											([<span class="var-type">int</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">1</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$stopAfter</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manFatherName" title="details" class="method-name">manFatherName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manFirstName" title="details" class="method-name">manFirstName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#manSecondName" title="details" class="method-name">manSecondName</a>
+										()
 									</div>
 																<div class="method-definition">
 											<span class="method-result">mixed</span>
@@ -223,42 +263,42 @@
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$gender</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$rulesArray</span>)
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setFatherName" title="details" class="method-name">setFatherName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$fathername</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setFirstName" title="details" class="method-name">setFirstName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$firstname</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setFullName" title="details" class="method-name">setFullName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$secondName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$firstName</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$fatherName</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setGender" title="details" class="method-name">setGender</a>
 											([<span class="var-type">int</span>&nbsp;<span class="var-name">$gender</span> = <span class="var-default">0</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setLastName" title="details" class="method-name">setLastName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setName" title="details" class="method-name">setName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$firstname</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setSecondName" title="details" class="method-name">setSecondName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 										<a href="#setSirName" title="details" class="method-name">setSirName</a>
 											([<span class="var-type">string</span>&nbsp;<span class="var-name">$secondname</span> = <span class="var-default">&quot;&quot;</span>])
 									</div>
@@ -266,6 +306,21 @@
 											<span class="method-result">void</span>
 										<a href="#setWorkingWord" title="details" class="method-name">setWorkingWord</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanFatherName" title="details" class="method-name">womanFatherName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanFirstName" title="details" class="method-name">womanFirstName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#womanSecondName" title="details" class="method-name">womanSecondName</a>
+										()
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -297,7 +352,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$lastResult</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">72</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">71</span>)
 		</span>
 	</div>
 
@@ -319,7 +374,7 @@
 		<span class="var-title">
 			<span class="var-type">array</span>
 			<span class="var-name">$workindLastCache</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">62</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">61</span>)
 		</span>
 	</div>
 
@@ -341,7 +396,7 @@
 		<span class="var-title">
 			<span class="var-type">string</span>
 			<span class="var-name">$workingWord</span>
-			 = <span class="var-default"> ''</span>			(line <span class="line-number">56</span>)
+			 = <span class="var-default"> ''</span>			(line <span class="line-number">55</span>)
 		</span>
 	</div>
 
@@ -423,8 +478,50 @@
 		<div class="info-box-body">
 			<A NAME='method_detail'></A>
 
-<a name="methodfullReset" id="fullReset"><!-- --></a>
+<a name="methoddetectNamePart" id="detectNamePart"><!-- --></a>
 <div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">detectNamePart</span> (line <span class="line-number">1094</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Идетифицирует слово определяе имя это, или фамилия, или отчество</p>
+<p class="description"><p><ul><li><strong>N</strong> - имя</li><li><strong>S</strong> - фамилия</li><li><strong>F</strong> - отчество</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			detectNamePart
+		</span>
+					(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, который необходимо идентифицировать</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methoddetectNamePart">NCLNameCaseRu::detectNamePart()</a>
+								: Идетифицирует слово определяе имя это, или фамилия, или отчество
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methoddetectNamePart">NCLNameCaseUa::detectNamePart()</a>
+								: Ідентифікує слово визначаючи чи це ім’я, чи це прізвище, чи це побатькові
+							</li>
+				</ul>
+	</div>
+<a name="methodfullReset" id="fullReset"><!-- --></a>
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">fullReset</span> (line <span class="line-number">95</span>)
@@ -438,7 +535,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			fullReset
 		</span>
@@ -449,10 +546,10 @@
 			
 	</div>
 <a name="methodgenderAutoDetect" id="genderAutoDetect"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">genderAutoDetect</span> (line <span class="line-number">484</span>)
+		<span class="method-title">genderAutoDetect</span> (line <span class="line-number">498</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -474,11 +571,134 @@
 		
 			
 	</div>
+<a name="methodGenderByFatherName" id="GenderByFatherName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">GenderByFatherName</span> (line <span class="line-number">1082</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Определение пола по правилам отчеств</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			GenderByFatherName
+		</span>
+					(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, для которого нужно определить пол</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodGenderByFatherName">NCLNameCaseRu::GenderByFatherName()</a>
+								: Определение пола по правилам отчеств
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodGenderByFatherName">NCLNameCaseUa::GenderByFatherName()</a>
+								: Визначення статі, за правилами по-батькові
+							</li>
+				</ul>
+	</div>
+<a name="methodGenderByFirstName" id="GenderByFirstName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">GenderByFirstName</span> (line <span class="line-number">1064</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Определение пола по правилам имен</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			GenderByFirstName
+		</span>
+					(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, для которого нужно определить пол</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodGenderByFirstName">NCLNameCaseRu::GenderByFirstName()</a>
+								: Определение пола по правилам имен
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodGenderByFirstName">NCLNameCaseUa::GenderByFirstName()</a>
+								: Визначення статі, за правилами імені
+							</li>
+				</ul>
+	</div>
+<a name="methodGenderBySecondName" id="GenderBySecondName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">GenderBySecondName</span> (line <span class="line-number">1073</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Определение пола по правилам фамилий</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			GenderBySecondName
+		</span>
+					(<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../NameCaseLib/NCLNameCaseWord.html">NCLNameCaseWord</a></span>
+				<span class="var-name">$word</span><span class="var-description">: обьект класса слов, для которого нужно определить пол</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodGenderBySecondName">NCLNameCaseRu::GenderBySecondName()</a>
+								: Определение пола по правилам фамилий
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodGenderBySecondName">NCLNameCaseUa::GenderBySecondName()</a>
+								: Визначення статі, за правилами прізвища
+							</li>
+				</ul>
+	</div>
 <a name="methodgenderDetect" id="genderDetect"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">genderDetect</span> (line <span class="line-number">975</span>)
+		<span class="method-title">genderDetect</span> (line <span class="line-number">990</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -508,7 +728,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFatherNameCase</span> (line <span class="line-number">699</span>)
+		<span class="method-title">getFatherNameCase</span> (line <span class="line-number">713</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -539,7 +759,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFirstNameCase</span> (line <span class="line-number">669</span>)
+		<span class="method-title">getFirstNameCase</span> (line <span class="line-number">683</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -570,7 +790,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFormatted</span> (line <span class="line-number">881</span>)
+		<span class="method-title">getFormatted</span> (line <span class="line-number">895</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -604,7 +824,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFormattedArray</span> (line <span class="line-number">779</span>)
+		<span class="method-title">getFormattedArray</span> (line <span class="line-number">793</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -635,7 +855,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFormattedArrayHard</span> (line <span class="line-number">830</span>)
+		<span class="method-title">getFormattedArrayHard</span> (line <span class="line-number">844</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -666,7 +886,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFormattedHard</span> (line <span class="line-number">861</span>)
+		<span class="method-title">getFormattedHard</span> (line <span class="line-number">875</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -700,7 +920,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getFullNameFormat</span> (line <span class="line-number">534</span>)
+		<span class="method-title">getFullNameFormat</span> (line <span class="line-number">548</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -731,7 +951,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getSecondNameCase</span> (line <span class="line-number">684</span>)
+		<span class="method-title">getSecondNameCase</span> (line <span class="line-number">698</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -758,11 +978,36 @@
 		
 			
 	</div>
-<a name="methodin" id="in"><!-- --></a>
+<a name="methodgetWordsArray" id="getWordsArray"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">in</span> (line <span class="line-number">189</span>)
+		<span class="method-title">getWordsArray</span> (line <span class="line-number">1001</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Возвращает внутренний массив $this-&gt;words каждая запись имеет тип NCLNameCaseWord</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Массив всех слов в системе</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getWordsArray
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodin" id="in"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">in</span> (line <span class="line-number">190</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -793,10 +1038,10 @@
 			
 	</div>
 <a name="methodinNames" id="inNames"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">inNames</span> (line <span class="line-number">214</span>)
+		<span class="method-title">inNames</span> (line <span class="line-number">215</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -825,10 +1070,10 @@
 			
 	</div>
 <a name="methodLast" id="Last"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Last</span> (line <span class="line-number">142</span>)
+		<span class="method-title">Last</span> (line <span class="line-number">143</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -858,11 +1103,122 @@
 		
 			
 	</div>
+<a name="methodmanFatherName" id="manFatherName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">manFatherName</span> (line <span class="line-number">1046</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция склоняет мужский отчества</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - если слово было успешно изменено, false - если не получилось этого сделать</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manFatherName
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodmanFatherName">NCLNameCaseRu::manFatherName()</a>
+								: Функция склоняет мужский отчества
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodmanFatherName">NCLNameCaseUa::manFatherName()</a>
+								: Фунція відмінює чоловічі по-батькові
+							</li>
+				</ul>
+	</div>
+<a name="methodmanFirstName" id="manFirstName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">manFirstName</span> (line <span class="line-number">1010</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для мужских имен</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manFirstName
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodmanFirstName">NCLNameCaseRu::manFirstName()</a>
+								: Функция пытается применить цыпочку правил для мужских имен
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodmanFirstName">NCLNameCaseUa::manFirstName()</a>
+								: Функція намагається застосувати ланцюг правил для чоловічих імен
+							</li>
+				</ul>
+	</div>
+<a name="methodmanSecondName" id="manSecondName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">manSecondName</span> (line <span class="line-number">1028</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для мужских фамилий</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			manSecondName
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodmanSecondName">NCLNameCaseRu::manSecondName()</a>
+								: Функция пытается применить цыпочку правил для мужских фамилий
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodmanSecondName">NCLNameCaseUa::manSecondName()</a>
+								: Функція намагається застосувати ланцюг правил для чоловічих прізвищ
+							</li>
+				</ul>
+	</div>
 <a name="methodq" id="q"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">q</span> (line <span class="line-number">958</span>)
+		<span class="method-title">q</span> (line <span class="line-number">973</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -899,7 +1255,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">qFatherName</span> (line <span class="line-number">759</span>)
+		<span class="method-title">qFatherName</span> (line <span class="line-number">773</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -936,7 +1292,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">qFirstName</span> (line <span class="line-number">716</span>)
+		<span class="method-title">qFirstName</span> (line <span class="line-number">730</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -973,7 +1329,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">qFullName</span> (line <span class="line-number">936</span>)
+		<span class="method-title">qFullName</span> (line <span class="line-number">951</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1019,7 +1375,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">qSecondName</span> (line <span class="line-number">737</span>)
+		<span class="method-title">qSecondName</span> (line <span class="line-number">751</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1056,7 +1412,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Rule</span> (line <span class="line-number">116</span>)
+		<span class="method-title">Rule</span> (line <span class="line-number">117</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1085,7 +1441,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">RulesChain</span> (line <span class="line-number">169</span>)
+		<span class="method-title">RulesChain</span> (line <span class="line-number">170</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1119,7 +1475,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setFatherName</span> (line <span class="line-number">291</span>)
+		<span class="method-title">setFatherName</span> (line <span class="line-number">297</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1130,7 +1486,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setFatherName
 		</span>
@@ -1149,7 +1505,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setFirstName</span> (line <span class="line-number">259</span>)
+		<span class="method-title">setFirstName</span> (line <span class="line-number">261</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1160,7 +1516,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setFirstName
 		</span>
@@ -1179,7 +1535,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setFullName</span> (line <span class="line-number">323</span>)
+		<span class="method-title">setFullName</span> (line <span class="line-number">333</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1189,7 +1545,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setFullName
 		</span>
@@ -1214,7 +1570,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setGender</span> (line <span class="line-number">309</span>)
+		<span class="method-title">setGender</span> (line <span class="line-number">317</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1225,7 +1581,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setGender
 		</span>
@@ -1244,7 +1600,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setLastName</span> (line <span class="line-number">345</span>)
+		<span class="method-title">setLastName</span> (line <span class="line-number">358</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1255,7 +1611,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setLastName
 		</span>
@@ -1274,7 +1630,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setName</span> (line <span class="line-number">335</span>)
+		<span class="method-title">setName</span> (line <span class="line-number">347</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1285,7 +1641,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setName
 		</span>
@@ -1304,7 +1660,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setSecondName</span> (line <span class="line-number">275</span>)
+		<span class="method-title">setSecondName</span> (line <span class="line-number">279</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1315,7 +1671,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setSecondName
 		</span>
@@ -1334,7 +1690,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setSirName</span> (line <span class="line-number">355</span>)
+		<span class="method-title">setSirName</span> (line <span class="line-number">369</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1345,7 +1701,7 @@
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../NameCaseLib/NCLNameCaseCore.html">NCLNameCaseCore</a></span>
 		<span class="method-name">
 			setSirName
 		</span>
@@ -1364,7 +1720,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setWorkingWord</span> (line <span class="line-number">125</span>)
+		<span class="method-title">setWorkingWord</span> (line <span class="line-number">126</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1389,11 +1745,122 @@
 		
 			
 	</div>
-<a name="methodwordForms" id="wordForms"><!-- --></a>
+<a name="methodwomanFatherName" id="womanFatherName"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">wordForms</span> (line <span class="line-number">238</span>)
+		<span class="method-title">womanFatherName</span> (line <span class="line-number">1055</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция склоняет женские отчества</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - если слово было успешно изменено, false - если не получилось этого сделать</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanFatherName
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodwomanFatherName">NCLNameCaseRu::womanFatherName()</a>
+								: Функция склоняет женские отчества
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodwomanFatherName">NCLNameCaseUa::womanFatherName()</a>
+								: Фунція відмінює жіночі по-батькові
+							</li>
+				</ul>
+	</div>
+<a name="methodwomanFirstName" id="womanFirstName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanFirstName</span> (line <span class="line-number">1019</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для женских имен</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanFirstName
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodwomanFirstName">NCLNameCaseRu::womanFirstName()</a>
+								: Функция пытается применить цыпочку правил для женских имен
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodwomanFirstName">NCLNameCaseUa::womanFirstName()</a>
+								: Функція намагається застосувати ланцюг правил для жіночих імен
+							</li>
+				</ul>
+	</div>
+<a name="methodwomanSecondName" id="womanSecondName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">womanSecondName</span> (line <span class="line-number">1037</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Функция пытается применить цыпочку правил для женских фамилий</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true - если было использовано правило из списка, false - если правило не было найденым</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			womanSecondName
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseRu.html#methodwomanSecondName">NCLNameCaseRu::womanSecondName()</a>
+								: Функция пытается применить цыпочку правил для женских фамилий
+							</li>
+					<li>
+				<a href="../NameCaseLib/NCLNameCaseUa.html#methodwomanSecondName">NCLNameCaseUa::womanSecondName()</a>
+								: Функція намагається застосувати ланцюг правил для жіночих прізвищ
+							</li>
+				</ul>
+	</div>
+<a name="methodwordForms" id="wordForms"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">wordForms</span> (line <span class="line-number">239</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1430,7 +1897,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 07 Jul 2011 00:01:02 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 09 Jul 2011 17:55:19 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
