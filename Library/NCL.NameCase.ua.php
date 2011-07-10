@@ -22,7 +22,12 @@ require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
  */
 class NCLNameCaseUa extends NCLNameCaseCore
 {
-
+    /**
+     * Версия языкового файла
+     * @var string 
+     */
+    protected $languageBuild = '11071011';
+    
     /**
      * Количество падежей в языке
      * @var int
