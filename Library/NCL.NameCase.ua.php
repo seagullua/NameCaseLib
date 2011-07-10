@@ -22,12 +22,12 @@ require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
  */
 class NCLNameCaseUa extends NCLNameCaseCore
 {
+
     /**
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071011';
-    
+    protected $languageBuild = '11071017';
     /**
      * Количество падежей в языке
      * @var int
@@ -610,7 +610,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
             $man+=0.9;
         }
 
-        if ($this->inNames($this->workingWord, 'Петро'))
+        if ($this->inNames($this->workingWord, array('Петро', 'Микола')))
         {
             $man+=30;
         }
@@ -620,7 +620,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
             $man+=0.5;
         }
 
-        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила')))
+        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила', 'опа')))
         {
             $woman+=0.5;
         }
@@ -731,7 +731,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
         }
 
         //похоже на фамилию
-        if ($this->in($this->Last(2), array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх', 'ут', 'ча', 'ул', 'вк', 'зь', 'уц', 'їн', 'де' /* {endings_name2} */)))
+        if ($this->in($this->Last(2), array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх', 'ут', 'ча', 'ул', 'вк', 'зь', 'уц', 'їн', 'де', 'уз' /* {endings_name2} */)))
         {
             $second+=0.4;
         }
@@ -746,11 +746,11 @@ class NCLNameCaseUa extends NCLNameCaseCore
             $second+=0.4;
         }
 
-        if ($this->Last(1)=='і')
+        if ($this->Last(1) == 'і')
         {
             $second+=0.2;
         }
-        
+
         $max = max(array($first, $second, $father));
 
         if ($first == $max)
