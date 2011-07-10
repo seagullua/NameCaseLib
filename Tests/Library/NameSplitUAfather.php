@@ -32,35 +32,35 @@ class NCLNameCaseUaTest extends PHPUnit_Framework_TestCase
 
     public function testSplDetect0()
     {
-        $this->assertEquals('F-Олександрович', $this->object->splitFullName('Олександрович').'-Олександрович');
+        $this->assertEquals('F-Олександрович', trim($this->object->getFullNameFormat('Олександрович')).'-Олександрович');
     }
     public function testSplDetect1()
     {
-        $this->assertEquals('F-Миколайович', $this->object->splitFullName('Миколайович').'-Миколайович');
+        $this->assertEquals('F-Миколайович', trim($this->object->getFullNameFormat('Миколайович')).'-Миколайович');
     }
     public function testSplDetect2()
     {
-        $this->assertEquals('F-Кузьмич', $this->object->splitFullName('Кузьмич').'-Кузьмич');
+        $this->assertEquals('F-Кузьмич', trim($this->object->getFullNameFormat('Кузьмич')).'-Кузьмич');
     }
     public function testSplDetect3()
     {
-        $this->assertEquals('F-Петрович', $this->object->splitFullName('Петрович').'-Петрович');
+        $this->assertEquals('F-Петрович', trim($this->object->getFullNameFormat('Петрович')).'-Петрович');
     }
     public function testSplDetect4()
     {
-        $this->assertEquals('F-Ілліч', $this->object->splitFullName('Ілліч').'-Ілліч');
+        $this->assertEquals('F-Ілліч', trim($this->object->getFullNameFormat('Ілліч')).'-Ілліч');
     }
     public function testSplDetect5()
     {
-        $this->assertEquals('F-Василівна', $this->object->splitFullName('Василівна').'-Василівна');
+        $this->assertEquals('F-Василівна', trim($this->object->getFullNameFormat('Василівна')).'-Василівна');
     }
     public function testSplDetect6()
     {
-        $this->assertEquals('F-Антонівна', $this->object->splitFullName('Антонівна').'-Антонівна');
+        $this->assertEquals('F-Антонівна', trim($this->object->getFullNameFormat('Антонівна')).'-Антонівна');
     }
     public function testSplDetect7()
     {
-        $this->assertEquals('F-Яківна', $this->object->splitFullName('Яківна').'-Яківна');
+        $this->assertEquals('F-Яківна', trim($this->object->getFullNameFormat('Яківна')).'-Яківна');
     }
 
 }

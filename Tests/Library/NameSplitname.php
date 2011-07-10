@@ -32,1595 +32,1595 @@ class NCLNameCaseRuTest extends PHPUnit_Framework_TestCase
 
     public function testSplDetect0()
     {
-        $this->assertEquals('N-Авдей', $this->object->splitFullName('Авдей').'-Авдей');
+        $this->assertEquals('N-Авдей', trim($this->object->getFullNameFormat('Авдей')).'-Авдей');
     }
     public function testSplDetect1()
     {
-        $this->assertEquals('N-Аверьян', $this->object->splitFullName('Аверьян').'-Аверьян');
+        $this->assertEquals('N-Аверьян', trim($this->object->getFullNameFormat('Аверьян')).'-Аверьян');
     }
     public function testSplDetect2()
     {
-        $this->assertEquals('N-Адам', $this->object->splitFullName('Адам').'-Адам');
+        $this->assertEquals('N-Адам', trim($this->object->getFullNameFormat('Адам')).'-Адам');
     }
     public function testSplDetect3()
     {
-        $this->assertEquals('N-Адриан', $this->object->splitFullName('Адриан').'-Адриан');
+        $this->assertEquals('N-Адриан', trim($this->object->getFullNameFormat('Адриан')).'-Адриан');
     }
     public function testSplDetect4()
     {
-        $this->assertEquals('N-Аксён', $this->object->splitFullName('Аксён').'-Аксён');
+        $this->assertEquals('N-Аксён', trim($this->object->getFullNameFormat('Аксён')).'-Аксён');
     }
     public function testSplDetect5()
     {
-        $this->assertEquals('N-Александр', $this->object->splitFullName('Александр').'-Александр');
+        $this->assertEquals('N-Александр', trim($this->object->getFullNameFormat('Александр')).'-Александр');
     }
     public function testSplDetect6()
     {
-        $this->assertEquals('N-Алексей', $this->object->splitFullName('Алексей').'-Алексей');
+        $this->assertEquals('N-Алексей', trim($this->object->getFullNameFormat('Алексей')).'-Алексей');
     }
     public function testSplDetect7()
     {
-        $this->assertEquals('N-Анатолий', $this->object->splitFullName('Анатолий').'-Анатолий');
+        $this->assertEquals('N-Анатолий', trim($this->object->getFullNameFormat('Анатолий')).'-Анатолий');
     }
     public function testSplDetect8()
     {
-        $this->assertEquals('N-Аркадий', $this->object->splitFullName('Аркадий').'-Аркадий');
+        $this->assertEquals('N-Аркадий', trim($this->object->getFullNameFormat('Аркадий')).'-Аркадий');
     }
     public function testSplDetect9()
     {
-        $this->assertEquals('N-Арсен', $this->object->splitFullName('Арсен').'-Арсен');
+        $this->assertEquals('N-Арсен', trim($this->object->getFullNameFormat('Арсен')).'-Арсен');
     }
     public function testSplDetect10()
     {
-        $this->assertEquals('N-Арсений', $this->object->splitFullName('Арсений').'-Арсений');
+        $this->assertEquals('N-Арсений', trim($this->object->getFullNameFormat('Арсений')).'-Арсений');
     }
     public function testSplDetect11()
     {
-        $this->assertEquals('N-Артём', $this->object->splitFullName('Артём').'-Артём');
+        $this->assertEquals('N-Артём', trim($this->object->getFullNameFormat('Артём')).'-Артём');
     }
     public function testSplDetect12()
     {
-        $this->assertEquals('N-Артемий', $this->object->splitFullName('Артемий').'-Артемий');
+        $this->assertEquals('N-Артемий', trim($this->object->getFullNameFormat('Артемий')).'-Артемий');
     }
     public function testSplDetect13()
     {
-        $this->assertEquals('N-Артур', $this->object->splitFullName('Артур').'-Артур');
+        $this->assertEquals('N-Артур', trim($this->object->getFullNameFormat('Артур')).'-Артур');
     }
     public function testSplDetect14()
     {
-        $this->assertEquals('N-Архип', $this->object->splitFullName('Архип').'-Архип');
+        $this->assertEquals('N-Архип', trim($this->object->getFullNameFormat('Архип')).'-Архип');
     }
     public function testSplDetect15()
     {
-        $this->assertEquals('N-Афанас', $this->object->splitFullName('Афанас').'-Афанас');
+        $this->assertEquals('N-Афанас', trim($this->object->getFullNameFormat('Афанас')).'-Афанас');
     }
     public function testSplDetect16()
     {
-        $this->assertEquals('N-Афанасий', $this->object->splitFullName('Афанасий').'-Афанасий');
+        $this->assertEquals('N-Афанасий', trim($this->object->getFullNameFormat('Афанасий')).'-Афанасий');
     }
     public function testSplDetect17()
     {
-        $this->assertEquals('N-Андрей', $this->object->splitFullName('Андрей').'-Андрей');
+        $this->assertEquals('N-Андрей', trim($this->object->getFullNameFormat('Андрей')).'-Андрей');
     }
     public function testSplDetect18()
     {
-        $this->assertEquals('N-Анисим', $this->object->splitFullName('Анисим').'-Анисим');
+        $this->assertEquals('N-Анисим', trim($this->object->getFullNameFormat('Анисим')).'-Анисим');
     }
     public function testSplDetect19()
     {
-        $this->assertEquals('N-Антип', $this->object->splitFullName('Антип').'-Антип');
+        $this->assertEquals('N-Антип', trim($this->object->getFullNameFormat('Антип')).'-Антип');
     }
     public function testSplDetect20()
     {
-        $this->assertEquals('N-Антон', $this->object->splitFullName('Антон').'-Антон');
+        $this->assertEquals('N-Антон', trim($this->object->getFullNameFormat('Антон')).'-Антон');
     }
     public function testSplDetect21()
     {
-        $this->assertEquals('N-Ануфрий', $this->object->splitFullName('Ануфрий').'-Ануфрий');
+        $this->assertEquals('N-Ануфрий', trim($this->object->getFullNameFormat('Ануфрий')).'-Ануфрий');
     }
     public function testSplDetect22()
     {
-        $this->assertEquals('N-Бенедикт', $this->object->splitFullName('Бенедикт').'-Бенедикт');
+        $this->assertEquals('N-Бенедикт', trim($this->object->getFullNameFormat('Бенедикт')).'-Бенедикт');
     }
     public function testSplDetect23()
     {
-        $this->assertEquals('N-Богдан', $this->object->splitFullName('Богдан').'-Богдан');
+        $this->assertEquals('N-Богдан', trim($this->object->getFullNameFormat('Богдан')).'-Богдан');
     }
     public function testSplDetect24()
     {
-        $this->assertEquals('N-Борис', $this->object->splitFullName('Борис').'-Борис');
+        $this->assertEquals('N-Борис', trim($this->object->getFullNameFormat('Борис')).'-Борис');
     }
     public function testSplDetect25()
     {
-        $this->assertEquals('N-Борислав', $this->object->splitFullName('Борислав').'-Борислав');
+        $this->assertEquals('N-Борислав', trim($this->object->getFullNameFormat('Борислав')).'-Борислав');
     }
     public function testSplDetect26()
     {
-        $this->assertEquals('N-Бронислав', $this->object->splitFullName('Бронислав').'-Бронислав');
+        $this->assertEquals('N-Бронислав', trim($this->object->getFullNameFormat('Бронислав')).'-Бронислав');
     }
     public function testSplDetect27()
     {
-        $this->assertEquals('N-Вадим', $this->object->splitFullName('Вадим').'-Вадим');
+        $this->assertEquals('N-Вадим', trim($this->object->getFullNameFormat('Вадим')).'-Вадим');
     }
     public function testSplDetect28()
     {
-        $this->assertEquals('N-Валентин', $this->object->splitFullName('Валентин').'-Валентин');
+        $this->assertEquals('N-Валентин', trim($this->object->getFullNameFormat('Валентин')).'-Валентин');
     }
     public function testSplDetect29()
     {
-        $this->assertEquals('N-Валерий', $this->object->splitFullName('Валерий').'-Валерий');
+        $this->assertEquals('N-Валерий', trim($this->object->getFullNameFormat('Валерий')).'-Валерий');
     }
     public function testSplDetect30()
     {
-        $this->assertEquals('N-Валериан', $this->object->splitFullName('Валериан').'-Валериан');
+        $this->assertEquals('N-Валериан', trim($this->object->getFullNameFormat('Валериан')).'-Валериан');
     }
     public function testSplDetect31()
     {
-        $this->assertEquals('N-Валерьян', $this->object->splitFullName('Валерьян').'-Валерьян');
+        $this->assertEquals('N-Валерьян', trim($this->object->getFullNameFormat('Валерьян')).'-Валерьян');
     }
     public function testSplDetect32()
     {
-        $this->assertEquals('N-Василий', $this->object->splitFullName('Василий').'-Василий');
+        $this->assertEquals('N-Василий', trim($this->object->getFullNameFormat('Василий')).'-Василий');
     }
     public function testSplDetect33()
     {
-        $this->assertEquals('N-Венедикт', $this->object->splitFullName('Венедикт').'-Венедикт');
+        $this->assertEquals('N-Венедикт', trim($this->object->getFullNameFormat('Венедикт')).'-Венедикт');
     }
     public function testSplDetect34()
     {
-        $this->assertEquals('N-Викентий', $this->object->splitFullName('Викентий').'-Викентий');
+        $this->assertEquals('N-Викентий', trim($this->object->getFullNameFormat('Викентий')).'-Викентий');
     }
     public function testSplDetect35()
     {
-        $this->assertEquals('N-Виктор', $this->object->splitFullName('Виктор').'-Виктор');
+        $this->assertEquals('N-Виктор', trim($this->object->getFullNameFormat('Виктор')).'-Виктор');
     }
     public function testSplDetect36()
     {
-        $this->assertEquals('N-Вилен', $this->object->splitFullName('Вилен').'-Вилен');
+        $this->assertEquals('N-Вилен', trim($this->object->getFullNameFormat('Вилен')).'-Вилен');
     }
     public function testSplDetect37()
     {
-        $this->assertEquals('N-Вилор', $this->object->splitFullName('Вилор').'-Вилор');
+        $this->assertEquals('N-Вилор', trim($this->object->getFullNameFormat('Вилор')).'-Вилор');
     }
     public function testSplDetect38()
     {
-        $this->assertEquals('N-Виталий', $this->object->splitFullName('Виталий').'-Виталий');
+        $this->assertEquals('N-Виталий', trim($this->object->getFullNameFormat('Виталий')).'-Виталий');
     }
     public function testSplDetect39()
     {
-        $this->assertEquals('N-Владилен', $this->object->splitFullName('Владилен').'-Владилен');
+        $this->assertEquals('N-Владилен', trim($this->object->getFullNameFormat('Владилен')).'-Владилен');
     }
     public function testSplDetect40()
     {
-        $this->assertEquals('N-Владимир', $this->object->splitFullName('Владимир').'-Владимир');
+        $this->assertEquals('N-Владимир', trim($this->object->getFullNameFormat('Владимир')).'-Владимир');
     }
     public function testSplDetect41()
     {
-        $this->assertEquals('N-Владислав', $this->object->splitFullName('Владислав').'-Владислав');
+        $this->assertEquals('N-Владислав', trim($this->object->getFullNameFormat('Владислав')).'-Владислав');
     }
     public function testSplDetect42()
     {
-        $this->assertEquals('N-Владлен', $this->object->splitFullName('Владлен').'-Владлен');
+        $this->assertEquals('N-Владлен', trim($this->object->getFullNameFormat('Владлен')).'-Владлен');
     }
     public function testSplDetect43()
     {
-        $this->assertEquals('N-Влас', $this->object->splitFullName('Влас').'-Влас');
+        $this->assertEquals('N-Влас', trim($this->object->getFullNameFormat('Влас')).'-Влас');
     }
     public function testSplDetect44()
     {
-        $this->assertEquals('N-Всеволод', $this->object->splitFullName('Всеволод').'-Всеволод');
+        $this->assertEquals('N-Всеволод', trim($this->object->getFullNameFormat('Всеволод')).'-Всеволод');
     }
     public function testSplDetect45()
     {
-        $this->assertEquals('N-Вячеслав', $this->object->splitFullName('Вячеслав').'-Вячеслав');
+        $this->assertEquals('N-Вячеслав', trim($this->object->getFullNameFormat('Вячеслав')).'-Вячеслав');
     }
     public function testSplDetect46()
     {
-        $this->assertEquals('N-Гавриил', $this->object->splitFullName('Гавриил').'-Гавриил');
+        $this->assertEquals('N-Гавриил', trim($this->object->getFullNameFormat('Гавриил')).'-Гавриил');
     }
     public function testSplDetect47()
     {
-        $this->assertEquals('N-Гаврила', $this->object->splitFullName('Гаврила').'-Гаврила');
+        $this->assertEquals('N-Гаврила', trim($this->object->getFullNameFormat('Гаврила')).'-Гаврила');
     }
     public function testSplDetect48()
     {
-        $this->assertEquals('N-Геннадий', $this->object->splitFullName('Геннадий').'-Геннадий');
+        $this->assertEquals('N-Геннадий', trim($this->object->getFullNameFormat('Геннадий')).'-Геннадий');
     }
     public function testSplDetect49()
     {
-        $this->assertEquals('N-Георгий', $this->object->splitFullName('Георгий').'-Георгий');
+        $this->assertEquals('N-Георгий', trim($this->object->getFullNameFormat('Георгий')).'-Георгий');
     }
     public function testSplDetect50()
     {
-        $this->assertEquals('N-Герасим', $this->object->splitFullName('Герасим').'-Герасим');
+        $this->assertEquals('N-Герасим', trim($this->object->getFullNameFormat('Герасим')).'-Герасим');
     }
     public function testSplDetect51()
     {
-        $this->assertEquals('N-Герман', $this->object->splitFullName('Герман').'-Герман');
+        $this->assertEquals('N-Герман', trim($this->object->getFullNameFormat('Герман')).'-Герман');
     }
     public function testSplDetect52()
     {
-        $this->assertEquals('N-Гертруд', $this->object->splitFullName('Гертруд').'-Гертруд');
+        $this->assertEquals('N-Гертруд', trim($this->object->getFullNameFormat('Гертруд')).'-Гертруд');
     }
     public function testSplDetect53()
     {
-        $this->assertEquals('N-Глеб', $this->object->splitFullName('Глеб').'-Глеб');
+        $this->assertEquals('N-Глеб', trim($this->object->getFullNameFormat('Глеб')).'-Глеб');
     }
     public function testSplDetect54()
     {
-        $this->assertEquals('N-Гордей', $this->object->splitFullName('Гордей').'-Гордей');
+        $this->assertEquals('N-Гордей', trim($this->object->getFullNameFormat('Гордей')).'-Гордей');
     }
     public function testSplDetect55()
     {
-        $this->assertEquals('N-Григорий', $this->object->splitFullName('Григорий').'-Григорий');
+        $this->assertEquals('N-Григорий', trim($this->object->getFullNameFormat('Григорий')).'-Григорий');
     }
     public function testSplDetect56()
     {
-        $this->assertEquals('N-Гурий', $this->object->splitFullName('Гурий').'-Гурий');
+        $this->assertEquals('N-Гурий', trim($this->object->getFullNameFormat('Гурий')).'-Гурий');
     }
     public function testSplDetect57()
     {
-        $this->assertEquals('N-Давид', $this->object->splitFullName('Давид').'-Давид');
+        $this->assertEquals('N-Давид', trim($this->object->getFullNameFormat('Давид')).'-Давид');
     }
     public function testSplDetect58()
     {
-        $this->assertEquals('N-Давыд', $this->object->splitFullName('Давыд').'-Давыд');
+        $this->assertEquals('N-Давыд', trim($this->object->getFullNameFormat('Давыд')).'-Давыд');
     }
     public function testSplDetect59()
     {
-        $this->assertEquals('N-Даниил', $this->object->splitFullName('Даниил').'-Даниил');
+        $this->assertEquals('N-Даниил', trim($this->object->getFullNameFormat('Даниил')).'-Даниил');
     }
     public function testSplDetect60()
     {
-        $this->assertEquals('N-Данила', $this->object->splitFullName('Данила').'-Данила');
+        $this->assertEquals('N-Данила', trim($this->object->getFullNameFormat('Данила')).'-Данила');
     }
     public function testSplDetect61()
     {
-        $this->assertEquals('N-Демид', $this->object->splitFullName('Демид').'-Демид');
+        $this->assertEquals('N-Демид', trim($this->object->getFullNameFormat('Демид')).'-Демид');
     }
     public function testSplDetect62()
     {
-        $this->assertEquals('N-Демьян', $this->object->splitFullName('Демьян').'-Демьян');
+        $this->assertEquals('N-Демьян', trim($this->object->getFullNameFormat('Демьян')).'-Демьян');
     }
     public function testSplDetect63()
     {
-        $this->assertEquals('N-Денис', $this->object->splitFullName('Денис').'-Денис');
+        $this->assertEquals('N-Денис', trim($this->object->getFullNameFormat('Денис')).'-Денис');
     }
     public function testSplDetect64()
     {
-        $this->assertEquals('N-Димитрий', $this->object->splitFullName('Димитрий').'-Димитрий');
+        $this->assertEquals('N-Димитрий', trim($this->object->getFullNameFormat('Димитрий')).'-Димитрий');
     }
     public function testSplDetect65()
     {
-        $this->assertEquals('N-Дмитрий', $this->object->splitFullName('Дмитрий').'-Дмитрий');
+        $this->assertEquals('N-Дмитрий', trim($this->object->getFullNameFormat('Дмитрий')).'-Дмитрий');
     }
     public function testSplDetect66()
     {
-        $this->assertEquals('N-Дорофей', $this->object->splitFullName('Дорофей').'-Дорофей');
+        $this->assertEquals('N-Дорофей', trim($this->object->getFullNameFormat('Дорофей')).'-Дорофей');
     }
     public function testSplDetect67()
     {
-        $this->assertEquals('N-Евгений', $this->object->splitFullName('Евгений').'-Евгений');
+        $this->assertEquals('N-Евгений', trim($this->object->getFullNameFormat('Евгений')).'-Евгений');
     }
     public function testSplDetect68()
     {
-        $this->assertEquals('N-Евдоким', $this->object->splitFullName('Евдоким').'-Евдоким');
+        $this->assertEquals('N-Евдоким', trim($this->object->getFullNameFormat('Евдоким')).'-Евдоким');
     }
     public function testSplDetect69()
     {
-        $this->assertEquals('N-Евсей', $this->object->splitFullName('Евсей').'-Евсей');
+        $this->assertEquals('N-Евсей', trim($this->object->getFullNameFormat('Евсей')).'-Евсей');
     }
     public function testSplDetect70()
     {
-        $this->assertEquals('N-Евдоким', $this->object->splitFullName('Евдоким').'-Евдоким');
+        $this->assertEquals('N-Евдоким', trim($this->object->getFullNameFormat('Евдоким')).'-Евдоким');
     }
     public function testSplDetect71()
     {
-        $this->assertEquals('N-Евстафий', $this->object->splitFullName('Евстафий').'-Евстафий');
+        $this->assertEquals('N-Евстафий', trim($this->object->getFullNameFormat('Евстафий')).'-Евстафий');
     }
     public function testSplDetect72()
     {
-        $this->assertEquals('N-Евстигней', $this->object->splitFullName('Евстигней').'-Евстигней');
+        $this->assertEquals('N-Евстигней', trim($this->object->getFullNameFormat('Евстигней')).'-Евстигней');
     }
     public function testSplDetect73()
     {
-        $this->assertEquals('N-Егор', $this->object->splitFullName('Егор').'-Егор');
+        $this->assertEquals('N-Егор', trim($this->object->getFullNameFormat('Егор')).'-Егор');
     }
     public function testSplDetect74()
     {
-        $this->assertEquals('N-Елизар', $this->object->splitFullName('Елизар').'-Елизар');
+        $this->assertEquals('N-Елизар', trim($this->object->getFullNameFormat('Елизар')).'-Елизар');
     }
     public function testSplDetect75()
     {
-        $this->assertEquals('N-Елисей', $this->object->splitFullName('Елисей').'-Елисей');
+        $this->assertEquals('N-Елисей', trim($this->object->getFullNameFormat('Елисей')).'-Елисей');
     }
     public function testSplDetect76()
     {
-        $this->assertEquals('N-Емельян', $this->object->splitFullName('Емельян').'-Емельян');
+        $this->assertEquals('N-Емельян', trim($this->object->getFullNameFormat('Емельян')).'-Емельян');
     }
     public function testSplDetect77()
     {
-        $this->assertEquals('N-Еремей', $this->object->splitFullName('Еремей').'-Еремей');
+        $this->assertEquals('N-Еремей', trim($this->object->getFullNameFormat('Еремей')).'-Еремей');
     }
     public function testSplDetect78()
     {
-        $this->assertEquals('N-Ермил', $this->object->splitFullName('Ермил').'-Ермил');
+        $this->assertEquals('N-Ермил', trim($this->object->getFullNameFormat('Ермил')).'-Ермил');
     }
     public function testSplDetect79()
     {
-        $this->assertEquals('N-Ермолай', $this->object->splitFullName('Ермолай').'-Ермолай');
+        $this->assertEquals('N-Ермолай', trim($this->object->getFullNameFormat('Ермолай')).'-Ермолай');
     }
     public function testSplDetect80()
     {
-        $this->assertEquals('N-Ерофей', $this->object->splitFullName('Ерофей').'-Ерофей');
+        $this->assertEquals('N-Ерофей', trim($this->object->getFullNameFormat('Ерофей')).'-Ерофей');
     }
     public function testSplDetect81()
     {
-        $this->assertEquals('N-Ефим', $this->object->splitFullName('Ефим').'-Ефим');
+        $this->assertEquals('N-Ефим', trim($this->object->getFullNameFormat('Ефим')).'-Ефим');
     }
     public function testSplDetect82()
     {
-        $this->assertEquals('N-Ефимий', $this->object->splitFullName('Ефимий').'-Ефимий');
+        $this->assertEquals('N-Ефимий', trim($this->object->getFullNameFormat('Ефимий')).'-Ефимий');
     }
     public function testSplDetect83()
     {
-        $this->assertEquals('N-Ефрем', $this->object->splitFullName('Ефрем').'-Ефрем');
+        $this->assertEquals('N-Ефрем', trim($this->object->getFullNameFormat('Ефрем')).'-Ефрем');
     }
     public function testSplDetect84()
     {
-        $this->assertEquals('N-Жан', $this->object->splitFullName('Жан').'-Жан');
+        $this->assertEquals('N-Жан', trim($this->object->getFullNameFormat('Жан')).'-Жан');
     }
     public function testSplDetect85()
     {
-        $this->assertEquals('N-Захар', $this->object->splitFullName('Захар').'-Захар');
+        $this->assertEquals('N-Захар', trim($this->object->getFullNameFormat('Захар')).'-Захар');
     }
     public function testSplDetect86()
     {
-        $this->assertEquals('N-Захарий', $this->object->splitFullName('Захарий').'-Захарий');
+        $this->assertEquals('N-Захарий', trim($this->object->getFullNameFormat('Захарий')).'-Захарий');
     }
     public function testSplDetect87()
     {
-        $this->assertEquals('N-Зиновий', $this->object->splitFullName('Зиновий').'-Зиновий');
+        $this->assertEquals('N-Зиновий', trim($this->object->getFullNameFormat('Зиновий')).'-Зиновий');
     }
     public function testSplDetect88()
     {
-        $this->assertEquals('N-Иван', $this->object->splitFullName('Иван').'-Иван');
+        $this->assertEquals('N-Иван', trim($this->object->getFullNameFormat('Иван')).'-Иван');
     }
     public function testSplDetect89()
     {
-        $this->assertEquals('N-Игнат', $this->object->splitFullName('Игнат').'-Игнат');
+        $this->assertEquals('N-Игнат', trim($this->object->getFullNameFormat('Игнат')).'-Игнат');
     }
     public function testSplDetect90()
     {
-        $this->assertEquals('N-Игнатий', $this->object->splitFullName('Игнатий').'-Игнатий');
+        $this->assertEquals('N-Игнатий', trim($this->object->getFullNameFormat('Игнатий')).'-Игнатий');
     }
     public function testSplDetect91()
     {
-        $this->assertEquals('N-Игорь', $this->object->splitFullName('Игорь').'-Игорь');
+        $this->assertEquals('N-Игорь', trim($this->object->getFullNameFormat('Игорь')).'-Игорь');
     }
     public function testSplDetect92()
     {
-        $this->assertEquals('N-Измаил', $this->object->splitFullName('Измаил').'-Измаил');
+        $this->assertEquals('N-Измаил', trim($this->object->getFullNameFormat('Измаил')).'-Измаил');
     }
     public function testSplDetect93()
     {
-        $this->assertEquals('N-Изот', $this->object->splitFullName('Изот').'-Изот');
+        $this->assertEquals('N-Изот', trim($this->object->getFullNameFormat('Изот')).'-Изот');
     }
     public function testSplDetect94()
     {
-        $this->assertEquals('N-Иларион', $this->object->splitFullName('Иларион').'-Иларион');
+        $this->assertEquals('N-Иларион', trim($this->object->getFullNameFormat('Иларион')).'-Иларион');
     }
     public function testSplDetect95()
     {
-        $this->assertEquals('N-Илья', $this->object->splitFullName('Илья').'-Илья');
+        $this->assertEquals('N-Илья', trim($this->object->getFullNameFormat('Илья')).'-Илья');
     }
     public function testSplDetect96()
     {
-        $this->assertEquals('N-Ильяс', $this->object->splitFullName('Ильяс').'-Ильяс');
+        $this->assertEquals('N-Ильяс', trim($this->object->getFullNameFormat('Ильяс')).'-Ильяс');
     }
     public function testSplDetect97()
     {
-        $this->assertEquals('N-Иосип', $this->object->splitFullName('Иосип').'-Иосип');
+        $this->assertEquals('N-Иосип', trim($this->object->getFullNameFormat('Иосип')).'-Иосип');
     }
     public function testSplDetect98()
     {
-        $this->assertEquals('N-Иосиф', $this->object->splitFullName('Иосиф').'-Иосиф');
+        $this->assertEquals('N-Иосиф', trim($this->object->getFullNameFormat('Иосиф')).'-Иосиф');
     }
     public function testSplDetect99()
     {
-        $this->assertEquals('N-Исаак', $this->object->splitFullName('Исаак').'-Исаак');
+        $this->assertEquals('N-Исаак', trim($this->object->getFullNameFormat('Исаак')).'-Исаак');
     }
     public function testSplDetect100()
     {
-        $this->assertEquals('N-Исак', $this->object->splitFullName('Исак').'-Исак');
+        $this->assertEquals('N-Исак', trim($this->object->getFullNameFormat('Исак')).'-Исак');
     }
     public function testSplDetect101()
     {
-        $this->assertEquals('N-Исидор', $this->object->splitFullName('Исидор').'-Исидор');
+        $this->assertEquals('N-Исидор', trim($this->object->getFullNameFormat('Исидор')).'-Исидор');
     }
     public function testSplDetect102()
     {
-        $this->assertEquals('N-Искандер', $this->object->splitFullName('Искандер').'-Искандер');
+        $this->assertEquals('N-Искандер', trim($this->object->getFullNameFormat('Искандер')).'-Искандер');
     }
     public function testSplDetect103()
     {
-        $this->assertEquals('N-Казимир', $this->object->splitFullName('Казимир').'-Казимир');
+        $this->assertEquals('N-Казимир', trim($this->object->getFullNameFormat('Казимир')).'-Казимир');
     }
     public function testSplDetect104()
     {
-        $this->assertEquals('N-Калина', $this->object->splitFullName('Калина').'-Калина');
+        $this->assertEquals('N-Калина', trim($this->object->getFullNameFormat('Калина')).'-Калина');
     }
     public function testSplDetect105()
     {
-        $this->assertEquals('N-Каллиник', $this->object->splitFullName('Каллиник').'-Каллиник');
+        $this->assertEquals('N-Каллиник', trim($this->object->getFullNameFormat('Каллиник')).'-Каллиник');
     }
     public function testSplDetect106()
     {
-        $this->assertEquals('N-Каллистрат', $this->object->splitFullName('Каллистрат').'-Каллистрат');
+        $this->assertEquals('N-Каллистрат', trim($this->object->getFullNameFormat('Каллистрат')).'-Каллистрат');
     }
     public function testSplDetect107()
     {
-        $this->assertEquals('N-Капитон', $this->object->splitFullName('Капитон').'-Капитон');
+        $this->assertEquals('N-Капитон', trim($this->object->getFullNameFormat('Капитон')).'-Капитон');
     }
     public function testSplDetect108()
     {
-        $this->assertEquals('N-Карп', $this->object->splitFullName('Карп').'-Карп');
+        $this->assertEquals('N-Карп', trim($this->object->getFullNameFormat('Карп')).'-Карп');
     }
     public function testSplDetect109()
     {
-        $this->assertEquals('N-Касьян', $this->object->splitFullName('Касьян').'-Касьян');
+        $this->assertEquals('N-Касьян', trim($this->object->getFullNameFormat('Касьян')).'-Касьян');
     }
     public function testSplDetect110()
     {
-        $this->assertEquals('N-Кирей', $this->object->splitFullName('Кирей').'-Кирей');
+        $this->assertEquals('N-Кирей', trim($this->object->getFullNameFormat('Кирей')).'-Кирей');
     }
     public function testSplDetect111()
     {
-        $this->assertEquals('N-Кирила', $this->object->splitFullName('Кирила').'-Кирила');
+        $this->assertEquals('N-Кирила', trim($this->object->getFullNameFormat('Кирила')).'-Кирила');
     }
     public function testSplDetect112()
     {
-        $this->assertEquals('N-Кирилл', $this->object->splitFullName('Кирилл').'-Кирилл');
+        $this->assertEquals('N-Кирилл', trim($this->object->getFullNameFormat('Кирилл')).'-Кирилл');
     }
     public function testSplDetect113()
     {
-        $this->assertEquals('N-Клим', $this->object->splitFullName('Клим').'-Клим');
+        $this->assertEquals('N-Клим', trim($this->object->getFullNameFormat('Клим')).'-Клим');
     }
     public function testSplDetect114()
     {
-        $this->assertEquals('N-Климент', $this->object->splitFullName('Климент').'-Климент');
+        $this->assertEquals('N-Климент', trim($this->object->getFullNameFormat('Климент')).'-Климент');
     }
     public function testSplDetect115()
     {
-        $this->assertEquals('N-Климентий', $this->object->splitFullName('Климентий').'-Климентий');
+        $this->assertEquals('N-Климентий', trim($this->object->getFullNameFormat('Климентий')).'-Климентий');
     }
     public function testSplDetect116()
     {
-        $this->assertEquals('N-Кондрат', $this->object->splitFullName('Кондрат').'-Кондрат');
+        $this->assertEquals('N-Кондрат', trim($this->object->getFullNameFormat('Кондрат')).'-Кондрат');
     }
     public function testSplDetect117()
     {
-        $this->assertEquals('N-Кондратий', $this->object->splitFullName('Кондратий').'-Кондратий');
+        $this->assertEquals('N-Кондратий', trim($this->object->getFullNameFormat('Кондратий')).'-Кондратий');
     }
     public function testSplDetect118()
     {
-        $this->assertEquals('N-Конон', $this->object->splitFullName('Конон').'-Конон');
+        $this->assertEquals('N-Конон', trim($this->object->getFullNameFormat('Конон')).'-Конон');
     }
     public function testSplDetect119()
     {
-        $this->assertEquals('N-Константин', $this->object->splitFullName('Константин').'-Константин');
+        $this->assertEquals('N-Константин', trim($this->object->getFullNameFormat('Константин')).'-Константин');
     }
     public function testSplDetect120()
     {
-        $this->assertEquals('N-Корней', $this->object->splitFullName('Корней').'-Корней');
+        $this->assertEquals('N-Корней', trim($this->object->getFullNameFormat('Корней')).'-Корней');
     }
     public function testSplDetect121()
     {
-        $this->assertEquals('N-Корнелий', $this->object->splitFullName('Корнелий').'-Корнелий');
+        $this->assertEquals('N-Корнелий', trim($this->object->getFullNameFormat('Корнелий')).'-Корнелий');
     }
     public function testSplDetect122()
     {
-        $this->assertEquals('N-Ксенофонт', $this->object->splitFullName('Ксенофонт').'-Ксенофонт');
+        $this->assertEquals('N-Ксенофонт', trim($this->object->getFullNameFormat('Ксенофонт')).'-Ксенофонт');
     }
     public function testSplDetect123()
     {
-        $this->assertEquals('N-Кузьма', $this->object->splitFullName('Кузьма').'-Кузьма');
+        $this->assertEquals('N-Кузьма', trim($this->object->getFullNameFormat('Кузьма')).'-Кузьма');
     }
     public function testSplDetect124()
     {
-        $this->assertEquals('N-Куприян', $this->object->splitFullName('Куприян').'-Куприян');
+        $this->assertEquals('N-Куприян', trim($this->object->getFullNameFormat('Куприян')).'-Куприян');
     }
     public function testSplDetect125()
     {
-        $this->assertEquals('N-Лаврентий', $this->object->splitFullName('Лаврентий').'-Лаврентий');
+        $this->assertEquals('N-Лаврентий', trim($this->object->getFullNameFormat('Лаврентий')).'-Лаврентий');
     }
     public function testSplDetect126()
     {
-        $this->assertEquals('N-Лазарь', $this->object->splitFullName('Лазарь').'-Лазарь');
+        $this->assertEquals('N-Лазарь', trim($this->object->getFullNameFormat('Лазарь')).'-Лазарь');
     }
     public function testSplDetect127()
     {
-        $this->assertEquals('N-Лев', $this->object->splitFullName('Лев').'-Лев');
+        $this->assertEquals('N-Лев', trim($this->object->getFullNameFormat('Лев')).'-Лев');
     }
     public function testSplDetect128()
     {
-        $this->assertEquals('N-Левон', $this->object->splitFullName('Левон').'-Левон');
+        $this->assertEquals('N-Левон', trim($this->object->getFullNameFormat('Левон')).'-Левон');
     }
     public function testSplDetect129()
     {
-        $this->assertEquals('N-Леонид', $this->object->splitFullName('Леонид').'-Леонид');
+        $this->assertEquals('N-Леонид', trim($this->object->getFullNameFormat('Леонид')).'-Леонид');
     }
     public function testSplDetect130()
     {
-        $this->assertEquals('N-Леон', $this->object->splitFullName('Леон').'-Леон');
+        $this->assertEquals('N-Леон', trim($this->object->getFullNameFormat('Леон')).'-Леон');
     }
     public function testSplDetect131()
     {
-        $this->assertEquals('N-Леонтий', $this->object->splitFullName('Леонтий').'-Леонтий');
+        $this->assertEquals('N-Леонтий', trim($this->object->getFullNameFormat('Леонтий')).'-Леонтий');
     }
     public function testSplDetect132()
     {
-        $this->assertEquals('N-Лука', $this->object->splitFullName('Лука').'-Лука');
+        $this->assertEquals('N-Лука', trim($this->object->getFullNameFormat('Лука')).'-Лука');
     }
     public function testSplDetect133()
     {
-        $this->assertEquals('N-Лукьян', $this->object->splitFullName('Лукьян').'-Лукьян');
+        $this->assertEquals('N-Лукьян', trim($this->object->getFullNameFormat('Лукьян')).'-Лукьян');
     }
     public function testSplDetect134()
     {
-        $this->assertEquals('N-Людвиг', $this->object->splitFullName('Людвиг').'-Людвиг');
+        $this->assertEquals('N-Людвиг', trim($this->object->getFullNameFormat('Людвиг')).'-Людвиг');
     }
     public function testSplDetect135()
     {
-        $this->assertEquals('N-Макар', $this->object->splitFullName('Макар').'-Макар');
+        $this->assertEquals('N-Макар', trim($this->object->getFullNameFormat('Макар')).'-Макар');
     }
     public function testSplDetect136()
     {
-        $this->assertEquals('N-Максим', $this->object->splitFullName('Максим').'-Максим');
+        $this->assertEquals('N-Максим', trim($this->object->getFullNameFormat('Максим')).'-Максим');
     }
     public function testSplDetect137()
     {
-        $this->assertEquals('N-Марат', $this->object->splitFullName('Марат').'-Марат');
+        $this->assertEquals('N-Марат', trim($this->object->getFullNameFormat('Марат')).'-Марат');
     }
     public function testSplDetect138()
     {
-        $this->assertEquals('N-Марк', $this->object->splitFullName('Марк').'-Марк');
+        $this->assertEquals('N-Марк', trim($this->object->getFullNameFormat('Марк')).'-Марк');
     }
     public function testSplDetect139()
     {
-        $this->assertEquals('N-Маркел', $this->object->splitFullName('Маркел').'-Маркел');
+        $this->assertEquals('N-Маркел', trim($this->object->getFullNameFormat('Маркел')).'-Маркел');
     }
     public function testSplDetect140()
     {
-        $this->assertEquals('N-Мартин', $this->object->splitFullName('Мартин').'-Мартин');
+        $this->assertEquals('N-Мартин', trim($this->object->getFullNameFormat('Мартин')).'-Мартин');
     }
     public function testSplDetect141()
     {
-        $this->assertEquals('N-Мартын', $this->object->splitFullName('Мартын').'-Мартын');
+        $this->assertEquals('N-Мартын', trim($this->object->getFullNameFormat('Мартын')).'-Мартын');
     }
     public function testSplDetect142()
     {
-        $this->assertEquals('N-Мефодий', $this->object->splitFullName('Мефодий').'-Мефодий');
+        $this->assertEquals('N-Мефодий', trim($this->object->getFullNameFormat('Мефодий')).'-Мефодий');
     }
     public function testSplDetect143()
     {
-        $this->assertEquals('N-Мина', $this->object->splitFullName('Мина').'-Мина');
+        $this->assertEquals('N-Мина', trim($this->object->getFullNameFormat('Мина')).'-Мина');
     }
     public function testSplDetect144()
     {
-        $this->assertEquals('N-Минай', $this->object->splitFullName('Минай').'-Минай');
+        $this->assertEquals('N-Минай', trim($this->object->getFullNameFormat('Минай')).'-Минай');
     }
     public function testSplDetect145()
     {
-        $this->assertEquals('N-Мирон', $this->object->splitFullName('Мирон').'-Мирон');
+        $this->assertEquals('N-Мирон', trim($this->object->getFullNameFormat('Мирон')).'-Мирон');
     }
     public function testSplDetect146()
     {
-        $this->assertEquals('N-Митрофан', $this->object->splitFullName('Митрофан').'-Митрофан');
+        $this->assertEquals('N-Митрофан', trim($this->object->getFullNameFormat('Митрофан')).'-Митрофан');
     }
     public function testSplDetect147()
     {
-        $this->assertEquals('N-Михаил', $this->object->splitFullName('Михаил').'-Михаил');
+        $this->assertEquals('N-Михаил', trim($this->object->getFullNameFormat('Михаил')).'-Михаил');
     }
     public function testSplDetect148()
     {
-        $this->assertEquals('N-Михей', $this->object->splitFullName('Михей').'-Михей');
+        $this->assertEquals('N-Михей', trim($this->object->getFullNameFormat('Михей')).'-Михей');
     }
     public function testSplDetect149()
     {
-        $this->assertEquals('N-Модест', $this->object->splitFullName('Модест').'-Модест');
+        $this->assertEquals('N-Модест', trim($this->object->getFullNameFormat('Модест')).'-Модест');
     }
     public function testSplDetect150()
     {
-        $this->assertEquals('N-Моисей', $this->object->splitFullName('Моисей').'-Моисей');
+        $this->assertEquals('N-Моисей', trim($this->object->getFullNameFormat('Моисей')).'-Моисей');
     }
     public function testSplDetect151()
     {
-        $this->assertEquals('N-Мокей', $this->object->splitFullName('Мокей').'-Мокей');
+        $this->assertEquals('N-Мокей', trim($this->object->getFullNameFormat('Мокей')).'-Мокей');
     }
     public function testSplDetect152()
     {
-        $this->assertEquals('N-Мстислав', $this->object->splitFullName('Мстислав').'-Мстислав');
+        $this->assertEquals('N-Мстислав', trim($this->object->getFullNameFormat('Мстислав')).'-Мстислав');
     }
     public function testSplDetect153()
     {
-        $this->assertEquals('N-Назар', $this->object->splitFullName('Назар').'-Назар');
+        $this->assertEquals('N-Назар', trim($this->object->getFullNameFormat('Назар')).'-Назар');
     }
     public function testSplDetect154()
     {
-        $this->assertEquals('N-Наркис', $this->object->splitFullName('Наркис').'-Наркис');
+        $this->assertEquals('N-Наркис', trim($this->object->getFullNameFormat('Наркис')).'-Наркис');
     }
     public function testSplDetect155()
     {
-        $this->assertEquals('N-Нарцис', $this->object->splitFullName('Нарцис').'-Нарцис');
+        $this->assertEquals('N-Нарцис', trim($this->object->getFullNameFormat('Нарцис')).'-Нарцис');
     }
     public function testSplDetect156()
     {
-        $this->assertEquals('N-Наум', $this->object->splitFullName('Наум').'-Наум');
+        $this->assertEquals('N-Наум', trim($this->object->getFullNameFormat('Наум')).'-Наум');
     }
     public function testSplDetect157()
     {
-        $this->assertEquals('N-Нейл', $this->object->splitFullName('Нейл').'-Нейл');
+        $this->assertEquals('N-Нейл', trim($this->object->getFullNameFormat('Нейл')).'-Нейл');
     }
     public function testSplDetect158()
     {
-        $this->assertEquals('N-Нестер', $this->object->splitFullName('Нестер').'-Нестер');
+        $this->assertEquals('N-Нестер', trim($this->object->getFullNameFormat('Нестер')).'-Нестер');
     }
     public function testSplDetect159()
     {
-        $this->assertEquals('N-Нестор', $this->object->splitFullName('Нестор').'-Нестор');
+        $this->assertEquals('N-Нестор', trim($this->object->getFullNameFormat('Нестор')).'-Нестор');
     }
     public function testSplDetect160()
     {
-        $this->assertEquals('N-Нефёд', $this->object->splitFullName('Нефёд').'-Нефёд');
+        $this->assertEquals('N-Нефёд', trim($this->object->getFullNameFormat('Нефёд')).'-Нефёд');
     }
     public function testSplDetect161()
     {
-        $this->assertEquals('N-Никандр', $this->object->splitFullName('Никандр').'-Никандр');
+        $this->assertEquals('N-Никандр', trim($this->object->getFullNameFormat('Никандр')).'-Никандр');
     }
     public function testSplDetect162()
     {
-        $this->assertEquals('N-Никанор', $this->object->splitFullName('Никанор').'-Никанор');
+        $this->assertEquals('N-Никанор', trim($this->object->getFullNameFormat('Никанор')).'-Никанор');
     }
     public function testSplDetect163()
     {
-        $this->assertEquals('N-Никита', $this->object->splitFullName('Никита').'-Никита');
+        $this->assertEquals('N-Никита', trim($this->object->getFullNameFormat('Никита')).'-Никита');
     }
     public function testSplDetect164()
     {
-        $this->assertEquals('N-Никифор', $this->object->splitFullName('Никифор').'-Никифор');
+        $this->assertEquals('N-Никифор', trim($this->object->getFullNameFormat('Никифор')).'-Никифор');
     }
     public function testSplDetect165()
     {
-        $this->assertEquals('N-Никодим', $this->object->splitFullName('Никодим').'-Никодим');
+        $this->assertEquals('N-Никодим', trim($this->object->getFullNameFormat('Никодим')).'-Никодим');
     }
     public function testSplDetect166()
     {
-        $this->assertEquals('N-Николай', $this->object->splitFullName('Николай').'-Николай');
+        $this->assertEquals('N-Николай', trim($this->object->getFullNameFormat('Николай')).'-Николай');
     }
     public function testSplDetect167()
     {
-        $this->assertEquals('N-Никон', $this->object->splitFullName('Никон').'-Никон');
+        $this->assertEquals('N-Никон', trim($this->object->getFullNameFormat('Никон')).'-Никон');
     }
     public function testSplDetect168()
     {
-        $this->assertEquals('N-Нил', $this->object->splitFullName('Нил').'-Нил');
+        $this->assertEquals('N-Нил', trim($this->object->getFullNameFormat('Нил')).'-Нил');
     }
     public function testSplDetect169()
     {
-        $this->assertEquals('N-Олег', $this->object->splitFullName('Олег').'-Олег');
+        $this->assertEquals('N-Олег', trim($this->object->getFullNameFormat('Олег')).'-Олег');
     }
     public function testSplDetect170()
     {
-        $this->assertEquals('N-Онисим', $this->object->splitFullName('Онисим').'-Онисим');
+        $this->assertEquals('N-Онисим', trim($this->object->getFullNameFormat('Онисим')).'-Онисим');
     }
     public function testSplDetect171()
     {
-        $this->assertEquals('N-Онуфрий', $this->object->splitFullName('Онуфрий').'-Онуфрий');
+        $this->assertEquals('N-Онуфрий', trim($this->object->getFullNameFormat('Онуфрий')).'-Онуфрий');
     }
     public function testSplDetect172()
     {
-        $this->assertEquals('N-Орест', $this->object->splitFullName('Орест').'-Орест');
+        $this->assertEquals('N-Орест', trim($this->object->getFullNameFormat('Орест')).'-Орест');
     }
     public function testSplDetect173()
     {
-        $this->assertEquals('N-Осип', $this->object->splitFullName('Осип').'-Осип');
+        $this->assertEquals('N-Осип', trim($this->object->getFullNameFormat('Осип')).'-Осип');
     }
     public function testSplDetect174()
     {
-        $this->assertEquals('N-Остап', $this->object->splitFullName('Остап').'-Остап');
+        $this->assertEquals('N-Остап', trim($this->object->getFullNameFormat('Остап')).'-Остап');
     }
     public function testSplDetect175()
     {
-        $this->assertEquals('N-Отто', $this->object->splitFullName('Отто').'-Отто');
+        $this->assertEquals('N-Отто', trim($this->object->getFullNameFormat('Отто')).'-Отто');
     }
     public function testSplDetect176()
     {
-        $this->assertEquals('N-Павел', $this->object->splitFullName('Павел').'-Павел');
+        $this->assertEquals('N-Павел', trim($this->object->getFullNameFormat('Павел')).'-Павел');
     }
     public function testSplDetect177()
     {
-        $this->assertEquals('N-Панкрат', $this->object->splitFullName('Панкрат').'-Панкрат');
+        $this->assertEquals('N-Панкрат', trim($this->object->getFullNameFormat('Панкрат')).'-Панкрат');
     }
     public function testSplDetect178()
     {
-        $this->assertEquals('N-Панкратий', $this->object->splitFullName('Панкратий').'-Панкратий');
+        $this->assertEquals('N-Панкратий', trim($this->object->getFullNameFormat('Панкратий')).'-Панкратий');
     }
     public function testSplDetect179()
     {
-        $this->assertEquals('N-Пантелей', $this->object->splitFullName('Пантелей').'-Пантелей');
+        $this->assertEquals('N-Пантелей', trim($this->object->getFullNameFormat('Пантелей')).'-Пантелей');
     }
     public function testSplDetect180()
     {
-        $this->assertEquals('N-Пантелеймон', $this->object->splitFullName('Пантелеймон').'-Пантелеймон');
+        $this->assertEquals('N-Пантелеймон', trim($this->object->getFullNameFormat('Пантелеймон')).'-Пантелеймон');
     }
     public function testSplDetect181()
     {
-        $this->assertEquals('N-Парфён', $this->object->splitFullName('Парфён').'-Парфён');
+        $this->assertEquals('N-Парфён', trim($this->object->getFullNameFormat('Парфён')).'-Парфён');
     }
     public function testSplDetect182()
     {
-        $this->assertEquals('N-Парфений', $this->object->splitFullName('Парфений').'-Парфений');
+        $this->assertEquals('N-Парфений', trim($this->object->getFullNameFormat('Парфений')).'-Парфений');
     }
     public function testSplDetect183()
     {
-        $this->assertEquals('N-Пётр', $this->object->splitFullName('Пётр').'-Пётр');
+        $this->assertEquals('N-Пётр', trim($this->object->getFullNameFormat('Пётр')).'-Пётр');
     }
     public function testSplDetect184()
     {
-        $this->assertEquals('N-Пимен', $this->object->splitFullName('Пимен').'-Пимен');
+        $this->assertEquals('N-Пимен', trim($this->object->getFullNameFormat('Пимен')).'-Пимен');
     }
     public function testSplDetect185()
     {
-        $this->assertEquals('N-Платон', $this->object->splitFullName('Платон').'-Платон');
+        $this->assertEquals('N-Платон', trim($this->object->getFullNameFormat('Платон')).'-Платон');
     }
     public function testSplDetect186()
     {
-        $this->assertEquals('N-Полиграф', $this->object->splitFullName('Полиграф').'-Полиграф');
+        $this->assertEquals('N-Полиграф', trim($this->object->getFullNameFormat('Полиграф')).'-Полиграф');
     }
     public function testSplDetect187()
     {
-        $this->assertEquals('N-Поликарп', $this->object->splitFullName('Поликарп').'-Поликарп');
+        $this->assertEquals('N-Поликарп', trim($this->object->getFullNameFormat('Поликарп')).'-Поликарп');
     }
     public function testSplDetect188()
     {
-        $this->assertEquals('N-Порфир', $this->object->splitFullName('Порфир').'-Порфир');
+        $this->assertEquals('N-Порфир', trim($this->object->getFullNameFormat('Порфир')).'-Порфир');
     }
     public function testSplDetect189()
     {
-        $this->assertEquals('N-Порфирий', $this->object->splitFullName('Порфирий').'-Порфирий');
+        $this->assertEquals('N-Порфирий', trim($this->object->getFullNameFormat('Порфирий')).'-Порфирий');
     }
     public function testSplDetect190()
     {
-        $this->assertEquals('N-Потап', $this->object->splitFullName('Потап').'-Потап');
+        $this->assertEquals('N-Потап', trim($this->object->getFullNameFormat('Потап')).'-Потап');
     }
     public function testSplDetect191()
     {
-        $this->assertEquals('N-Прокоп', $this->object->splitFullName('Прокоп').'-Прокоп');
+        $this->assertEquals('N-Прокоп', trim($this->object->getFullNameFormat('Прокоп')).'-Прокоп');
     }
     public function testSplDetect192()
     {
-        $this->assertEquals('N-Прокопий', $this->object->splitFullName('Прокопий').'-Прокопий');
+        $this->assertEquals('N-Прокопий', trim($this->object->getFullNameFormat('Прокопий')).'-Прокопий');
     }
     public function testSplDetect193()
     {
-        $this->assertEquals('N-Прокофий', $this->object->splitFullName('Прокофий').'-Прокофий');
+        $this->assertEquals('N-Прокофий', trim($this->object->getFullNameFormat('Прокофий')).'-Прокофий');
     }
     public function testSplDetect194()
     {
-        $this->assertEquals('N-Прохор', $this->object->splitFullName('Прохор').'-Прохор');
+        $this->assertEquals('N-Прохор', trim($this->object->getFullNameFormat('Прохор')).'-Прохор');
     }
     public function testSplDetect195()
     {
-        $this->assertEquals('N-Роберт', $this->object->splitFullName('Роберт').'-Роберт');
+        $this->assertEquals('N-Роберт', trim($this->object->getFullNameFormat('Роберт')).'-Роберт');
     }
     public function testSplDetect196()
     {
-        $this->assertEquals('N-Родион', $this->object->splitFullName('Родион').'-Родион');
+        $this->assertEquals('N-Родион', trim($this->object->getFullNameFormat('Родион')).'-Родион');
     }
     public function testSplDetect197()
     {
-        $this->assertEquals('N-Роман', $this->object->splitFullName('Роман').'-Роман');
+        $this->assertEquals('N-Роман', trim($this->object->getFullNameFormat('Роман')).'-Роман');
     }
     public function testSplDetect198()
     {
-        $this->assertEquals('N-Ростислав', $this->object->splitFullName('Ростислав').'-Ростислав');
+        $this->assertEquals('N-Ростислав', trim($this->object->getFullNameFormat('Ростислав')).'-Ростислав');
     }
     public function testSplDetect199()
     {
-        $this->assertEquals('N-Руслан', $this->object->splitFullName('Руслан').'-Руслан');
+        $this->assertEquals('N-Руслан', trim($this->object->getFullNameFormat('Руслан')).'-Руслан');
     }
     public function testSplDetect200()
     {
-        $this->assertEquals('N-Савастей', $this->object->splitFullName('Савастей').'-Савастей');
+        $this->assertEquals('N-Савастей', trim($this->object->getFullNameFormat('Савастей')).'-Савастей');
     }
     public function testSplDetect201()
     {
-        $this->assertEquals('N-Савва', $this->object->splitFullName('Савва').'-Савва');
+        $this->assertEquals('N-Савва', trim($this->object->getFullNameFormat('Савва')).'-Савва');
     }
     public function testSplDetect202()
     {
-        $this->assertEquals('N-Савватий', $this->object->splitFullName('Савватий').'-Савватий');
+        $this->assertEquals('N-Савватий', trim($this->object->getFullNameFormat('Савватий')).'-Савватий');
     }
     public function testSplDetect203()
     {
-        $this->assertEquals('N-Савелий', $this->object->splitFullName('Савелий').'-Савелий');
+        $this->assertEquals('N-Савелий', trim($this->object->getFullNameFormat('Савелий')).'-Савелий');
     }
     public function testSplDetect204()
     {
-        $this->assertEquals('N-Самсон', $this->object->splitFullName('Самсон').'-Самсон');
+        $this->assertEquals('N-Самсон', trim($this->object->getFullNameFormat('Самсон')).'-Самсон');
     }
     public function testSplDetect205()
     {
-        $this->assertEquals('N-Святослав', $this->object->splitFullName('Святослав').'-Святослав');
+        $this->assertEquals('N-Святослав', trim($this->object->getFullNameFormat('Святослав')).'-Святослав');
     }
     public function testSplDetect206()
     {
-        $this->assertEquals('N-Семён', $this->object->splitFullName('Семён').'-Семён');
+        $this->assertEquals('N-Семён', trim($this->object->getFullNameFormat('Семён')).'-Семён');
     }
     public function testSplDetect207()
     {
-        $this->assertEquals('N-Серафим', $this->object->splitFullName('Серафим').'-Серафим');
+        $this->assertEquals('N-Серафим', trim($this->object->getFullNameFormat('Серафим')).'-Серафим');
     }
     public function testSplDetect208()
     {
-        $this->assertEquals('N-Сергей', $this->object->splitFullName('Сергей').'-Сергей');
+        $this->assertEquals('N-Сергей', trim($this->object->getFullNameFormat('Сергей')).'-Сергей');
     }
     public function testSplDetect209()
     {
-        $this->assertEquals('N-Сергий', $this->object->splitFullName('Сергий').'-Сергий');
+        $this->assertEquals('N-Сергий', trim($this->object->getFullNameFormat('Сергий')).'-Сергий');
     }
     public function testSplDetect210()
     {
-        $this->assertEquals('N-Сидор', $this->object->splitFullName('Сидор').'-Сидор');
+        $this->assertEquals('N-Сидор', trim($this->object->getFullNameFormat('Сидор')).'-Сидор');
     }
     public function testSplDetect211()
     {
-        $this->assertEquals('N-Созон', $this->object->splitFullName('Созон').'-Созон');
+        $this->assertEquals('N-Созон', trim($this->object->getFullNameFormat('Созон')).'-Созон');
     }
     public function testSplDetect212()
     {
-        $this->assertEquals('N-Созонт', $this->object->splitFullName('Созонт').'-Созонт');
+        $this->assertEquals('N-Созонт', trim($this->object->getFullNameFormat('Созонт')).'-Созонт');
     }
     public function testSplDetect213()
     {
-        $this->assertEquals('N-Спиридон', $this->object->splitFullName('Спиридон').'-Спиридон');
+        $this->assertEquals('N-Спиридон', trim($this->object->getFullNameFormat('Спиридон')).'-Спиридон');
     }
     public function testSplDetect214()
     {
-        $this->assertEquals('N-Станислав', $this->object->splitFullName('Станислав').'-Станислав');
+        $this->assertEquals('N-Станислав', trim($this->object->getFullNameFormat('Станислав')).'-Станислав');
     }
     public function testSplDetect215()
     {
-        $this->assertEquals('N-Степан', $this->object->splitFullName('Степан').'-Степан');
+        $this->assertEquals('N-Степан', trim($this->object->getFullNameFormat('Степан')).'-Степан');
     }
     public function testSplDetect216()
     {
-        $this->assertEquals('N-Тарас', $this->object->splitFullName('Тарас').'-Тарас');
+        $this->assertEquals('N-Тарас', trim($this->object->getFullNameFormat('Тарас')).'-Тарас');
     }
     public function testSplDetect217()
     {
-        $this->assertEquals('N-Теймураз', $this->object->splitFullName('Теймураз').'-Теймураз');
+        $this->assertEquals('N-Теймураз', trim($this->object->getFullNameFormat('Теймураз')).'-Теймураз');
     }
     public function testSplDetect218()
     {
-        $this->assertEquals('N-Терентий', $this->object->splitFullName('Терентий').'-Терентий');
+        $this->assertEquals('N-Терентий', trim($this->object->getFullNameFormat('Терентий')).'-Терентий');
     }
     public function testSplDetect219()
     {
-        $this->assertEquals('N-Тимофей', $this->object->splitFullName('Тимофей').'-Тимофей');
+        $this->assertEquals('N-Тимофей', trim($this->object->getFullNameFormat('Тимофей')).'-Тимофей');
     }
     public function testSplDetect220()
     {
-        $this->assertEquals('N-Тимур', $this->object->splitFullName('Тимур').'-Тимур');
+        $this->assertEquals('N-Тимур', trim($this->object->getFullNameFormat('Тимур')).'-Тимур');
     }
     public function testSplDetect221()
     {
-        $this->assertEquals('N-Тихон', $this->object->splitFullName('Тихон').'-Тихон');
+        $this->assertEquals('N-Тихон', trim($this->object->getFullNameFormat('Тихон')).'-Тихон');
     }
     public function testSplDetect222()
     {
-        $this->assertEquals('N-Трифон', $this->object->splitFullName('Трифон').'-Трифон');
+        $this->assertEquals('N-Трифон', trim($this->object->getFullNameFormat('Трифон')).'-Трифон');
     }
     public function testSplDetect223()
     {
-        $this->assertEquals('N-Трофим', $this->object->splitFullName('Трофим').'-Трофим');
+        $this->assertEquals('N-Трофим', trim($this->object->getFullNameFormat('Трофим')).'-Трофим');
     }
     public function testSplDetect224()
     {
-        $this->assertEquals('N-Устин', $this->object->splitFullName('Устин').'-Устин');
+        $this->assertEquals('N-Устин', trim($this->object->getFullNameFormat('Устин')).'-Устин');
     }
     public function testSplDetect225()
     {
-        $this->assertEquals('N-Фадей', $this->object->splitFullName('Фадей').'-Фадей');
+        $this->assertEquals('N-Фадей', trim($this->object->getFullNameFormat('Фадей')).'-Фадей');
     }
     public function testSplDetect226()
     {
-        $this->assertEquals('N-Федот', $this->object->splitFullName('Федот').'-Федот');
+        $this->assertEquals('N-Федот', trim($this->object->getFullNameFormat('Федот')).'-Федот');
     }
     public function testSplDetect227()
     {
-        $this->assertEquals('N-Феликс', $this->object->splitFullName('Феликс').'-Феликс');
+        $this->assertEquals('N-Феликс', trim($this->object->getFullNameFormat('Феликс')).'-Феликс');
     }
     public function testSplDetect228()
     {
-        $this->assertEquals('N-Фёдор', $this->object->splitFullName('Фёдор').'-Фёдор');
+        $this->assertEquals('N-Фёдор', trim($this->object->getFullNameFormat('Фёдор')).'-Фёдор');
     }
     public function testSplDetect229()
     {
-        $this->assertEquals('N-Федосий', $this->object->splitFullName('Федосий').'-Федосий');
+        $this->assertEquals('N-Федосий', trim($this->object->getFullNameFormat('Федосий')).'-Федосий');
     }
     public function testSplDetect230()
     {
-        $this->assertEquals('N-Феодосий', $this->object->splitFullName('Феодосий').'-Феодосий');
+        $this->assertEquals('N-Феодосий', trim($this->object->getFullNameFormat('Феодосий')).'-Феодосий');
     }
     public function testSplDetect231()
     {
-        $this->assertEquals('N-Феоктист', $this->object->splitFullName('Феоктист').'-Феоктист');
+        $this->assertEquals('N-Феоктист', trim($this->object->getFullNameFormat('Феоктист')).'-Феоктист');
     }
     public function testSplDetect232()
     {
-        $this->assertEquals('N-Феофан', $this->object->splitFullName('Феофан').'-Феофан');
+        $this->assertEquals('N-Феофан', trim($this->object->getFullNameFormat('Феофан')).'-Феофан');
     }
     public function testSplDetect233()
     {
-        $this->assertEquals('N-Филат', $this->object->splitFullName('Филат').'-Филат');
+        $this->assertEquals('N-Филат', trim($this->object->getFullNameFormat('Филат')).'-Филат');
     }
     public function testSplDetect234()
     {
-        $this->assertEquals('N-Филимон', $this->object->splitFullName('Филимон').'-Филимон');
+        $this->assertEquals('N-Филимон', trim($this->object->getFullNameFormat('Филимон')).'-Филимон');
     }
     public function testSplDetect235()
     {
-        $this->assertEquals('N-Филипп', $this->object->splitFullName('Филипп').'-Филипп');
+        $this->assertEquals('N-Филипп', trim($this->object->getFullNameFormat('Филипп')).'-Филипп');
     }
     public function testSplDetect236()
     {
-        $this->assertEquals('N-Фока', $this->object->splitFullName('Фока').'-Фока');
+        $this->assertEquals('N-Фока', trim($this->object->getFullNameFormat('Фока')).'-Фока');
     }
     public function testSplDetect237()
     {
-        $this->assertEquals('N-Фома', $this->object->splitFullName('Фома').'-Фома');
+        $this->assertEquals('N-Фома', trim($this->object->getFullNameFormat('Фома')).'-Фома');
     }
     public function testSplDetect238()
     {
-        $this->assertEquals('N-Фрол', $this->object->splitFullName('Фрол').'-Фрол');
+        $this->assertEquals('N-Фрол', trim($this->object->getFullNameFormat('Фрол')).'-Фрол');
     }
     public function testSplDetect239()
     {
-        $this->assertEquals('N-Харитон', $this->object->splitFullName('Харитон').'-Харитон');
+        $this->assertEquals('N-Харитон', trim($this->object->getFullNameFormat('Харитон')).'-Харитон');
     }
     public function testSplDetect240()
     {
-        $this->assertEquals('N-Харлам', $this->object->splitFullName('Харлам').'-Харлам');
+        $this->assertEquals('N-Харлам', trim($this->object->getFullNameFormat('Харлам')).'-Харлам');
     }
     public function testSplDetect241()
     {
-        $this->assertEquals('N-Харламп', $this->object->splitFullName('Харламп').'-Харламп');
+        $this->assertEquals('N-Харламп', trim($this->object->getFullNameFormat('Харламп')).'-Харламп');
     }
     public function testSplDetect242()
     {
-        $this->assertEquals('N-Харлампий', $this->object->splitFullName('Харлампий').'-Харлампий');
+        $this->assertEquals('N-Харлампий', trim($this->object->getFullNameFormat('Харлампий')).'-Харлампий');
     }
     public function testSplDetect243()
     {
-        $this->assertEquals('N-Чеслав', $this->object->splitFullName('Чеслав').'-Чеслав');
+        $this->assertEquals('N-Чеслав', trim($this->object->getFullNameFormat('Чеслав')).'-Чеслав');
     }
     public function testSplDetect244()
     {
-        $this->assertEquals('N-Эдгар', $this->object->splitFullName('Эдгар').'-Эдгар');
+        $this->assertEquals('N-Эдгар', trim($this->object->getFullNameFormat('Эдгар')).'-Эдгар');
     }
     public function testSplDetect245()
     {
-        $this->assertEquals('N-Эдгард', $this->object->splitFullName('Эдгард').'-Эдгард');
+        $this->assertEquals('N-Эдгард', trim($this->object->getFullNameFormat('Эдгард')).'-Эдгард');
     }
     public function testSplDetect246()
     {
-        $this->assertEquals('N-Эдуард', $this->object->splitFullName('Эдуард').'-Эдуард');
+        $this->assertEquals('N-Эдуард', trim($this->object->getFullNameFormat('Эдуард')).'-Эдуард');
     }
     public function testSplDetect247()
     {
-        $this->assertEquals('N-Юлиан', $this->object->splitFullName('Юлиан').'-Юлиан');
+        $this->assertEquals('N-Юлиан', trim($this->object->getFullNameFormat('Юлиан')).'-Юлиан');
     }
     public function testSplDetect248()
     {
-        $this->assertEquals('N-Юлий', $this->object->splitFullName('Юлий').'-Юлий');
+        $this->assertEquals('N-Юлий', trim($this->object->getFullNameFormat('Юлий')).'-Юлий');
     }
     public function testSplDetect249()
     {
-        $this->assertEquals('N-Юрий', $this->object->splitFullName('Юрий').'-Юрий');
+        $this->assertEquals('N-Юрий', trim($this->object->getFullNameFormat('Юрий')).'-Юрий');
     }
     public function testSplDetect250()
     {
-        $this->assertEquals('N-Яков', $this->object->splitFullName('Яков').'-Яков');
+        $this->assertEquals('N-Яков', trim($this->object->getFullNameFormat('Яков')).'-Яков');
     }
     public function testSplDetect251()
     {
-        $this->assertEquals('N-Ярослав', $this->object->splitFullName('Ярослав').'-Ярослав');
+        $this->assertEquals('N-Ярослав', trim($this->object->getFullNameFormat('Ярослав')).'-Ярослав');
     }
     public function testSplDetect252()
     {
-        $this->assertEquals('N-Ян', $this->object->splitFullName('Ян').'-Ян');
+        $this->assertEquals('N-Ян', trim($this->object->getFullNameFormat('Ян')).'-Ян');
     }
     public function testSplDetect253()
     {
-        $this->assertEquals('N-Августа', $this->object->splitFullName('Августа').'-Августа');
+        $this->assertEquals('N-Августа', trim($this->object->getFullNameFormat('Августа')).'-Августа');
     }
     public function testSplDetect254()
     {
-        $this->assertEquals('N-Авдотья', $this->object->splitFullName('Авдотья').'-Авдотья');
+        $this->assertEquals('N-Авдотья', trim($this->object->getFullNameFormat('Авдотья')).'-Авдотья');
     }
     public function testSplDetect255()
     {
-        $this->assertEquals('N-Аврелия', $this->object->splitFullName('Аврелия').'-Аврелия');
+        $this->assertEquals('N-Аврелия', trim($this->object->getFullNameFormat('Аврелия')).'-Аврелия');
     }
     public function testSplDetect256()
     {
-        $this->assertEquals('N-Агния', $this->object->splitFullName('Агния').'-Агния');
+        $this->assertEquals('N-Агния', trim($this->object->getFullNameFormat('Агния')).'-Агния');
     }
     public function testSplDetect257()
     {
-        $this->assertEquals('N-Аграфена', $this->object->splitFullName('Аграфена').'-Аграфена');
+        $this->assertEquals('N-Аграфена', trim($this->object->getFullNameFormat('Аграфена')).'-Аграфена');
     }
     public function testSplDetect258()
     {
-        $this->assertEquals('N-Агриппина', $this->object->splitFullName('Агриппина').'-Агриппина');
+        $this->assertEquals('N-Агриппина', trim($this->object->getFullNameFormat('Агриппина')).'-Агриппина');
     }
     public function testSplDetect259()
     {
-        $this->assertEquals('N-Аделаида', $this->object->splitFullName('Аделаида').'-Аделаида');
+        $this->assertEquals('N-Аделаида', trim($this->object->getFullNameFormat('Аделаида')).'-Аделаида');
     }
     public function testSplDetect260()
     {
-        $this->assertEquals('N-Аделина', $this->object->splitFullName('Аделина').'-Аделина');
+        $this->assertEquals('N-Аделина', trim($this->object->getFullNameFormat('Аделина')).'-Аделина');
     }
     public function testSplDetect261()
     {
-        $this->assertEquals('N-Азиза', $this->object->splitFullName('Азиза').'-Азиза');
+        $this->assertEquals('N-Азиза', trim($this->object->getFullNameFormat('Азиза')).'-Азиза');
     }
     public function testSplDetect262()
     {
-        $this->assertEquals('N-Аида', $this->object->splitFullName('Аида').'-Аида');
+        $this->assertEquals('N-Аида', trim($this->object->getFullNameFormat('Аида')).'-Аида');
     }
     public function testSplDetect263()
     {
-        $this->assertEquals('N-Александра', $this->object->splitFullName('Александра').'-Александра');
+        $this->assertEquals('N-Александра', trim($this->object->getFullNameFormat('Александра')).'-Александра');
     }
     public function testSplDetect264()
     {
-        $this->assertEquals('N-Алина', $this->object->splitFullName('Алина').'-Алина');
+        $this->assertEquals('N-Алина', trim($this->object->getFullNameFormat('Алина')).'-Алина');
     }
     public function testSplDetect265()
     {
-        $this->assertEquals('N-Алиса', $this->object->splitFullName('Алиса').'-Алиса');
+        $this->assertEquals('N-Алиса', trim($this->object->getFullNameFormat('Алиса')).'-Алиса');
     }
     public function testSplDetect266()
     {
-        $this->assertEquals('N-Алла', $this->object->splitFullName('Алла').'-Алла');
+        $this->assertEquals('N-Алла', trim($this->object->getFullNameFormat('Алла')).'-Алла');
     }
     public function testSplDetect267()
     {
-        $this->assertEquals('N-Алсу', $this->object->splitFullName('Алсу').'-Алсу');
+        $this->assertEquals('N-Алсу', trim($this->object->getFullNameFormat('Алсу')).'-Алсу');
     }
     public function testSplDetect268()
     {
-        $this->assertEquals('N-Альбина', $this->object->splitFullName('Альбина').'-Альбина');
+        $this->assertEquals('N-Альбина', trim($this->object->getFullNameFormat('Альбина')).'-Альбина');
     }
     public function testSplDetect269()
     {
-        $this->assertEquals('N-Алёна', $this->object->splitFullName('Алёна').'-Алёна');
+        $this->assertEquals('N-Алёна', trim($this->object->getFullNameFormat('Алёна')).'-Алёна');
     }
     public function testSplDetect270()
     {
-        $this->assertEquals('N-Анастасия', $this->object->splitFullName('Анастасия').'-Анастасия');
+        $this->assertEquals('N-Анастасия', trim($this->object->getFullNameFormat('Анастасия')).'-Анастасия');
     }
     public function testSplDetect271()
     {
-        $this->assertEquals('N-Ангелина', $this->object->splitFullName('Ангелина').'-Ангелина');
+        $this->assertEquals('N-Ангелина', trim($this->object->getFullNameFormat('Ангелина')).'-Ангелина');
     }
     public function testSplDetect272()
     {
-        $this->assertEquals('N-Анжелика', $this->object->splitFullName('Анжелика').'-Анжелика');
+        $this->assertEquals('N-Анжелика', trim($this->object->getFullNameFormat('Анжелика')).'-Анжелика');
     }
     public function testSplDetect273()
     {
-        $this->assertEquals('N-Анисия', $this->object->splitFullName('Анисия').'-Анисия');
+        $this->assertEquals('N-Анисия', trim($this->object->getFullNameFormat('Анисия')).'-Анисия');
     }
     public function testSplDetect274()
     {
-        $this->assertEquals('N-Анисья', $this->object->splitFullName('Анисья').'-Анисья');
+        $this->assertEquals('N-Анисья', trim($this->object->getFullNameFormat('Анисья')).'-Анисья');
     }
     public function testSplDetect275()
     {
-        $this->assertEquals('N-Анна', $this->object->splitFullName('Анна').'-Анна');
+        $this->assertEquals('N-Анна', trim($this->object->getFullNameFormat('Анна')).'-Анна');
     }
     public function testSplDetect276()
     {
-        $this->assertEquals('N-Антонина', $this->object->splitFullName('Антонина').'-Антонина');
+        $this->assertEquals('N-Антонина', trim($this->object->getFullNameFormat('Антонина')).'-Антонина');
     }
     public function testSplDetect277()
     {
-        $this->assertEquals('N-Анушка', $this->object->splitFullName('Анушка').'-Анушка');
+        $this->assertEquals('N-Анушка', trim($this->object->getFullNameFormat('Анушка')).'-Анушка');
     }
     public function testSplDetect278()
     {
-        $this->assertEquals('N-Аполлинария', $this->object->splitFullName('Аполлинария').'-Аполлинария');
+        $this->assertEquals('N-Аполлинария', trim($this->object->getFullNameFormat('Аполлинария')).'-Аполлинария');
     }
     public function testSplDetect279()
     {
-        $this->assertEquals('N-Аполлония', $this->object->splitFullName('Аполлония').'-Аполлония');
+        $this->assertEquals('N-Аполлония', trim($this->object->getFullNameFormat('Аполлония')).'-Аполлония');
     }
     public function testSplDetect280()
     {
-        $this->assertEquals('N-Арна', $this->object->splitFullName('Арна').'-Арна');
+        $this->assertEquals('N-Арна', trim($this->object->getFullNameFormat('Арна')).'-Арна');
     }
     public function testSplDetect281()
     {
-        $this->assertEquals('N-Асель', $this->object->splitFullName('Асель').'-Асель');
+        $this->assertEquals('N-Асель', trim($this->object->getFullNameFormat('Асель')).'-Асель');
     }
     public function testSplDetect282()
     {
-        $this->assertEquals('N-Аурика', $this->object->splitFullName('Аурика').'-Аурика');
+        $this->assertEquals('N-Аурика', trim($this->object->getFullNameFormat('Аурика')).'-Аурика');
     }
     public function testSplDetect283()
     {
-        $this->assertEquals('N-Аэлита', $this->object->splitFullName('Аэлита').'-Аэлита');
+        $this->assertEquals('N-Аэлита', trim($this->object->getFullNameFormat('Аэлита')).'-Аэлита');
     }
     public function testSplDetect284()
     {
-        $this->assertEquals('N-Беата', $this->object->splitFullName('Беата').'-Беата');
+        $this->assertEquals('N-Беата', trim($this->object->getFullNameFormat('Беата')).'-Беата');
     }
     public function testSplDetect285()
     {
-        $this->assertEquals('N-Божена', $this->object->splitFullName('Божена').'-Божена');
+        $this->assertEquals('N-Божена', trim($this->object->getFullNameFormat('Божена')).'-Божена');
     }
     public function testSplDetect286()
     {
-        $this->assertEquals('N-Валентина', $this->object->splitFullName('Валентина').'-Валентина');
+        $this->assertEquals('N-Валентина', trim($this->object->getFullNameFormat('Валентина')).'-Валентина');
     }
     public function testSplDetect287()
     {
-        $this->assertEquals('N-Варвара', $this->object->splitFullName('Варвара').'-Варвара');
+        $this->assertEquals('N-Варвара', trim($this->object->getFullNameFormat('Варвара')).'-Варвара');
     }
     public function testSplDetect288()
     {
-        $this->assertEquals('N-Василиса', $this->object->splitFullName('Василиса').'-Василиса');
+        $this->assertEquals('N-Василиса', trim($this->object->getFullNameFormat('Василиса')).'-Василиса');
     }
     public function testSplDetect289()
     {
-        $this->assertEquals('N-Вера', $this->object->splitFullName('Вера').'-Вера');
+        $this->assertEquals('N-Вера', trim($this->object->getFullNameFormat('Вера')).'-Вера');
     }
     public function testSplDetect290()
     {
-        $this->assertEquals('N-Вероника', $this->object->splitFullName('Вероника').'-Вероника');
+        $this->assertEquals('N-Вероника', trim($this->object->getFullNameFormat('Вероника')).'-Вероника');
     }
     public function testSplDetect291()
     {
-        $this->assertEquals('N-Виктория', $this->object->splitFullName('Виктория').'-Виктория');
+        $this->assertEquals('N-Виктория', trim($this->object->getFullNameFormat('Виктория')).'-Виктория');
     }
     public function testSplDetect292()
     {
-        $this->assertEquals('N-Виолетта', $this->object->splitFullName('Виолетта').'-Виолетта');
+        $this->assertEquals('N-Виолетта', trim($this->object->getFullNameFormat('Виолетта')).'-Виолетта');
     }
     public function testSplDetect293()
     {
-        $this->assertEquals('N-Владислава', $this->object->splitFullName('Владислава').'-Владислава');
+        $this->assertEquals('N-Владислава', trim($this->object->getFullNameFormat('Владислава')).'-Владислава');
     }
     public function testSplDetect294()
     {
-        $this->assertEquals('N-Галина', $this->object->splitFullName('Галина').'-Галина');
+        $this->assertEquals('N-Галина', trim($this->object->getFullNameFormat('Галина')).'-Галина');
     }
     public function testSplDetect295()
     {
-        $this->assertEquals('N-Геннадия', $this->object->splitFullName('Геннадия').'-Геннадия');
+        $this->assertEquals('N-Геннадия', trim($this->object->getFullNameFormat('Геннадия')).'-Геннадия');
     }
     public function testSplDetect296()
     {
-        $this->assertEquals('N-Глафира', $this->object->splitFullName('Глафира').'-Глафира');
+        $this->assertEquals('N-Глафира', trim($this->object->getFullNameFormat('Глафира')).'-Глафира');
     }
     public function testSplDetect297()
     {
-        $this->assertEquals('N-Дария', $this->object->splitFullName('Дария').'-Дария');
+        $this->assertEquals('N-Дария', trim($this->object->getFullNameFormat('Дария')).'-Дария');
     }
     public function testSplDetect298()
     {
-        $this->assertEquals('N-Дарья', $this->object->splitFullName('Дарья').'-Дарья');
+        $this->assertEquals('N-Дарья', trim($this->object->getFullNameFormat('Дарья')).'-Дарья');
     }
     public function testSplDetect299()
     {
-        $this->assertEquals('N-Диана', $this->object->splitFullName('Диана').'-Диана');
+        $this->assertEquals('N-Диана', trim($this->object->getFullNameFormat('Диана')).'-Диана');
     }
     public function testSplDetect300()
     {
-        $this->assertEquals('N-Ева', $this->object->splitFullName('Ева').'-Ева');
+        $this->assertEquals('N-Ева', trim($this->object->getFullNameFormat('Ева')).'-Ева');
     }
     public function testSplDetect301()
     {
-        $this->assertEquals('N-Евгения', $this->object->splitFullName('Евгения').'-Евгения');
+        $this->assertEquals('N-Евгения', trim($this->object->getFullNameFormat('Евгения')).'-Евгения');
     }
     public function testSplDetect302()
     {
-        $this->assertEquals('N-Евдокия', $this->object->splitFullName('Евдокия').'-Евдокия');
+        $this->assertEquals('N-Евдокия', trim($this->object->getFullNameFormat('Евдокия')).'-Евдокия');
     }
     public function testSplDetect303()
     {
-        $this->assertEquals('N-Евфросиния', $this->object->splitFullName('Евфросиния').'-Евфросиния');
+        $this->assertEquals('N-Евфросиния', trim($this->object->getFullNameFormat('Евфросиния')).'-Евфросиния');
     }
     public function testSplDetect304()
     {
-        $this->assertEquals('N-Екатерина', $this->object->splitFullName('Екатерина').'-Екатерина');
+        $this->assertEquals('N-Екатерина', trim($this->object->getFullNameFormat('Екатерина')).'-Екатерина');
     }
     public function testSplDetect305()
     {
-        $this->assertEquals('N-Елена', $this->object->splitFullName('Елена').'-Елена');
+        $this->assertEquals('N-Елена', trim($this->object->getFullNameFormat('Елена')).'-Елена');
     }
     public function testSplDetect306()
     {
-        $this->assertEquals('N-Елизавета', $this->object->splitFullName('Елизавета').'-Елизавета');
+        $this->assertEquals('N-Елизавета', trim($this->object->getFullNameFormat('Елизавета')).'-Елизавета');
     }
     public function testSplDetect307()
     {
-        $this->assertEquals('N-Жанна', $this->object->splitFullName('Жанна').'-Жанна');
+        $this->assertEquals('N-Жанна', trim($this->object->getFullNameFormat('Жанна')).'-Жанна');
     }
     public function testSplDetect308()
     {
-        $this->assertEquals('N-Зинаида', $this->object->splitFullName('Зинаида').'-Зинаида');
+        $this->assertEquals('N-Зинаида', trim($this->object->getFullNameFormat('Зинаида')).'-Зинаида');
     }
     public function testSplDetect309()
     {
-        $this->assertEquals('N-Зоя', $this->object->splitFullName('Зоя').'-Зоя');
+        $this->assertEquals('N-Зоя', trim($this->object->getFullNameFormat('Зоя')).'-Зоя');
     }
     public function testSplDetect310()
     {
-        $this->assertEquals('N-Зульфия', $this->object->splitFullName('Зульфия').'-Зульфия');
+        $this->assertEquals('N-Зульфия', trim($this->object->getFullNameFormat('Зульфия')).'-Зульфия');
     }
     public function testSplDetect311()
     {
-        $this->assertEquals('N-Изабелла', $this->object->splitFullName('Изабелла').'-Изабелла');
+        $this->assertEquals('N-Изабелла', trim($this->object->getFullNameFormat('Изабелла')).'-Изабелла');
     }
     public function testSplDetect312()
     {
-        $this->assertEquals('N-Иляна', $this->object->splitFullName('Иляна').'-Иляна');
+        $this->assertEquals('N-Иляна', trim($this->object->getFullNameFormat('Иляна')).'-Иляна');
     }
     public function testSplDetect313()
     {
-        $this->assertEquals('N-Инна', $this->object->splitFullName('Инна').'-Инна');
+        $this->assertEquals('N-Инна', trim($this->object->getFullNameFormat('Инна')).'-Инна');
     }
     public function testSplDetect314()
     {
-        $this->assertEquals('N-Иоанна', $this->object->splitFullName('Иоанна').'-Иоанна');
+        $this->assertEquals('N-Иоанна', trim($this->object->getFullNameFormat('Иоанна')).'-Иоанна');
     }
     public function testSplDetect315()
     {
-        $this->assertEquals('N-Иулия', $this->object->splitFullName('Иулия').'-Иулия');
+        $this->assertEquals('N-Иулия', trim($this->object->getFullNameFormat('Иулия')).'-Иулия');
     }
     public function testSplDetect316()
     {
-        $this->assertEquals('N-Иуния', $this->object->splitFullName('Иуния').'-Иуния');
+        $this->assertEquals('N-Иуния', trim($this->object->getFullNameFormat('Иуния')).'-Иуния');
     }
     public function testSplDetect317()
     {
-        $this->assertEquals('N-Камола', $this->object->splitFullName('Камола').'-Камола');
+        $this->assertEquals('N-Камола', trim($this->object->getFullNameFormat('Камола')).'-Камола');
     }
     public function testSplDetect318()
     {
-        $this->assertEquals('N-Карина', $this->object->splitFullName('Карина').'-Карина');
+        $this->assertEquals('N-Карина', trim($this->object->getFullNameFormat('Карина')).'-Карина');
     }
     public function testSplDetect319()
     {
-        $this->assertEquals('N-Каролина', $this->object->splitFullName('Каролина').'-Каролина');
+        $this->assertEquals('N-Каролина', trim($this->object->getFullNameFormat('Каролина')).'-Каролина');
     }
     public function testSplDetect320()
     {
-        $this->assertEquals('N-Кира', $this->object->splitFullName('Кира').'-Кира');
+        $this->assertEquals('N-Кира', trim($this->object->getFullNameFormat('Кира')).'-Кира');
     }
     public function testSplDetect321()
     {
-        $this->assertEquals('N-Клара', $this->object->splitFullName('Клара').'-Клара');
+        $this->assertEquals('N-Клара', trim($this->object->getFullNameFormat('Клара')).'-Клара');
     }
     public function testSplDetect322()
     {
-        $this->assertEquals('N-Клеопатра', $this->object->splitFullName('Клеопатра').'-Клеопатра');
+        $this->assertEquals('N-Клеопатра', trim($this->object->getFullNameFormat('Клеопатра')).'-Клеопатра');
     }
     public function testSplDetect323()
     {
-        $this->assertEquals('N-Клотильда', $this->object->splitFullName('Клотильда').'-Клотильда');
+        $this->assertEquals('N-Клотильда', trim($this->object->getFullNameFormat('Клотильда')).'-Клотильда');
     }
     public function testSplDetect324()
     {
-        $this->assertEquals('N-Констанция', $this->object->splitFullName('Констанция').'-Констанция');
+        $this->assertEquals('N-Констанция', trim($this->object->getFullNameFormat('Констанция')).'-Констанция');
     }
     public function testSplDetect325()
     {
-        $this->assertEquals('N-Консуэло', $this->object->splitFullName('Консуэло').'-Консуэло');
+        $this->assertEquals('N-Консуэло', trim($this->object->getFullNameFormat('Консуэло')).'-Консуэло');
     }
     public function testSplDetect326()
     {
-        $this->assertEquals('N-Корнелия', $this->object->splitFullName('Корнелия').'-Корнелия');
+        $this->assertEquals('N-Корнелия', trim($this->object->getFullNameFormat('Корнелия')).'-Корнелия');
     }
     public function testSplDetect327()
     {
-        $this->assertEquals('N-Кристина', $this->object->splitFullName('Кристина').'-Кристина');
+        $this->assertEquals('N-Кристина', trim($this->object->getFullNameFormat('Кристина')).'-Кристина');
     }
     public function testSplDetect328()
     {
-        $this->assertEquals('N-Ксения', $this->object->splitFullName('Ксения').'-Ксения');
+        $this->assertEquals('N-Ксения', trim($this->object->getFullNameFormat('Ксения')).'-Ксения');
     }
     public function testSplDetect329()
     {
-        $this->assertEquals('N-Лада', $this->object->splitFullName('Лада').'-Лада');
+        $this->assertEquals('N-Лада', trim($this->object->getFullNameFormat('Лада')).'-Лада');
     }
     public function testSplDetect330()
     {
-        $this->assertEquals('N-Лариса', $this->object->splitFullName('Лариса').'-Лариса');
+        $this->assertEquals('N-Лариса', trim($this->object->getFullNameFormat('Лариса')).'-Лариса');
     }
     public function testSplDetect331()
     {
-        $this->assertEquals('N-Лейла', $this->object->splitFullName('Лейла').'-Лейла');
+        $this->assertEquals('N-Лейла', trim($this->object->getFullNameFormat('Лейла')).'-Лейла');
     }
     public function testSplDetect332()
     {
-        $this->assertEquals('N-Леся', $this->object->splitFullName('Леся').'-Леся');
+        $this->assertEquals('N-Леся', trim($this->object->getFullNameFormat('Леся')).'-Леся');
     }
     public function testSplDetect333()
     {
-        $this->assertEquals('N-Ливия', $this->object->splitFullName('Ливия').'-Ливия');
+        $this->assertEquals('N-Ливия', trim($this->object->getFullNameFormat('Ливия')).'-Ливия');
     }
     public function testSplDetect334()
     {
-        $this->assertEquals('N-Любовь', $this->object->splitFullName('Любовь').'-Любовь');
+        $this->assertEquals('N-Любовь', trim($this->object->getFullNameFormat('Любовь')).'-Любовь');
     }
     public function testSplDetect335()
     {
-        $this->assertEquals('N-Людмила', $this->object->splitFullName('Людмила').'-Людмила');
+        $this->assertEquals('N-Людмила', trim($this->object->getFullNameFormat('Людмила')).'-Людмила');
     }
     public function testSplDetect336()
     {
-        $this->assertEquals('N-Майя', $this->object->splitFullName('Майя').'-Майя');
+        $this->assertEquals('N-Майя', trim($this->object->getFullNameFormat('Майя')).'-Майя');
     }
     public function testSplDetect337()
     {
-        $this->assertEquals('N-Мальвина', $this->object->splitFullName('Мальвина').'-Мальвина');
+        $this->assertEquals('N-Мальвина', trim($this->object->getFullNameFormat('Мальвина')).'-Мальвина');
     }
     public function testSplDetect338()
     {
-        $this->assertEquals('N-Марианна', $this->object->splitFullName('Марианна').'-Марианна');
+        $this->assertEquals('N-Марианна', trim($this->object->getFullNameFormat('Марианна')).'-Марианна');
     }
     public function testSplDetect339()
     {
-        $this->assertEquals('N-Марина', $this->object->splitFullName('Марина').'-Марина');
+        $this->assertEquals('N-Марина', trim($this->object->getFullNameFormat('Марина')).'-Марина');
     }
     public function testSplDetect340()
     {
-        $this->assertEquals('N-Матильда', $this->object->splitFullName('Матильда').'-Матильда');
+        $this->assertEquals('N-Матильда', trim($this->object->getFullNameFormat('Матильда')).'-Матильда');
     }
     public function testSplDetect341()
     {
-        $this->assertEquals('N-Мафтуха', $this->object->splitFullName('Мафтуха').'-Мафтуха');
+        $this->assertEquals('N-Мафтуха', trim($this->object->getFullNameFormat('Мафтуха')).'-Мафтуха');
     }
     public function testSplDetect342()
     {
-        $this->assertEquals('N-Маша', $this->object->splitFullName('Маша').'-Маша');
+        $this->assertEquals('N-Маша', trim($this->object->getFullNameFormat('Маша')).'-Маша');
     }
     public function testSplDetect343()
     {
-        $this->assertEquals('N-Мелания', $this->object->splitFullName('Мелания').'-Мелания');
+        $this->assertEquals('N-Мелания', trim($this->object->getFullNameFormat('Мелания')).'-Мелания');
     }
     public function testSplDetect344()
     {
-        $this->assertEquals('N-Милена', $this->object->splitFullName('Милена').'-Милена');
+        $this->assertEquals('N-Милена', trim($this->object->getFullNameFormat('Милена')).'-Милена');
     }
     public function testSplDetect345()
     {
-        $this->assertEquals('N-Мэри', $this->object->splitFullName('Мэри').'-Мэри');
+        $this->assertEquals('N-Мэри', trim($this->object->getFullNameFormat('Мэри')).'-Мэри');
     }
     public function testSplDetect346()
     {
-        $this->assertEquals('N-Надежда', $this->object->splitFullName('Надежда').'-Надежда');
+        $this->assertEquals('N-Надежда', trim($this->object->getFullNameFormat('Надежда')).'-Надежда');
     }
     public function testSplDetect347()
     {
-        $this->assertEquals('N-Наталия', $this->object->splitFullName('Наталия').'-Наталия');
+        $this->assertEquals('N-Наталия', trim($this->object->getFullNameFormat('Наталия')).'-Наталия');
     }
     public function testSplDetect348()
     {
-        $this->assertEquals('N-Нина', $this->object->splitFullName('Нина').'-Нина');
+        $this->assertEquals('N-Нина', trim($this->object->getFullNameFormat('Нина')).'-Нина');
     }
     public function testSplDetect349()
     {
-        $this->assertEquals('N-Нинель', $this->object->splitFullName('Нинель').'-Нинель');
+        $this->assertEquals('N-Нинель', trim($this->object->getFullNameFormat('Нинель')).'-Нинель');
     }
     public function testSplDetect350()
     {
-        $this->assertEquals('N-Нона', $this->object->splitFullName('Нона').'-Нона');
+        $this->assertEquals('N-Нона', trim($this->object->getFullNameFormat('Нона')).'-Нона');
     }
     public function testSplDetect351()
     {
-        $this->assertEquals('N-Нонна', $this->object->splitFullName('Нонна').'-Нонна');
+        $this->assertEquals('N-Нонна', trim($this->object->getFullNameFormat('Нонна')).'-Нонна');
     }
     public function testSplDetect352()
     {
-        $this->assertEquals('N-Оксана', $this->object->splitFullName('Оксана').'-Оксана');
+        $this->assertEquals('N-Оксана', trim($this->object->getFullNameFormat('Оксана')).'-Оксана');
     }
     public function testSplDetect353()
     {
-        $this->assertEquals('N-Октавия', $this->object->splitFullName('Октавия').'-Октавия');
+        $this->assertEquals('N-Октавия', trim($this->object->getFullNameFormat('Октавия')).'-Октавия');
     }
     public function testSplDetect354()
     {
-        $this->assertEquals('N-Олеся', $this->object->splitFullName('Олеся').'-Олеся');
+        $this->assertEquals('N-Олеся', trim($this->object->getFullNameFormat('Олеся')).'-Олеся');
     }
     public function testSplDetect355()
     {
-        $this->assertEquals('N-Ольга', $this->object->splitFullName('Ольга').'-Ольга');
+        $this->assertEquals('N-Ольга', trim($this->object->getFullNameFormat('Ольга')).'-Ольга');
     }
     public function testSplDetect356()
     {
-        $this->assertEquals('N-Павлина', $this->object->splitFullName('Павлина').'-Павлина');
+        $this->assertEquals('N-Павлина', trim($this->object->getFullNameFormat('Павлина')).'-Павлина');
     }
     public function testSplDetect357()
     {
-        $this->assertEquals('N-Пелагея', $this->object->splitFullName('Пелагея').'-Пелагея');
+        $this->assertEquals('N-Пелагея', trim($this->object->getFullNameFormat('Пелагея')).'-Пелагея');
     }
     public function testSplDetect358()
     {
-        $this->assertEquals('N-Полина', $this->object->splitFullName('Полина').'-Полина');
+        $this->assertEquals('N-Полина', trim($this->object->getFullNameFormat('Полина')).'-Полина');
     }
     public function testSplDetect359()
     {
-        $this->assertEquals('N-Прасковья', $this->object->splitFullName('Прасковья').'-Прасковья');
+        $this->assertEquals('N-Прасковья', trim($this->object->getFullNameFormat('Прасковья')).'-Прасковья');
     }
     public function testSplDetect360()
     {
-        $this->assertEquals('N-Рада', $this->object->splitFullName('Рада').'-Рада');
+        $this->assertEquals('N-Рада', trim($this->object->getFullNameFormat('Рада')).'-Рада');
     }
     public function testSplDetect361()
     {
-        $this->assertEquals('N-Раиса', $this->object->splitFullName('Раиса').'-Раиса');
+        $this->assertEquals('N-Раиса', trim($this->object->getFullNameFormat('Раиса')).'-Раиса');
     }
     public function testSplDetect362()
     {
-        $this->assertEquals('N-Ребекка', $this->object->splitFullName('Ребекка').'-Ребекка');
+        $this->assertEquals('N-Ребекка', trim($this->object->getFullNameFormat('Ребекка')).'-Ребекка');
     }
     public function testSplDetect363()
     {
-        $this->assertEquals('N-Ревекка', $this->object->splitFullName('Ревекка').'-Ревекка');
+        $this->assertEquals('N-Ревекка', trim($this->object->getFullNameFormat('Ревекка')).'-Ревекка');
     }
     public function testSplDetect364()
     {
-        $this->assertEquals('N-Розалия', $this->object->splitFullName('Розалия').'-Розалия');
+        $this->assertEquals('N-Розалия', trim($this->object->getFullNameFormat('Розалия')).'-Розалия');
     }
     public function testSplDetect365()
     {
-        $this->assertEquals('N-Розарио', $this->object->splitFullName('Розарио').'-Розарио');
+        $this->assertEquals('N-Розарио', trim($this->object->getFullNameFormat('Розарио')).'-Розарио');
     }
     public function testSplDetect366()
     {
-        $this->assertEquals('N-Сара', $this->object->splitFullName('Сара').'-Сара');
+        $this->assertEquals('N-Сара', trim($this->object->getFullNameFormat('Сара')).'-Сара');
     }
     public function testSplDetect367()
     {
-        $this->assertEquals('N-Светлана', $this->object->splitFullName('Светлана').'-Светлана');
+        $this->assertEquals('N-Светлана', trim($this->object->getFullNameFormat('Светлана')).'-Светлана');
     }
     public function testSplDetect368()
     {
-        $this->assertEquals('N-Снежана', $this->object->splitFullName('Снежана').'-Снежана');
+        $this->assertEquals('N-Снежана', trim($this->object->getFullNameFormat('Снежана')).'-Снежана');
     }
     public function testSplDetect369()
     {
-        $this->assertEquals('N-Стелла', $this->object->splitFullName('Стелла').'-Стелла');
+        $this->assertEquals('N-Стелла', trim($this->object->getFullNameFormat('Стелла')).'-Стелла');
     }
     public function testSplDetect370()
     {
-        $this->assertEquals('N-Степанида', $this->object->splitFullName('Степанида').'-Степанида');
+        $this->assertEquals('N-Степанида', trim($this->object->getFullNameFormat('Степанида')).'-Степанида');
     }
     public function testSplDetect371()
     {
-        $this->assertEquals('N-Стефания', $this->object->splitFullName('Стефания').'-Стефания');
+        $this->assertEquals('N-Стефания', trim($this->object->getFullNameFormat('Стефания')).'-Стефания');
     }
     public function testSplDetect372()
     {
-        $this->assertEquals('N-Суламифь', $this->object->splitFullName('Суламифь').'-Суламифь');
+        $this->assertEquals('N-Суламифь', trim($this->object->getFullNameFormat('Суламифь')).'-Суламифь');
     }
     public function testSplDetect373()
     {
-        $this->assertEquals('N-Таисия', $this->object->splitFullName('Таисия').'-Таисия');
+        $this->assertEquals('N-Таисия', trim($this->object->getFullNameFormat('Таисия')).'-Таисия');
     }
     public function testSplDetect374()
     {
-        $this->assertEquals('N-Тамара', $this->object->splitFullName('Тамара').'-Тамара');
+        $this->assertEquals('N-Тамара', trim($this->object->getFullNameFormat('Тамара')).'-Тамара');
     }
     public function testSplDetect375()
     {
-        $this->assertEquals('N-Татьяна', $this->object->splitFullName('Татьяна').'-Татьяна');
+        $this->assertEquals('N-Татьяна', trim($this->object->getFullNameFormat('Татьяна')).'-Татьяна');
     }
     public function testSplDetect376()
     {
-        $this->assertEquals('N-Улла', $this->object->splitFullName('Улла').'-Улла');
+        $this->assertEquals('N-Улла', trim($this->object->getFullNameFormat('Улла')).'-Улла');
     }
     public function testSplDetect377()
     {
-        $this->assertEquals('N-Ульрика', $this->object->splitFullName('Ульрика').'-Ульрика');
+        $this->assertEquals('N-Ульрика', trim($this->object->getFullNameFormat('Ульрика')).'-Ульрика');
     }
     public function testSplDetect378()
     {
-        $this->assertEquals('N-Ульяна', $this->object->splitFullName('Ульяна').'-Ульяна');
+        $this->assertEquals('N-Ульяна', trim($this->object->getFullNameFormat('Ульяна')).'-Ульяна');
     }
     public function testSplDetect379()
     {
-        $this->assertEquals('N-Урсула', $this->object->splitFullName('Урсула').'-Урсула');
+        $this->assertEquals('N-Урсула', trim($this->object->getFullNameFormat('Урсула')).'-Урсула');
     }
     public function testSplDetect380()
     {
-        $this->assertEquals('N-Фаина', $this->object->splitFullName('Фаина').'-Фаина');
+        $this->assertEquals('N-Фаина', trim($this->object->getFullNameFormat('Фаина')).'-Фаина');
     }
     public function testSplDetect381()
     {
-        $this->assertEquals('N-Фатима', $this->object->splitFullName('Фатима').'-Фатима');
+        $this->assertEquals('N-Фатима', trim($this->object->getFullNameFormat('Фатима')).'-Фатима');
     }
     public function testSplDetect382()
     {
-        $this->assertEquals('N-Феба', $this->object->splitFullName('Феба').'-Феба');
+        $this->assertEquals('N-Феба', trim($this->object->getFullNameFormat('Феба')).'-Феба');
     }
     public function testSplDetect383()
     {
-        $this->assertEquals('N-Феодора', $this->object->splitFullName('Феодора').'-Феодора');
+        $this->assertEquals('N-Феодора', trim($this->object->getFullNameFormat('Феодора')).'-Феодора');
     }
     public function testSplDetect384()
     {
-        $this->assertEquals('N-Филлида', $this->object->splitFullName('Филлида').'-Филлида');
+        $this->assertEquals('N-Филлида', trim($this->object->getFullNameFormat('Филлида')).'-Филлида');
     }
     public function testSplDetect385()
     {
-        $this->assertEquals('N-Фрида', $this->object->splitFullName('Фрида').'-Фрида');
+        $this->assertEquals('N-Фрида', trim($this->object->getFullNameFormat('Фрида')).'-Фрида');
     }
     public function testSplDetect386()
     {
-        $this->assertEquals('N-Фёкла', $this->object->splitFullName('Фёкла').'-Фёкла');
+        $this->assertEquals('N-Фёкла', trim($this->object->getFullNameFormat('Фёкла')).'-Фёкла');
     }
     public function testSplDetect387()
     {
-        $this->assertEquals('N-Шарлотта', $this->object->splitFullName('Шарлотта').'-Шарлотта');
+        $this->assertEquals('N-Шарлотта', trim($this->object->getFullNameFormat('Шарлотта')).'-Шарлотта');
     }
     public function testSplDetect388()
     {
-        $this->assertEquals('N-Шейла', $this->object->splitFullName('Шейла').'-Шейла');
+        $this->assertEquals('N-Шейла', trim($this->object->getFullNameFormat('Шейла')).'-Шейла');
     }
     public function testSplDetect389()
     {
-        $this->assertEquals('N-Шона', $this->object->splitFullName('Шона').'-Шона');
+        $this->assertEquals('N-Шона', trim($this->object->getFullNameFormat('Шона')).'-Шона');
     }
     public function testSplDetect390()
     {
-        $this->assertEquals('N-Элеонора', $this->object->splitFullName('Элеонора').'-Элеонора');
+        $this->assertEquals('N-Элеонора', trim($this->object->getFullNameFormat('Элеонора')).'-Элеонора');
     }
     public function testSplDetect391()
     {
-        $this->assertEquals('N-Элина', $this->object->splitFullName('Элина').'-Элина');
+        $this->assertEquals('N-Элина', trim($this->object->getFullNameFormat('Элина')).'-Элина');
     }
     public function testSplDetect392()
     {
-        $this->assertEquals('N-Эльвира', $this->object->splitFullName('Эльвира').'-Эльвира');
+        $this->assertEquals('N-Эльвира', trim($this->object->getFullNameFormat('Эльвира')).'-Эльвира');
     }
     public function testSplDetect393()
     {
-        $this->assertEquals('N-Эми', $this->object->splitFullName('Эми').'-Эми');
+        $this->assertEquals('N-Эми', trim($this->object->getFullNameFormat('Эми')).'-Эми');
     }
     public function testSplDetect394()
     {
-        $this->assertEquals('N-Юлианна', $this->object->splitFullName('Юлианна').'-Юлианна');
+        $this->assertEquals('N-Юлианна', trim($this->object->getFullNameFormat('Юлианна')).'-Юлианна');
     }
     public function testSplDetect395()
     {
-        $this->assertEquals('N-Юлия', $this->object->splitFullName('Юлия').'-Юлия');
+        $this->assertEquals('N-Юлия', trim($this->object->getFullNameFormat('Юлия')).'-Юлия');
     }
     public function testSplDetect396()
     {
-        $this->assertEquals('N-Юния', $this->object->splitFullName('Юния').'-Юния');
+        $this->assertEquals('N-Юния', trim($this->object->getFullNameFormat('Юния')).'-Юния');
     }
     public function testSplDetect397()
     {
-        $this->assertEquals('N-Ярослава', $this->object->splitFullName('Ярослава').'-Ярослава');
+        $this->assertEquals('N-Ярослава', trim($this->object->getFullNameFormat('Ярослава')).'-Ярослава');
     }
 
 }
