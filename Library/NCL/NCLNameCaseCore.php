@@ -28,7 +28,18 @@ require_once NCL_DIR . '/NCLNameCaseWord.php';
  */
 class NCLNameCaseCore extends NCL
 {
-
+    /**
+     * Версия библиотеки
+     * @var string
+     */
+    protected $version = '0.4';
+    
+    /**
+     * Версия языкового файла
+     * @var string 
+     */
+    protected $languageBuild = '0';
+    
     /**
      * Готовность системы:
      * - Все слова идентифицированы (известо к какой части ФИО относится слово)
@@ -1094,6 +1105,24 @@ class NCLNameCaseCore extends NCL
     protected function detectNamePart(NCLNameCaseWord $word)
     {
         
+    }
+    
+    /**
+     * Возвращает версию библиотеки
+     * @return string версия библиотеки
+     */
+    public function version()
+    {
+        return $this->version;
+    }
+    
+    /**
+     * Возвращает версию использованого языкового файла
+     * @return string версия языкового файла
+     */
+    public function languageVersion()
+    {
+        return $this->languageBuild;
     }
 
 }
