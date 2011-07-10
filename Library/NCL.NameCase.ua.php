@@ -26,7 +26,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071016';
+    protected $languageBuild = '11071017';
     
     /**
      * Количество падежей в языке
@@ -620,7 +620,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
             $man+=0.5;
         }
 
-        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила')))
+        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила', 'опа')))
         {
             $woman+=0.5;
         }
