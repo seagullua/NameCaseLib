@@ -26,7 +26,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071120';
+    protected $languageBuild = '11071121';
     
     /**
      * Количество падежей в языке
@@ -233,7 +233,14 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $this->Rule(601);
             return true;
         }
-        elseif ($this->in($this->Last(1),'ср'))
+        //е перед ц выпадает
+        elseif ($this->Last(2)=='ец')
+        {
+            $this->wordForms($this->workingWord, array('ца', 'цу', 'ца', 'цом', 'це'), 2);
+            $this->Rule(604);
+            return true;
+        }
+        elseif ($this->in($this->Last(1),'цср'))
         {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
             $this->Rule(602);
@@ -635,7 +642,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
         //похоже на фамилию
-        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'де', 'ых', 'уз', 'ах', 'рг')))
+        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'де', 'ых', 'уз', 'ах', 'рг', 'ец')))
         {
             $second+=0.4;
         }
