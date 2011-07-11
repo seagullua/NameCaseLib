@@ -23,7 +23,7 @@ require_once NCL_DIR . '/NCLNameCaseWord.php';
  * абсолютно одинаковым. Содержит все функции для внешнего взаимодействия с библиотекой.
  * 
  * @author Андрей Чайка <bymer3@gmail.com>
- * @version 0.4
+ * @version 0.4.1
  * @package NameCaseLib
  */
 class NCLNameCaseCore extends NCL
@@ -32,7 +32,7 @@ class NCLNameCaseCore extends NCL
      * Версия библиотеки
      * @var string
      */
-    protected $version = '0.4';
+    protected $version = '0.4.1';
     
     /**
      * Версия языкового файла

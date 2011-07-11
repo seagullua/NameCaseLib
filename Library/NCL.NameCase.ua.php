@@ -17,7 +17,7 @@ require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
  * Система разделения фамилий имен и отчеств для украинского языка 
  * 
  * @author Андрей Чайка <bymer3@gmail.com>
- * @version 0.4
+ * @version 0.4.1
  * @package NameCaseLib
  */
 class NCLNameCaseUa extends NCLNameCaseCore
