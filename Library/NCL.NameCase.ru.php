@@ -26,7 +26,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071019';
+    protected $languageBuild = '11071120';
     
     /**
      * Количество падежей в языке
@@ -153,7 +153,14 @@ class NCLNameCaseRu extends NCLNameCaseCore
         if ($this->in($this->Last(1), 'ьй'))
         {
 
-            if ($this->Last(3, 1) == 'а' or $this->Last(2, 1) == 'е')
+            //Слова типа Воробей
+            if($this->Last(3) == 'бей')
+            {
+                $this->wordForms($this->workingWord, array('ья', 'ью', 'ья', 'ьем', 'ье'), 2);
+                $this->Rule(400);
+                return true;
+            }
+            elseif ($this->Last(3, 1) == 'а' or $this->Last(2, 1) == 'е')
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'е'), 1);
                 $this->Rule(401);
@@ -226,7 +233,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $this->Rule(601);
             return true;
         }
-        elseif ($this->Last(1) == 'р')
+        elseif ($this->in($this->Last(1),'ср'))
         {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
             $this->Rule(602);
@@ -628,12 +635,12 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
         //похоже на фамилию
-        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'де', 'ых', 'уз', 'ах')))
+        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'де', 'ых', 'уз', 'ах', 'рг')))
         {
             $second+=0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ева', 'ёва', 'ына', 'тых', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'тин', 'чий', 'ина', 'гай')))
+        if ($this->in($this->Last(3), array('ова', 'ева', 'ёва', 'ына', 'тых', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'тин', 'чий', 'ина', 'гай', 'кий', 'бей')))
         {
             $second+=0.4;
         }
