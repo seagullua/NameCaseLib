@@ -27,7 +27,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071220';
+    protected $languageBuild = '11071221';
     /**
      * Количество падежей в языке
      * @var int
@@ -288,7 +288,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
             //називному відмінку, у непрямих - о: Антона, Антонові                           
             //Чергування і -» о всередині
             $osLast = NCLStr::substr($osnova, -1, 1);
-            if ($osLast != 'й' and NCLStr::substr($osnova, -2, 1) == 'і' and !$this->in(NCLStr::substr(NCLStr::strtolower($osnova), -4, 4), array('світ', 'цвіт')) and !$this->inNames($this->workingWord, 'Гліб') and !$this->in($this->Last(2), array('ік')))
+            if ($osLast != 'й' and NCLStr::substr($osnova, -2, 1) == 'і' and !$this->in(NCLStr::substr(NCLStr::strtolower($osnova), -4, 4), array('світ', 'цвіт')) and !$this->inNames($this->workingWord, 'Гліб') and !$this->in($this->Last(2), array('ік', 'іч')))
             {
                 $osnova = NCLStr::substr($osnova, 0, NCLStr::strlen($osnova) - 2) . 'о' . NCLStr::substr($osnova, -1, 1);
             }
