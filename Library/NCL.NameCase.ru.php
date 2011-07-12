@@ -26,7 +26,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071121';
+    protected $languageBuild = '11071218';
     
     /**
      * Количество падежей в языке
@@ -422,7 +422,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     }
 
     /**
-     * Функция пытается применить цыпочку правил для мужских имен
+     * Функция пытается применить цепочку правил для мужских имен
      * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
     protected function manFirstName()
@@ -431,7 +431,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     }
 
     /**
-     * Функция пытается применить цыпочку правил для женских имен
+     * Функция пытается применить цепочку правил для женских имен
      * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
     protected function womanFirstName()
@@ -440,7 +440,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     }
 
     /**
-     * Функция пытается применить цыпочку правил для мужских фамилий
+     * Функция пытается применить цепочку правил для мужских фамилий
      * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
     protected function manSecondName()
@@ -449,7 +449,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     }
 
     /**
-     * Функция пытается применить цыпочку правил для женских фамилий
+     * Функция пытается применить цепочку правил для женских фамилий
      * @return boolean true - если было использовано правило из списка, false - если правило не было найденым
      */
     protected function womanSecondName()
@@ -575,7 +575,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $man+=0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'ёва', 'ына')))
+        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'ёва', 'ына', 'мин')))
         {
             $woman+=0.4;
         }
@@ -642,7 +642,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
         //похоже на фамилию
-        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'де', 'ых', 'уз', 'ах', 'рг', 'ец')))
+        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'ёк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'де', 'ых', 'уз', 'ах', 'рг', 'ец', 'юр')))
         {
             $second+=0.4;
         }
