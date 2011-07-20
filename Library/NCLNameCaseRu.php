@@ -27,7 +27,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11072011';
+    protected $languageBuild = '11072021';
     /**
      * Количество падежей в языке
      * @var int
@@ -160,7 +160,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
                 $this->Rule(400);
                 return true;
             }
-            elseif ($this->Last(3, 1) == 'а' or $this->Last(2, 1) == 'е')
+            elseif ($this->Last(3, 1) == 'а' or $this->in($this->Last(2, 1), 'ел'))
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'е'), 1);
                 $this->Rule(401);
@@ -240,7 +240,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $this->Rule(604);
             return true;
         }
-        elseif ($this->in($this->Last(1), 'цср'))
+        elseif ($this->in($this->Last(1), 'цсрш'))
         {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
             $this->Rule(602);
@@ -630,7 +630,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $father+=3;
         }
 
-        if ($this->in($this->Last(2), array('ик', 'ша')))
+        if ($this->in($this->Last(2), array('ша')))
         {
             $first+=0.5;
         }
