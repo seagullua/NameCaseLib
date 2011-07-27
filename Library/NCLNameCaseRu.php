@@ -27,7 +27,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11072715';
+    protected $languageBuild = '11072716';
     /**
      * Количество падежей в языке
      * @var int
@@ -280,7 +280,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $this->Rule(604);
             return true;
         }
-        elseif ($this->in($this->Last(1), 'цсршм'))
+        elseif ($this->in($this->Last(1), 'цсршмх'))
         {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
             $this->Rule(602);
@@ -746,7 +746,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         /**
          * Слова, которые заканчиваются на тин
          */
-        if($this->Last(3) == 'тин' and $this->Last(4, 1) == 'нст')
+        if($this->Last(3) == 'тин' and $this->in($this->Last(4, 1), 'нст'))
         {
             $first += 0.5;
         }
