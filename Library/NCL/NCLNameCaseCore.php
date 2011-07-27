@@ -28,18 +28,17 @@ require_once NCL_DIR . '/NCLNameCaseWord.php';
  */
 class NCLNameCaseCore extends NCL
 {
+
     /**
      * Версия библиотеки
      * @var string
      */
     protected $version = '0.4.1';
-    
     /**
      * Версия языкового файла
      * @var string 
      */
     protected $languageBuild = '0';
-    
     /**
      * Готовность системы:
      * - Все слова идентифицированы (известо к какой части ФИО относится слово)
@@ -142,6 +141,14 @@ class NCLNameCaseCore extends NCL
         $this->workingWord = $word;
         //Чистим кеш
         $this->workindLastCache = array();
+    }
+
+    /**
+     * Если не нужно склонять слово, делает результат таким же как и именительный падеж
+     */
+    protected function makeResultTheSame()
+    {
+        $this->lastResult = array_fill(0, $this->CaseCount, $this->workingWord);
     }
 
     /**
@@ -989,7 +996,7 @@ class NCLNameCaseCore extends NCL
         {
             $this->setGender($gender);
         }
-        
+
         return $this->getFormatted($caseNum, $format);
     }
 
@@ -1106,7 +1113,7 @@ class NCLNameCaseCore extends NCL
     {
         
     }
-    
+
     /**
      * Возвращает версию библиотеки
      * @return string версия библиотеки
@@ -1115,7 +1122,7 @@ class NCLNameCaseCore extends NCL
     {
         return $this->version;
     }
-    
+
     /**
      * Возвращает версию использованого языкового файла
      * @return string версия языкового файла

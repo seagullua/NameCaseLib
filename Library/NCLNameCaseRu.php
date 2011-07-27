@@ -220,10 +220,16 @@ class NCLNameCaseRu extends NCLNameCaseCore
                 $this->Rule(403);
                 return true;
             }
-            else
+            elseif(!$this->in($this->Last(2, 1), $this->vowels))
             {
                 $this->wordForms($this->workingWord, array('ого', 'ому', 'ого', 'им', 'ом'), 2);
                 $this->Rule(404);
+                return true;
+            }
+            else
+            {
+                $this->makeResultTheSame();
+                $this->Rule(405);
                 return true;
             }
         }
@@ -341,7 +347,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         if ($this->in($this->Last(3), $this->ovo) or $this->in($this->Last(2), $this->ih))
         {
             $this->Rule(8);
-            $this->lastResult = array_fill(0, $this->CaseCount, $this->workingWord);
+            $this->makeResultTheSame();
             return true;
         }
         return false;
