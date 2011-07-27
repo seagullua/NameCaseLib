@@ -64,8 +64,8 @@ class NCLNameCaseRu extends NCLNameCaseCore
         'в' => 'аь',
         'г' => 'а',
         'д' => 'ар',
-        'е' => 'бвгдйлмнря',
-        'ё' => 'бвгдйлмнря',
+        'е' => 'бвгдйлмня',
+        'ё' => 'бвгдйлмня',
         'ж' => '',
         'з' => 'а',
         'и' => 'гдйклмнопрсфя',
@@ -674,7 +674,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         {
             $first+=0.5;
         }
-        
+
         /**
          * буквы на которые никогда не закнчиваются имена
          */
@@ -682,18 +682,18 @@ class NCLNameCaseRu extends NCLNameCaseCore
         {
             $second += 0.3;
         }
-        
+
         /**
          * Используем массив характерных окончаний
          */
-        if(isset($this->splitSecondExclude[$this->Last(2, 1)]))
+        if (isset($this->splitSecondExclude[$this->Last(2, 1)]))
         {
-            if(!$this->in($this->Last(1), $this->splitSecondExclude[$this->Last(2, 1)]))
+            if (!$this->in($this->Last(1), $this->splitSecondExclude[$this->Last(2, 1)]))
             {
                 $second += 0.4;
             }
         }
-        
+
         /**
          * Не бывает имет с такими предпоследними буквами
          */
@@ -746,7 +746,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         /**
          * Слова, которые заканчиваются на тин
          */
-        if($this->Last(3) == 'тин' and $this->in($this->Last(4, 1), 'нст'))
+        if ($this->Last(3) == 'тин' and $this->in($this->Last(4, 1), 'нст'))
         {
             $first += 0.5;
         }
