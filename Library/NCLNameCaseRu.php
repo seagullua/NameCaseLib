@@ -280,7 +280,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $this->Rule(604);
             return true;
         }
-        elseif ($this->in($this->Last(1), 'цсршмх'))
+        elseif ($this->in($this->Last(1), 'цсршмхт'))
         {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
             $this->Rule(602);
@@ -695,6 +695,14 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
         /**
+         * Сохкращенные ласкательные имена типя Аня Галя и.т.д.
+         */
+        if ($this->Last(1) == 'я' and $this->in($this->Last(3, 1), $this->vowels))
+        {
+            $first += 0.5;
+        }
+
+        /**
          * Не бывает имет с такими предпоследними буквами
          */
         if ($this->in($this->Last(2, 1), 'жчщъэю'))
@@ -831,16 +839,24 @@ class NCLNameCaseRu extends NCLNameCaseCore
                 $second += 0.4;
             }
         }
-
+        
+        /**
+         * Имена типа Николай
+         */
+        if($this->Last(4) == 'олай')
+        {
+            $first += 0.6;
+        }
+        
         /**
          * Фамильные окончания
          */
-        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ук', 'як', 'ца', 'ун', 'ок', 'ая', 'га', 'ёк', 'ив', 'ус', 'ак', 'яр', 'уз', 'ах')))
+        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'ёв', 'ый', 'ын', 'ой', 'ук', 'як', 'ца', 'ун', 'ок', 'ая', 'га', 'ёк', 'ив', 'ус', 'ак', 'яр', 'уз', 'ах', 'ай')))
         {
             $second+=0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ева', 'ёва', 'ына', 'шен', 'мей', 'вка', 'шир', 'бан', 'чий', 'гай', 'кий', 'бей', 'чан', 'ган', 'ким', 'кан', 'мар')))
+        if ($this->in($this->Last(3), array('ова', 'ева', 'ёва', 'ына', 'шен', 'мей', 'вка', 'шир', 'бан', 'чий', 'кий', 'бей', 'чан', 'ган', 'ким', 'кан', 'мар')))
         {
             $second+=0.4;
         }
