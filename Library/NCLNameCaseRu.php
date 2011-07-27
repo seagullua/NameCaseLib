@@ -220,7 +220,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
                 $this->Rule(403);
                 return true;
             }
-            elseif(!$this->in($this->Last(2, 1), $this->vowels))
+            elseif (!$this->in($this->Last(2, 1), $this->vowels) or $this->Last(2, 1) == 'и')
             {
                 $this->wordForms($this->workingWord, array('ого', 'ому', 'ого', 'им', 'ом'), 2);
                 $this->Rule(404);
@@ -845,15 +845,15 @@ class NCLNameCaseRu extends NCLNameCaseCore
                 $second += 0.4;
             }
         }
-        
+
         /**
          * Имена типа Николай
          */
-        if($this->Last(4) == 'олай')
+        if ($this->Last(4) == 'олай')
         {
             $first += 0.6;
         }
-        
+
         /**
          * Фамильные окончания
          */
