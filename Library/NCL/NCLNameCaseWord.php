@@ -56,9 +56,9 @@ class NCLNameCaseWord
      * Содержит информацию о том, какие буквы в слове были большими, а какие мальникими:
      * - x - маленькая буква
      * - X - больная буква
-     * @var string 
+     * @var array 
      */
-    private $letterMask = '';
+    private $letterMask = array();
     
     /**
      * Содержит true, если все слово было в верхнем регистре и false, если не было

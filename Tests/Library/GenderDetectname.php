@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../../Library/NCL.NameCase.ru.php';
+require_once dirname(__FILE__) . '/../../Library/NCLNameCaseRu.php';
 
 
 class NCLNameCaseRuTest extends PHPUnit_Framework_TestCase
