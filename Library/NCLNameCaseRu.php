@@ -167,7 +167,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->Last(1) == "а")
         {
-            if ($this->inNames($this->workingWord, 'фра'))
+            if ($this->inNames($this->workingWord, array('фра', 'Дега')))
             {
                 $this->Rule(301);
                 $this->makeResultTheSame();
@@ -630,6 +630,11 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $man += 10;
         }
         
+        if ($this->inNames($this->workingWord, array('Бриджет', 'Элизабет', 'Маргарет', 'Джанет')))
+        {
+            $woman += 10;
+        }
+
         $word->setGender($man, $woman);
     }
 
@@ -801,7 +806,8 @@ class NCLNameCaseRu extends NCLNameCaseCore
 //Исключения
         if ($this->inNames($namepart, array('Лев', 'Яков', 'Вова', 'Маша', 'Ольга', 'Еремей',
             'Исак', 'Исаак', 'Ева', 'Ирина', 'Элькин', 'Мерлин', 'Макс', 'Алекс', 'Франц', 'Питер', 'Пауль', 'Вильям', 'Уильям',
-            'Альфонс', 'Ганс', 'Франс', 'Мариа'/*Альфонс Мариа Муха*/, 'Филиппо')))
+            'Альфонс', 'Ганс', 'Франс', 'Мариа'/*Альфонс Мариа Муха*/, 'Филиппо',
+            'Бриджет', 'Элизабет', 'Маргарет', 'Джанет'/*женские иностранные*/)))
         {
             $first+=10;
         }
