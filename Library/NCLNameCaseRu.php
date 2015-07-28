@@ -113,13 +113,13 @@ class NCLNameCaseRu extends NCLNameCaseCore
             if ($this->Last(2, 1) != "и")
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'е'), 1);
-                $this->Rule(101);
+                $this->Rule(102);
                 return true;
             }
             else
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'и'), 1);
-                $this->Rule(102);
+                $this->Rule(103);
                 return true;
             }
         }
@@ -174,7 +174,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->Last(1) == "а")
         {
-            if ($this->inNames($this->workingWord, array('фра', 'Дега')))
+            if ($this->inNames($this->workingWord, array('фра', 'Дега', 'Андреа')))
             {
                 $this->Rule(301);
                 $this->makeResultTheSame();
@@ -612,7 +612,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $man+=0.01;
         }
 
-        if ($this->in($this->Last(3), array('лья', 'вва', 'ока', 'ука', 'ита', 'эль'/*Рафаэль, Габриэль*/)))
+        if ($this->in($this->Last(3), array('лья', 'вва', 'ока', 'ука', 'ита', 'эль'/*Рафаэль, Габриэль*/, 'реа'/*Андреа*/)))
         {
             $man+=0.2;
         }
@@ -813,7 +813,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
 //Исключения
         if ($this->inNames($namepart, array('Лев', 'Яков', 'Вова', 'Маша', 'Ольга', 'Еремей',
             'Исак', 'Исаак', 'Ева', 'Ирина', 'Элькин', 'Мерлин', 'Макс', 'Алекс', 'Франц', 'Питер', 'Пауль', 'Вильям', 'Уильям',
-            'Альфонс', 'Ганс', 'Франс', 'Мариа'/*Альфонс Мариа Муха*/, 'Филиппо',
+            'Альфонс', 'Ганс', 'Франс', 'Мариа'/*Альфонс Мариа Муха*/, 'Филиппо', 'Андреа',
             'Бриджет', 'Элизабет', 'Маргарет', 'Джанет'/*женские иностранные*/)))
         {
             $first+=10;
