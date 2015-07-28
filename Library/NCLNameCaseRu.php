@@ -103,6 +103,13 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->in($this->Last(1), 'ьй'))
         {
+            if ($this->inNames($this->workingWord, array('Дель')))
+            {
+                $this->Rule(101);
+                $this->makeResultTheSame();
+                return true;
+            }
+
             if ($this->Last(2, 1) != "и")
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'е'), 1);
