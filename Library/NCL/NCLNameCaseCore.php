@@ -612,13 +612,22 @@ class NCLNameCaseCore extends NCL
 				$cnt=count($cur_words);
 				foreach ($cur_words as $k=>$cur_word){
 					$is_norm_rules=true;
+
 					$o_ncw=new NCLNameCaseWord($cur_word);
 					if ( $name_part_letter=='S' && $cnt>1 && $k<$cnt-1 ){
 						//если первая часть фамилии тоже фамилия, то склоняем по общим правилам
 						//иначе не склоняется
-						$o_nc = new NCLNameCaseRu();
-						$o_nc->detectNamePart( $o_ncw );
-						$is_norm_rules=( $o_ncw->getNamePart()==$name_part_letter );
+
+						$exclusion=array('тулуз');//исключения
+						$cur_word_=mb_strtolower($cur_word);
+						if ( !in_array($cur_word_, $exclusion ) ){
+							$o_nc = new NCLNameCaseRu();
+							$o_nc->detectNamePart( $o_ncw );
+							$is_norm_rules=( $o_ncw->getNamePart()=='S' );
+						}
+						else {
+							$is_norm_rules=false;
+						}
 					}
 
 					$this->setWorkingWord($cur_word);
