@@ -264,7 +264,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         if ($this->Last(1) == 'к')
         {
 //Если перед слово на ок, то нужно убрать о
-            if ($this->Last(2, 1) == 'о')
+						if ($this->Last(4)=='енок' || $this->Last(4)=='ёнок')//Поллок
             {
                 $this->wordForms($this->workingWord, array('ка', 'ку', 'ка', 'ком', 'ке'), 2);
                 $this->Rule(501);
