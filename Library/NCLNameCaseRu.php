@@ -544,7 +544,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * @return boolean true - если слово было успешно изменено, false - если не получилось этого сделать
      */
     protected function manFatherName()
-    {
+    { 
 //Проверяем действительно ли отчество
         if ($this->inNames($this->workingWord, 'Ильич'))
         {
@@ -647,6 +647,12 @@ class NCLNameCaseRu extends NCLNameCaseCore
         {
             $woman += 10;
         }
+
+				//Исключение для Берил Кук, которая женщина
+				if ($this->inNames($this->workingWord, array('Берил')))
+				{
+						$woman += 0.05;
+				}
 
         $word->setGender($man, $woman);
     }
