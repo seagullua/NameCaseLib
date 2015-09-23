@@ -603,7 +603,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $man+=0.02;
         }
 
-        if ($this->in($this->Last(2), array('вь', 'фь', 'ль')))
+				if ($this->in($this->Last(2), array('вь', 'фь', 'ль', 'на')))
         {
             $woman+=0.1;
         }
@@ -941,7 +941,8 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $second+=0.4;
         }
 
-				if ($this->inNames($namepart, array('да'))){
+				//исключения и частички
+				if ($this->inNames($namepart, array('да', 'валадон'))){
 					$second += 10;
 				}
 
