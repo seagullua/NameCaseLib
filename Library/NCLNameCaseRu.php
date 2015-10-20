@@ -369,8 +369,9 @@ class NCLNameCaseRu extends NCLNameCaseCore
      */
     protected function manRule8()
     {
-        if ($this->in($this->Last(3), $this->ovo) or $this->in($this->Last(2), $this->ih))
+				if ($this->in($this->Last(3), $this->ovo) || $this->in($this->Last(2), $this->ih))
         {
+						if ( $this->inNames($this->workingWord, array('рерих')) ) return false;
             $this->Rule(8);
             $this->makeResultTheSame();
             return true;
@@ -834,7 +835,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
 //Исключения
         if ($this->inNames($namepart, array('Лев', 'Яков', 'Вова', 'Маша', 'Ольга', 'Еремей',
             'Исак', 'Исаак', 'Ева', 'Ирина', 'Элькин', 'Мерлин', 'Макс', 'Алекс', 'Франц', 'Питер', 'Пауль', 'Вильям', 'Уильям',
-						'Альфонс', 'Ганс', 'Франс', 'Мариа'/*Альфонс Мариа Муха*/, 'Филиппо', 'Андреа', 'Корнелис', 'Фрэнк', 'Леонардо', 'Джеймс', 'Отто',
+						'Альфонс', 'Ганс', 'Франс', 'Мариа'/*Альфонс Мариа Муха*/, 'Филиппо', 'Андреа', 'Корнелис', 'Фрэнк', 'Леонардо', 'Джеймс', 'Отто', 'жан-пьер',
             'Бриджет', 'Элизабет', 'Маргарет', 'Джанет'/*женские иностранные*/)))
         {
             $first+=10;
