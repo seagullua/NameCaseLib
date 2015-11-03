@@ -88,6 +88,8 @@ class NCLNameCaseCore extends NCL
 		 */
 		private $index = array();
 
+		public $gender_koef=0;//вероятность автоопредления пола [0..10]. Достаточно точно при 0.1
+
 		/**
 		 * Метод очищает результаты последнего склонения слова. Нужен при склонении нескольких слов.
 		 */
@@ -516,9 +518,32 @@ class NCLNameCaseCore extends NCL
 		public function genderAutoDetect()
 		{
 				$this->prepareEverything();
-				if (isset($this->words[0]))
+
+				if (!empty($this->words)){
+					$n=-1;
+					$max_koef=-1;
+					foreach ($this->words as $k=>$word){
+						$genders=$word->getGender();
+						$min=min( $genders );
+						$max=max( $genders );
+						$koef=$max-$min;
+						if ($koef>$max_koef) {
+							$max_koef=$koef;
+							$n=$k;
+						}
+					}
+
+					if ($n>=0){
+						if (isset($this->words[$n]))
 				{
-						return $this->words[0]->gender();
+							$genders=$this->words[$n]->getGender();
+							$min=min( $genders );
+							$max=max( $genders );
+							$this->gender_koef=$max-$min;
+
+							return $this->words[$n]->gender();
+						}
+					}
 				}
 				return false;
 		}

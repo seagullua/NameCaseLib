@@ -200,7 +200,7 @@ class NCLNameCaseWord
 		{
 				if (!$this->genderSolved)
 				{
-						if ($this->genderMan > $this->genderWoman)
+						if ($this->genderMan >= $this->genderWoman)
 						{
 								$this->genderSolved = NCL::$MAN;
 						}
