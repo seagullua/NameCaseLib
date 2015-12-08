@@ -182,7 +182,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->Last(1) == "а")
         {
-            if ($this->inNames($this->workingWord, array('фра', 'Дега', 'Андреа')))
+						if ($this->inNames($this->workingWord, array('фра', 'Дега', 'Андреа', 'Сёра', 'Сера')))
             {
                 $this->Rule(301);
                 $this->makeResultTheSame();
