@@ -17,7 +17,7 @@ require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
  * Система разделения фамилий имен и отчеств для украинского языка 
  * 
  * @author Андрей Чайка <bymer3@gmail.com>
- * @version 0.4
+ * @version 0.4.1
  * @package NameCaseLib
  */
 class NCLNameCaseUa extends NCLNameCaseCore
@@ -27,7 +27,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
      * Версия языкового файла
      * @var string 
      */
-    protected $languageBuild = '11071017';
+    protected $languageBuild = '11071222';
     /**
      * Количество падежей в языке
      * @var int
@@ -79,6 +79,20 @@ class NCLNameCaseUa extends NCLNameCaseCore
             case 'х': return 'с';
         }
         return $letter;
+    }
+
+    /**
+     * Перевіряє чи символ є апострофом чи не є
+     * @param string(1) $char симпол для перевірки
+     * @return bool true якщо символ є апострофом 
+     */
+    private function isApostrof($char)
+    {
+        if ($this->in($char, ' ' . $this->consonant . $this->vowels))
+        {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -274,7 +288,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
             //називному відмінку, у непрямих - о: Антона, Антонові                           
             //Чергування і -» о всередині
             $osLast = NCLStr::substr($osnova, -1, 1);
-            if ($osLast != 'й' and NCLStr::substr($osnova, -2, 1) == 'і' and !$this->in(NCLStr::substr(NCLStr::strtolower($osnova), -4, 4), array('світ', 'цвіт')) and !$this->inNames($this->workingWord, 'Гліб'))
+            if ($osLast != 'й' and NCLStr::substr($osnova, -2, 1) == 'і' and !$this->in(NCLStr::substr(NCLStr::strtolower($osnova), -4, 4), array('світ', 'цвіт')) and !$this->inNames($this->workingWord, 'Гліб') and !$this->in($this->Last(2), array('ік', 'іч')))
             {
                 $osnova = NCLStr::substr($osnova, 0, NCLStr::strlen($osnova) - 2) . 'о' . NCLStr::substr($osnova, -1, 1);
             }
@@ -440,7 +454,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
         elseif ($this->Last(1) == 'я')
         {
 
-            if ($this->in($BeforeLast, $this->vowels))
+            if ($this->in($BeforeLast, $this->vowels) or $this->isApostrof($BeforeLast))
             {
                 $this->wordForms($this->workingWord, array('ї', 'ї', 'ю', 'єю', 'ї', 'є'), 1);
                 $this->Rule(103);
@@ -519,7 +533,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
         }
 
         //Ті що на ськ
-        if ($this->Last(1) == 'а' and ($this->in($this->Last(3, 2), array('ов', 'ев', 'єв', 'ив', 'ьк', 'тн', 'рн', 'ин'))))
+        if ($this->Last(1) == 'а' and ($this->in($this->Last(2, 1), 'чнв') or $this->in($this->Last(3, 2), array('ьк'))))
         {
             $this->wordForms($this->workingWord, array($BeforeLast . 'ої', $BeforeLast . 'ій', $BeforeLast . 'у', $BeforeLast . 'ою', $BeforeLast . 'ій', $BeforeLast . 'о'), 2);
             $this->Rule(302);
@@ -664,7 +678,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
             $man+=0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'єва', 'іна')))
+        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'єва', 'іна', 'мін')))
         {
             $woman+=0.4;
         }
@@ -725,23 +739,23 @@ class NCLNameCaseUa extends NCLNameCaseCore
         }
 
         //Исключения
-        if ($this->inNames($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь', 'Микола', 'Мая', 'Англеліна', 'Елькін')))
+        if ($this->inNames($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь', 'Микола', 'Мая', 'Англеліна', 'Елькін', 'Мерлін')))
         {
             $first+=10;
         }
 
         //похоже на фамилию
-        if ($this->in($this->Last(2), array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх', 'ут', 'ча', 'ул', 'вк', 'зь', 'уц', 'їн', 'де', 'уз' /* {endings_name2} */)))
+        if ($this->in($this->Last(2), array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх', 'ут', 'ча', 'ул', 'вк', 'зь', 'уц', 'їн', 'де', 'уз', 'юр', 'ік', 'іч', 'ро' /* {endings_name2} */)))
         {
             $second+=0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ева', 'єва', 'тих', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'чий', 'іна', 'їна', 'ька', 'ань', 'ива', 'аль', 'ура', 'ран', 'ало', 'ола', 'кур', 'оба', 'оль', 'нта', 'зій', 'ґан', 'іло', 'шта', 'юпа', 'рна', 'бла', 'еїн', 'има', 'мар', 'кар', 'оха', 'чур', 'ниш', 'ета', 'тна', 'зур', 'нір', 'йма', 'орж', 'рба', 'іла', 'лас', 'дід', 'роз', 'аба', 'лест', 'мара', 'обка', 'рока', 'сика', 'одна', 'нчар', 'вата', 'ндар', 'грій' /* {endings_name3} */)))
+        if ($this->in($this->Last(3), array('ова', 'ева', 'єва', 'тих', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'чий', 'іна', 'їна', 'ька', 'ань', 'ива', 'аль', 'ура', 'ран', 'ало', 'ола', 'кур', 'оба', 'оль', 'нта', 'зій', 'ґан', 'іло', 'шта', 'юпа', 'рна', 'бла', 'еїн', 'има', 'мар', 'кар', 'оха', 'чур', 'ниш', 'ета', 'тна', 'зур', 'нір', 'йма', 'орж', 'рба', 'іла', 'лас', 'дід', 'роз', 'аба', 'чан', 'ган' /* {endings_name3} */)))
         {
             $second+=0.4;
         }
 
-        if ($this->in($this->Last(4), array('ьник', 'нчук', 'тник', 'кирь', 'ский', 'шена', 'шина', 'вина', 'нина', 'гана', 'гана', 'хній', 'зюба', 'орош', 'орон', 'сило', 'руба' /* {endings_name4} */)))
+        if ($this->in($this->Last(4), array('ьник', 'нчук', 'тник', 'кирь', 'ский', 'шена', 'шина', 'вина', 'нина', 'гана', 'гана', 'хній', 'зюба', 'орош', 'орон', 'сило', 'руба', 'лест', 'мара', 'обка', 'рока', 'сика', 'одна', 'нчар', 'вата', 'ндар', 'грій' /* {endings_name4} */)))
         {
             $second+=0.4;
         }

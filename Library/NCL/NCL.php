@@ -10,7 +10,7 @@
  * - индексы всех падежей
  * 
  * @author Андрей Чайка <bymer3@gmail.com>
- * @version 0.4
+ * @version 0.4.1
  * @package NameCaseLib
  */
 class NCL

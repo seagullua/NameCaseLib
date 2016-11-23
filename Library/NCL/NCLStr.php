@@ -8,7 +8,7 @@
  * Класс содержит функции для работы со строками, которые используются в NCLNameCaseLib
  * 
  * @author Андрей Чайка <bymer3@gmail.com>
- * @version 0.4
+ * @version 0.4.1
  * @package NameCaseLib
  */
 class NCLStr
