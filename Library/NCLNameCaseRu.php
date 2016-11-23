@@ -52,7 +52,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
      * Окончания имен/фамилий, который не склоняются
      * @var array 
      */
-    private $ih = array('их', 'ых', 'ко');
+    private $ih = array('их', 'ых', 'ко', 'уа'/*Бенуа, Франсуа*/);
     /**
      * Список окончаний характерных для фамилий 
      * По шаблону {letter}* где * любой символ кроме тех, что в {exclude}
@@ -94,6 +94,14 @@ class NCLNameCaseRu extends NCLNameCaseCore
         'я' => 'нс'
     );
 
+		private $names_man=array('Вова', 'Анри', 'Питер', 'Пауль', 'Франц', 'Вильям', 'Уильям',
+				'Альфонс', 'Ганс', 'Франс', 'Филиппо', 'Андреа', 'Корнелис', 'Фрэнк', 'Леонардо',
+				'Джеймс', 'Отто', 'жан-пьер', 'Джованни', 'Джозеф', 'Педро', 'Адольф', 'Уолтер',
+				'Антонио', 'Якоб', 'Эсташ', 'Адрианс', 'Франческо', 'Доменико', 'Ханс', 'Гун',
+				'Шарль', 'Хендрик', 'Амброзиус', 'Таддео', 'Фердинанд', 'Джошуа', 'Изак', 'Иоганн',
+				'Фридрих', 'Эмиль', 'Умберто', 'Франсуа', 'Ян', 'Эрнст', 'Георг', 'Карл'
+		);
+
     /**
      * Мужские имена, оканчивающиеся на любой ь и -й, 
      * скло­няются так же, как обычные существительные мужского рода
@@ -103,16 +111,23 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->in($this->Last(1), 'ьй'))
         {
+            if ($this->inNames($this->workingWord, array('Дель')))
+            {
+                $this->Rule(101);
+                $this->makeResultTheSame();
+                return true;
+            }
+
             if ($this->Last(2, 1) != "и")
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'е'), 1);
-                $this->Rule(101);
+                $this->Rule(102);
                 return true;
             }
             else
             {
                 $this->wordForms($this->workingWord, array('я', 'ю', 'я', 'ем', 'и'), 1);
-                $this->Rule(102);
+                $this->Rule(103);
                 return true;
             }
         }
@@ -140,10 +155,16 @@ class NCLNameCaseRu extends NCLNameCaseCore
                 $this->Rule(202);
                 return true;
             }
+            elseif ($this->inNames($this->workingWord, 'ван'))
+            {
+                $this->Rule(203);
+                $this->makeResultTheSame();
+                return true;
+            }
             else
             {
                 $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
-                $this->Rule(203);
+                $this->Rule(204);
                 return true;
             }
         }
@@ -161,16 +182,22 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->Last(1) == "а")
         {
-            if (!$this->in($this->Last(2, 1), 'кшгх'))
+						if ($this->inNames($this->workingWord, array('фра', 'Дега', 'Андреа', 'Сёра', 'Сера')))
+            {
+                $this->Rule(301);
+                $this->makeResultTheSame();
+                return true;
+            }
+            elseif (!$this->in($this->Last(2, 1), 'кшгх'))
             {
                 $this->wordForms($this->workingWord, array('ы', 'е', 'у', 'ой', 'е'), 1);
-                $this->Rule(301);
+                $this->Rule(302);
                 return true;
             }
             else
             {
                 $this->wordForms($this->workingWord, array('и', 'е', 'у', 'ой', 'е'), 1);
-                $this->Rule(302);
+                $this->Rule(303);
                 return true;
             }
         }
@@ -245,13 +272,13 @@ class NCLNameCaseRu extends NCLNameCaseCore
         if ($this->Last(1) == 'к')
         {
 //Если перед слово на ок, то нужно убрать о
-            if ($this->Last(2, 1) == 'о')
+						if ($this->Last(4)=='енок' || $this->Last(4)=='ёнок')//Поллок
             {
                 $this->wordForms($this->workingWord, array('ка', 'ку', 'ка', 'ком', 'ке'), 2);
                 $this->Rule(501);
                 return true;
             }
-            if ($this->Last(2, 1) == 'е')
+						if ($this->Last(2, 1) == 'е' && !in_array($this->Last(3, 1), array('р')))//Лотрек
             {
                 $this->wordForms($this->workingWord, array('ька', 'ьку', 'ька', 'ьком', 'ьке'), 2);
                 $this->Rule(502);
@@ -309,30 +336,36 @@ class NCLNameCaseRu extends NCLNameCaseCore
     {
         if ($this->Last(1) == "а")
         {
+						if ($this->inNames($this->workingWord, array('да')))
+						{
+							$this->Rule(701);
+							$this->makeResultTheSame();
+							return true;
+						}
 //Если основа на ш, то нужно и, ей
             if ($this->Last(2, 1) == 'ш')
             {
                 $this->wordForms($this->workingWord, array('и', 'е', 'у', 'ей', 'е'), 1);
-                $this->Rule(701);
+								$this->Rule(702);
                 return true;
             }
             elseif ($this->in($this->Last(2, 1), 'хкг'))
             {
                 $this->wordForms($this->workingWord, array('и', 'е', 'у', 'ой', 'е'), 1);
-                $this->Rule(702);
+								$this->Rule(703);
                 return true;
             }
             else
             {
                 $this->wordForms($this->workingWord, array('ы', 'е', 'у', 'ой', 'е'), 1);
-                $this->Rule(703);
+								$this->Rule(704);
                 return true;
             }
         }
         elseif ($this->Last(1) == "я")
         {
             $this->wordForms($this->workingWord, array('ой', 'ой', 'ую', 'ой', 'ой'), 2);
-            $this->Rule(704);
+						$this->Rule(705);
             return true;
         }
         return false;
@@ -344,8 +377,9 @@ class NCLNameCaseRu extends NCLNameCaseCore
      */
     protected function manRule8()
     {
-        if ($this->in($this->Last(3), $this->ovo) or $this->in($this->Last(2), $this->ih))
+				if ($this->in($this->Last(3), $this->ovo) || $this->in($this->Last(2), $this->ih))
         {
+						if ( $this->inNames($this->workingWord, array('рерих')) ) return false;
             $this->Rule(8);
             $this->makeResultTheSame();
             return true;
@@ -473,6 +507,17 @@ class NCLNameCaseRu extends NCLNameCaseCore
      */
     protected function manFirstName()
     {
+        if ($this->inNames($this->workingWord, array('Старший', 'Младший')))
+        {
+            $this->wordForms($this->workingWord, array('его', 'ему', 'его', 'им', 'ем'), 2);
+            return true;
+        }
+        if ($this->inNames($this->workingWord, array('Мариа')))
+        {
+            //Альфонс Мария Муха
+            $this->wordForms($this->workingWord, array('и', 'и', 'ю', 'ей', 'ии'), 1);
+            return true;
+        }
         return $this->RulesChain('man', array(1, 2, 3));
     }
 
@@ -504,11 +549,11 @@ class NCLNameCaseRu extends NCLNameCaseCore
     }
 
     /**
-     * Функция склоняет мужский отчества
+     * Функция склоняет мужские отчества
      * @return boolean true - если слово было успешно изменено, false - если не получилось этого сделать
      */
     protected function manFatherName()
-    {
+    { 
 //Проверяем действительно ли отчество
         if ($this->inNames($this->workingWord, 'Ильич'))
         {
@@ -554,7 +599,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         {
             $man+=0.9;
         }
-        if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп')))
+				if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'по'/*Филиппо*/, 'до'/*Леонардо*/, 'др', 'рт')))
         {
             $man+=0.3;
         }
@@ -567,7 +612,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $man+=0.02;
         }
 
-        if ($this->in($this->Last(2), array('вь', 'фь', 'ль')))
+				if ($this->in($this->Last(2), array('вь', 'фь', 'ль', 'на')))
         {
             $woman+=0.1;
         }
@@ -582,7 +627,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $man+=0.01;
         }
 
-        if ($this->in($this->Last(3), array('лья', 'вва', 'ока', 'ука', 'ита')))
+        if ($this->in($this->Last(3), array('лья', 'вва', 'ока', 'ука', 'ита', 'эль'/*Рафаэль, Габриэль*/, 'реа'/*Андреа*/)))
         {
             $man+=0.2;
         }
@@ -592,7 +637,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $woman+=0.15;
         }
 
-        if ($this->in($this->Last(3), array('лия', 'ния', 'сия', 'дра', 'лла', 'кла', 'опа')))
+        if ($this->in($this->Last(3), array('лия', 'ния', 'сия', 'дра', 'лла', 'кла', 'опа', 'вия')))
         {
             $woman+=0.5;
         }
@@ -602,11 +647,22 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $woman+=0.5;
         }
         
-        if ($this->inNames($this->workingWord, 'Вова'))
+				if ($this->inNames($this->workingWord, $this->names_man))
         {
             $man += 10;
         }
         
+				if ($this->inNames($this->workingWord, array('Бриджет', 'Элизабет', 'Маргарет', 'Джанет', 'Жаклин', 'Эвелин')))
+        {
+            $woman += 10;
+        }
+
+				//Исключение для Берил Кук, которая женщина
+				if ($this->inNames($this->workingWord, array('Берил')))
+				{
+						$woman += 0.05;
+				}
+
         $word->setGender($man, $woman);
     }
 
@@ -686,13 +742,27 @@ class NCLNameCaseRu extends NCLNameCaseCore
             $first+=0.5;
         }
 
+        if ($this->in($this->Last(3), array('эль'/*Рафаэль, Габриэль*/)))
+        {
+            $first+=0.5;
+        }
+
         /**
-         * буквы на которые никогда не закнчиваются имена
+				 * буквы на которые никогда не заканчиваются имена
          */
         if ($this->in($this->Last(1), 'еёжхцочшщъыэю'))
         {
+					/**
+					 * Просто исключения
+					 */
+					if ($this->inNames($namepart, array('Мауриц')))
+					{
+						$first += 10;
+					}
+					else {
             $second += 0.3;
-        }
+          }
+				}
 
         /**
          * Используем массив характерных окончаний
@@ -706,7 +776,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
         /**
-         * Сохкращенные ласкательные имена типя Аня Галя и.т.д.
+         * Сокращенные ласкательные имена типя Аня Галя и.т.д.
          */
         if ($this->Last(1) == 'я' and $this->in($this->Last(3, 1), $this->vowels))
         {
@@ -714,7 +784,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
         /**
-         * Не бывает имет с такими предпоследними буквами
+         * Не бывает имен с такими предпоследними буквами
          */
         if ($this->in($this->Last(2, 1), 'жчщъэю'))
         {
@@ -771,7 +841,12 @@ class NCLNameCaseRu extends NCLNameCaseCore
         }
 
 //Исключения
-        if ($this->inNames($namepart, array('Лев', 'Яков', 'Вова', 'Маша', 'Ольга', 'Еремей', 'Исак', 'Исаак', 'Ева', 'Ирина', 'Элькин', 'Мерлин')))
+        if ($this->inNames($namepart, array('Лев', 'Яков', 'Вова', 'Маша', 'Ольга', 'Еремей',
+						'Исак', 'Исаак', 'Ева', 'Ирина', 'Элькин', 'Мерлин', 'Макс', 'Алекс',
+						'Мариа'/*Альфонс Мариа Муха*/,
+						'Бриджет', 'Элизабет', 'Маргарет', 'Джанет', 'Жаклин', 'Эвелин'/*женские иностранные*/))
+						|| $this->inNames($namepart, $this->names_man)
+						)
         {
             $first+=10;
         }
@@ -838,7 +913,7 @@ class NCLNameCaseRu extends NCLNameCaseCore
             /**
              * Исключения
              */
-            elseif ($this->inNames($namepart, array('Мальвина', 'Антонина', 'Альбина', 'Агриппина', 'Фаина', 'Карина', 'Марина', 'Валентина', 'Калина', 'Аделина', 'Алина', 'Ангелина', 'Галина', 'Каролина', 'Павлина', 'Полина', 'Элина', 'Мина', 'Нина')))
+            elseif ($this->inNames($namepart, array('Мальвина', 'Антонина', 'Альбина', 'Агриппина', 'Фаина', 'Карина', 'Марина', 'Валентина', 'Калина', 'Аделина', 'Алина', 'Ангелина', 'Галина', 'Каролина', 'Павлина', 'Полина', 'Элина', 'Мина', 'Нина', 'Дина')))
             {
                 $first+=10;
             }
@@ -876,6 +951,11 @@ class NCLNameCaseRu extends NCLNameCaseCore
         {
             $second+=0.4;
         }
+
+				//исключения и частички
+				if ($this->inNames($namepart, array('да', 'валадон', 'Данбар'))){
+					$second += 10;
+				}
 
 
         $max = max(array($first, $second, $father));
