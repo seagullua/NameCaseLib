@@ -22,7 +22,7 @@ composer require nazbav/name-case-lib "dev-master"
 Or, you may add
 
 ```
-"nazbav/name-case-libn": "dev-master"
+"nazbav/name-case-lib": "dev-master"
 ```
 
 to the require section of your `composer.json` file and execute `php composer.phar update`.
