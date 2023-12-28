@@ -5,6 +5,31 @@ NameCaseLib — библиотека PHP5, предназначенная для
 - Демонстрация работы - http://namecaselib.com/case/
 - Документация - http://namecaselib.com/book/
 
+
+Installation
+------------
+
+### Install With Composer
+
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
+```
+composer require nazbav/name-case-lib "dev-master"
+```
+
+Or, you may add
+
+```
+"nazbav/name-case-libn": "dev-master"
+```
+
+to the require section of your `composer.json` file and execute `php composer.phar update`.
+
+Change Log
+------------
+
 ## 0.4.2 (2023-12-28) (@nazbav)
 - Delete includes
 - Add PSR-4 support
