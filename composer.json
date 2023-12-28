@@ -1,0 +1,25 @@
+{
+  "name": "nazbav/name-case-lib",
+  "description": "NameCaseLib — библиотека PHP5, предназначенная для автоматического склонения ФИО в русском и украинском языках. Уникальная особенность состоит в том, что библиотека содержит одинаковые методы для работы с ФИО на русском и украинском языках.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "varsion": "0.4.2",
+  "authors": [
+    {
+      "name": "Andriy Chaika",
+      "email": "andriy@chaika.in.ua"
+    },
+    {
+      "name": "Rabotyahoff",
+      "homepage": "https://github.com/Rabotyahoff"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "seagullua\\NameCaseLib\\": "Library/"
+    }
+  },
+  "require": {
+    "php": ">=5.6"
+  }
+}

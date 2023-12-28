@@ -5,6 +5,10 @@ NameCaseLib — библиотека PHP5, предназначенная для
 - Демонстрация работы - http://namecaselib.com/case/
 - Документация - http://namecaselib.com/book/
 
+## 0.4.2 (2023-12-28) (@nazbav)
+- Delete includes
+- Add PSR-4 support
+
 ## 0.4.1 (2016-11-23)
 - Rules updates (5 years of work)
 - Any pull requests with the new rules updates will be merged now
