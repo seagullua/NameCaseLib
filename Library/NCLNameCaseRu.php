@@ -4,6 +4,7 @@ namespace seagullua\NameCaseLib;
 
 use seagullua\NameCaseLib\NCL\NCLNameCaseCore;
 use seagullua\NameCaseLib\NCL\NCLNameCaseWord;
+use seagullua\NameCaseLib\NCL\NCLStr;
 
 /**
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
