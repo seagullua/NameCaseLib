@@ -30,6 +30,10 @@ to the require section of your `composer.json` file and execute `php composer.ph
 Change Log
 ------------
 
+
+## 0.4.3 (2024-02-17) (@vadykoo)
+- use NCLStr; for Ukrainian language, the same as for Russian #1
+
 ## 0.4.2 (2023-12-28) (@nazbav)
 - Delete includes
 - Add PSR-4 support
