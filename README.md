@@ -30,6 +30,8 @@ to the require section of your `composer.json` file and execute `php composer.ph
 Change Log
 ------------
 
+## 0.4.4 (2024-02-17) (@nazbav)
+- remove version field
 
 ## 0.4.3 (2024-02-17) (@vadykoo)
 - use NCLStr; for Ukrainian language, the same as for Russian #1
