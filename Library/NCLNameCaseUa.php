@@ -13,6 +13,7 @@ namespace seagullua\NameCaseLib;
 
 use seagullua\NameCaseLib\NCL\NCLNameCaseCore;
 use seagullua\NameCaseLib\NCL\NCLNameCaseWord;
+use seagullua\NameCaseLib\NCL\NCLStr;
 
 /**
  * <b>NCL NameCase Ukranian Language</b>
