@@ -242,6 +242,15 @@ class NCLNameCaseRu extends NCLNameCaseCore
     protected function manRule5()
     {
         if ($this->Last(1) == 'к') {
+//copy fork https://github.com/seagullua/NameCaseLib/pull/16
+// https://www.analizfamilii.ru/Gudachek/skloneniye.html
+            if ($this->in($this->Last(3), 'чек')) {
+                $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'е'));
+                $this->Rule(503);
+                return true;
+            }
+
+            
 //Если перед слово на ок, то нужно убрать о
             if ($this->Last(4) == 'енок' || $this->Last(4) == 'ёнок')//Поллок
             {
