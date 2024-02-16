@@ -4,6 +4,7 @@
   "minimum-stability": "stable",
   "license": "MIT",
   "varsion": "0.4.2",
+  "type":"library ",
   "authors": [
     {
       "name": "Andriy Chaika",
