@@ -4,18 +4,24 @@
  * @license Dual licensed under the MIT or GPL Version 2 licenses.
  * @package NameCaseLib
  */
+
 /**
- * 
+ *
  */
-require_once dirname(__FILE__) . '/NCL/NCLNameCaseCore.php';
+
+namespace seagullua\NameCaseLib;
+
+use seagullua\NameCaseLib\NCL\NCLNameCaseCore;
+use seagullua\NameCaseLib\NCL\NCLNameCaseWord;
+use seagullua\NameCaseLib\NCL\NCLStr;
 
 /**
  * <b>NCL NameCase Ukranian Language</b>
- * 
- * Украинские правила склонений ФИО. 
+ *
+ * Украинские правила склонений ФИО.
  * Правила определения пола человека по ФИО для украинского языка
- * Система разделения фамилий имен и отчеств для украинского языка 
- * 
+ * Система разделения фамилий имен и отчеств для украинского языка
+ *
  * @author Андрей Чайка <bymer3@gmail.com>
  * @version 0.4.1
  * @package NameCaseLib
@@ -25,7 +31,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
 
     /**
      * Версия языкового файла
-     * @var string 
+     * @var string
      */
     protected $languageBuild = '11071222';
     /**
@@ -35,32 +41,32 @@ class NCLNameCaseUa extends NCLNameCaseCore
     protected $CaseCount = 7;
     /**
      * Список гласных украинского языка
-     * @var string 
+     * @var string
      */
     private $vowels = 'аеиоуіїєюя';
     /**
      * Список согласных украинского языка
-     * @var string  
+     * @var string
      */
     private $consonant = "бвгджзйклмнпрстфхцчшщ";
     /**
-     * Українські шиплячі приголосні 
-     * @var string 
+     * Українські шиплячі приголосні
+     * @var string
      */
     private $shyplyachi = "жчшщ";
     /**
      * Українські нешиплячі приголосні
-     * @var string  
+     * @var string
      */
     private $neshyplyachi = "бвгдзклмнпрстфхц";
     /**
      * Українські завжди м’які звуки
-     * @var string  
+     * @var string
      */
     private $myaki = 'ьюяєї';
     /**
      * Українські губні звуки
-     * @var string 
+     * @var string
      */
     private $gubni = 'мвпбф';
 
@@ -72,11 +78,13 @@ class NCLNameCaseUa extends NCLNameCaseCore
      */
     private function inverseGKH($letter)
     {
-        switch ($letter)
-        {
-            case 'г': return 'з';
-            case 'к': return 'ц';
-            case 'х': return 'с';
+        switch ($letter) {
+            case 'г':
+                return 'з';
+            case 'к':
+                return 'ц';
+            case 'х':
+                return 'с';
         }
         return $letter;
     }
@@ -84,12 +92,11 @@ class NCLNameCaseUa extends NCLNameCaseCore
     /**
      * Перевіряє чи символ є апострофом чи не є
      * @param string(1) $char симпол для перевірки
-     * @return bool true якщо символ є апострофом 
+     * @return bool true якщо символ є апострофом
      */
     private function isApostrof($char)
     {
-        if ($this->in($char, ' ' . $this->consonant . $this->vowels))
-        {
+        if ($this->in($char, ' ' . $this->consonant . $this->vowels)) {
             return false;
         }
         return true;
@@ -99,14 +106,15 @@ class NCLNameCaseUa extends NCLNameCaseCore
      * Чергування українських приголосних
      * Чергування г к —» ж ч
      * @param string $letter літера, яку необхідно перевірити на чергування
-     * @return string літера, де вже відбулося чергування 
+     * @return string літера, де вже відбулося чергування
      */
     private function inverse2($letter)
     {
-        switch ($letter)
-        {
-            case 'к': return 'ч';
-            case 'г': return 'ж';
+        switch ($letter) {
+            case 'к':
+                return 'ч';
+            case 'г':
+                return 'ж';
         }
         return $letter;
     }
@@ -116,46 +124,39 @@ class NCLNameCaseUa extends NCLNameCaseCore
      * 1 - тверда
      * 2 - мішана
      * 3 - м’яка
-     * 
+     *
      * <b>Правило:</b>
-     * - Іменники з основою на твердий нешиплячий належать до твердої групи: 
+     * - Іменники з основою на твердий нешиплячий належать до твердої групи:
      *   береза, дорога, Дніпро, шлях, віз, село, яблуко.
-     * - Іменники з основою на твердий шиплячий належать до мішаної групи: 
+     * - Іменники з основою на твердий шиплячий належать до мішаної групи:
      *   пожеж-а, пущ-а, тиш-а, алич-а, вуж, кущ, плющ, ключ, плече, прізвище.
-     * - Іменники з основою на будь-який м'який чи пом'якше­ний належать до м'якої групи: 
-     *   земля [земл'а], зоря [зор'а], армія [арм'ійа], сім'я [с'імйа], серпень, фахівець, 
+     * - Іменники з основою на будь-який м'який чи пом'якше­ний належать до м'якої групи:
+     *   земля [земл'а], зоря [зор'а], армія [арм'ійа], сім'я [с'імйа], серпень, фахівець,
      *   трамвай, су­зір'я [суз'ірйа], насіння [насін'н'а], узвишшя Іузвиш'ш'а
      * @param string $word іменник, групу якого необхідно визначити
-     * @return int номер групи іменника 
+     * @return int номер групи іменника
      */
     private function detect2Group($word)
     {
         $osnova = $word;
         $stack = array();
         //Ріжемо слово поки не зустрінемо приголосний і записуемо в стек всі голосні які зустріли
-        while ($this->in(NCLStr::substr($osnova, -1, 1), $this->vowels . 'ь'))
-        {
+        while ($this->in(NCLStr::substr($osnova, -1, 1), $this->vowels . 'ь')) {
             $stack[] = NCLStr::substr($osnova, -1, 1);
             $osnova = NCLStr::substr($osnova, 0, NCLStr::strlen($osnova) - 1);
         }
         $stacksize = count($stack);
         $Last = 'Z'; //нульове закінчення
-        if ($stacksize)
-        {
+        if ($stacksize) {
             $Last = $stack[count($stack) - 1];
         }
 
         $osnovaEnd = NCLStr::substr($osnova, -1, 1);
-        if ($this->in($osnovaEnd, $this->neshyplyachi) and !$this->in($Last, $this->myaki))
-        {
+        if ($this->in($osnovaEnd, $this->neshyplyachi) and !$this->in($Last, $this->myaki)) {
             return 1;
-        }
-        elseif ($this->in($osnovaEnd, $this->shyplyachi) and !$this->in($Last, $this->myaki))
-        {
+        } elseif ($this->in($osnovaEnd, $this->shyplyachi) and !$this->in($Last, $this->myaki)) {
             return 2;
-        }
-        else
-        {
+        } else {
             return 3;
         }
     }
@@ -169,11 +170,9 @@ class NCLNameCaseUa extends NCLNameCaseCore
     private function FirstLastVowel($word, $vowels)
     {
         $length = NCLStr::strlen($word);
-        for ($i = $length - 1; $i > 0; $i--)
-        {
+        for ($i = $length - 1; $i > 0; $i--) {
             $char = NCLStr::substr($word, $i, 1);
-            if ($this->in($char, $vowels))
-            {
+            if ($this->in($char, $vowels)) {
                 return $char;
             }
         }
@@ -189,8 +188,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
     {
         $osnova = $word;
         //Ріжемо слово поки не зустрінемо приголосний
-        while ($this->in(NCLStr::substr($osnova, -1, 1), $this->vowels . 'ь'))
-        {
+        while ($this->in(NCLStr::substr($osnova, -1, 1), $this->vowels . 'ь')) {
             $osnova = NCLStr::substr($osnova, 0, NCLStr::strlen($osnova) - 1);
         }
         return $osnova;
@@ -200,10 +198,10 @@ class NCLNameCaseUa extends NCLNameCaseCore
      * Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я),
      * відмінються як відповідні іменники І відміни.
      * <ul>
-     * <li>Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах 
-     *   у давальному та місцевому відмінках однини перед закінченням -і 
+     * <li>Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах
+     *   у давальному та місцевому відмінках однини перед закінченням -і
      *   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.</li>
-     * <li>Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини 
+     * <li>Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини
      *   в кінці основи між приголосними з'являється звук о: Одарок, Парасок. </li>
      * </ul>
      * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
@@ -214,24 +212,18 @@ class NCLNameCaseUa extends NCLNameCaseCore
         $BeforeLast = $this->Last(2, 1);
 
         //Останні літера або а
-        if ($this->Last(1) == 'а')
-        {
+        if ($this->Last(1) == 'а') {
             $this->wordForms($this->workingWord, array($BeforeLast . 'и', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'у', $BeforeLast . 'ою', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'о'), 2);
             $this->Rule(101);
             return true;
-        }
-        //Остання літера я
-        elseif ($this->Last(1) == 'я')
-        {
+        } //Остання літера я
+        elseif ($this->Last(1) == 'я') {
             //Перед останньою літерою стоїть я
-            if ($BeforeLast == 'і')
-            {
+            if ($BeforeLast == 'і') {
                 $this->wordForms($this->workingWord, array('ї', 'ї', 'ю', 'єю', 'ї', 'є'), 1);
                 $this->Rule(102);
                 return true;
-            }
-            else
-            {
+            } else {
                 $this->wordForms($this->workingWord, array($BeforeLast . 'і', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'ю', $BeforeLast . 'ею', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'е'), 2);
                 $this->Rule(103);
                 return true;
@@ -241,25 +233,20 @@ class NCLNameCaseUa extends NCLNameCaseCore
     }
 
     /**
-     * Імена, що в називному відмінку закінчуються на -р, у родовому мають закінчення -а: 
+     * Імена, що в називному відмінку закінчуються на -р, у родовому мають закінчення -а:
      * Віктор - Віктора, Макар - Макара, але: Ігор - Ігоря, Лазар - Лазаря.
      * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manRule2()
     {
-        if ($this->Last(1) == 'р')
-        {
-            if ($this->inNames($this->workingWord, array('Ігор', 'Лазар')))
-            {
+        if ($this->Last(1) == 'р') {
+            if ($this->inNames($this->workingWord, array('Ігор', 'Лазар'))) {
                 $this->wordForms($this->workingWord, array('я', 'еві', 'я', 'ем', 'еві', 'е'));
                 $this->Rule(201);
                 return true;
-            }
-            else
-            {
+            } else {
                 $osnova = $this->workingWord;
-                if (NCLStr::substr($osnova, -2, 1) == 'і')
-                {
+                if (NCLStr::substr($osnova, -2, 1) == 'і') {
                     $osnova = NCLStr::substr($osnova, 0, NCLStr::strlen($osnova) - 2) . 'о' . NCLStr::substr($osnova, -1, 1);
                 }
                 $this->wordForms($osnova, array('а', 'ові', 'а', 'ом', 'ові', 'е'));
@@ -271,115 +258,91 @@ class NCLNameCaseUa extends NCLNameCaseCore
     }
 
     /**
-     * Українські чоловічі імена, що в називному відмінку однини закінчуються на приголосний та -о, 
+     * Українські чоловічі імена, що в називному відмінку однини закінчуються на приголосний та -о,
      * відмінюються як відповідні іменники ІІ відміни.
-     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manRule3()
     {
         //Предпоследний символ
         $BeforeLast = $this->Last(2, 1);
 
-        if ($this->in($this->Last(1), $this->consonant . 'оь'))
-        {
+        if ($this->in($this->Last(1), $this->consonant . 'оь')) {
             $group = $this->detect2Group($this->workingWord);
             $osnova = $this->getOsnova($this->workingWord);
             //В іменах типу Антін, Нестір, Нечипір, Прокіп, Сидір, Тиміш, Федір голосний і виступає тільки в 
             //називному відмінку, у непрямих - о: Антона, Антонові                           
             //Чергування і -» о всередині
             $osLast = NCLStr::substr($osnova, -1, 1);
-            if ($osLast != 'й' and NCLStr::substr($osnova, -2, 1) == 'і' and !$this->in(NCLStr::substr(NCLStr::strtolower($osnova), -4, 4), array('світ', 'цвіт')) and !$this->inNames($this->workingWord, 'Гліб') and !$this->in($this->Last(2), array('ік', 'іч')))
-            {
+            if ($osLast != 'й' and NCLStr::substr($osnova, -2, 1) == 'і' and !$this->in(NCLStr::substr(NCLStr::strtolower($osnova), -4, 4), array('світ', 'цвіт')) and !$this->inNames($this->workingWord, 'Гліб') and !$this->in($this->Last(2), array('ік', 'іч'))) {
                 $osnova = NCLStr::substr($osnova, 0, NCLStr::strlen($osnova) - 2) . 'о' . NCLStr::substr($osnova, -1, 1);
             }
 
 
             //Випадання букви е при відмінюванні слів типу Орел
-            if (NCLStr::substr($osnova, 0, 1) == 'о' and $this->FirstLastVowel($osnova, $this->vowels . 'гк') == 'е' and $this->Last(2) != 'сь')
-            {
+            if (NCLStr::substr($osnova, 0, 1) == 'о' and $this->FirstLastVowel($osnova, $this->vowels . 'гк') == 'е' and $this->Last(2) != 'сь') {
                 $delim = NCLStr::strrpos($osnova, 'е');
                 $osnova = NCLStr::substr($osnova, 0, $delim) . NCLStr::substr($osnova, $delim + 1, NCLStr::strlen($osnova) - $delim);
             }
 
 
-            if ($group == 1)
-            {
+            if ($group == 1) {
                 //Тверда група
                 //Слова що закінчуються на ок
-                if ($this->Last(2) == 'ок' and $this->Last(3) != 'оок')
-                {
+                if ($this->Last(2) == 'ок' and $this->Last(3) != 'оок') {
                     $this->wordForms($this->workingWord, array('ка', 'кові', 'ка', 'ком', 'кові', 'че'), 2);
                     $this->Rule(301);
                     return true;
-                }
-                //Російські прізвища на ов, ев, єв
-                elseif ($this->in($this->Last(2), array('ов', 'ев', 'єв')) and !$this->inNames($this->workingWord, array('Лев', 'Остромов')))
-                {
+                } //Російські прізвища на ов, ев, єв
+                elseif ($this->in($this->Last(2), array('ов', 'ев', 'єв')) and !$this->inNames($this->workingWord, array('Лев', 'Остромов'))) {
                     $this->wordForms($osnova, array($osLast . 'а', $osLast . 'у', $osLast . 'а', $osLast . 'им', $osLast . 'у', $this->inverse2($osLast) . 'е'), 1);
                     $this->Rule(302);
                     return true;
-                }
-                //Російські прізвища на ін
-                elseif ($this->in($this->Last(2), array('ін')))
-                {
+                } //Російські прізвища на ін
+                elseif ($this->in($this->Last(2), array('ін'))) {
                     $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ом', 'у', 'е'));
                     $this->Rule(303);
                     return true;
-                }
-                else
-                {
+                } else {
                     $this->wordForms($osnova, array($osLast . 'а', $osLast . 'ові', $osLast . 'а', $osLast . 'ом', $osLast . 'ові', $this->inverse2($osLast) . 'е'), 1);
                     $this->Rule(304);
                     return true;
                 }
             }
-            if ($group == 2)
-            {
+            if ($group == 2) {
                 //Мішана група
                 $this->wordForms($osnova, array('а', 'еві', 'а', 'ем', 'еві', 'е'));
                 $this->Rule(305);
                 return true;
             }
-            if ($group == 3)
-            {
+            if ($group == 3) {
                 //М’яка група
                 //Соловей
-                if ($this->Last(2) == 'ей' and $this->in($this->Last(3, 1), $this->gubni))
-                {
+                if ($this->Last(2) == 'ей' and $this->in($this->Last(3, 1), $this->gubni)) {
                     $osnova = NCLStr::substr($this->workingWord, 0, NCLStr::strlen($this->workingWord) - 2) . '’';
                     $this->wordForms($osnova, array('я', 'єві', 'я', 'єм', 'єві', 'ю'));
                     $this->Rule(306);
                     return true;
-                }
-                elseif ($this->Last(1) == 'й' or $BeforeLast == 'і')
-                {
+                } elseif ($this->Last(1) == 'й' or $BeforeLast == 'і') {
                     $this->wordForms($this->workingWord, array('я', 'єві', 'я', 'єм', 'єві', 'ю'), 1);
                     $this->Rule(307);
                     return true;
-                }
-                //Швець
-                elseif ($this->workingWord == 'швець')
-                {
+                } //Швець
+                elseif ($this->workingWord == 'швець') {
                     $this->wordForms($this->workingWord, array('евця', 'евцеві', 'евця', 'евцем', 'евцеві', 'евцю'), 4);
                     $this->Rule(308);
                     return true;
-                }
-                //Слова що закінчуються на ець
-                elseif ($this->Last(3) == 'ець')
-                {
+                } //Слова що закінчуються на ець
+                elseif ($this->Last(3) == 'ець') {
                     $this->wordForms($this->workingWord, array('ця', 'цеві', 'ця', 'цем', 'цеві', 'цю'), 3);
                     $this->Rule(309);
                     return true;
-                }
-                //Слова що закінчуються на єць яць
-                elseif ($this->in($this->Last(3), array('єць', 'яць')))
-                {
+                } //Слова що закінчуються на єць яць
+                elseif ($this->in($this->Last(3), array('єць', 'яць'))) {
                     $this->wordForms($this->workingWord, array('йця', 'йцеві', 'йця', 'йцем', 'йцеві', 'йцю'), 3);
                     $this->Rule(310);
                     return true;
-                }
-                else
-                {
+                } else {
                     $this->wordForms($osnova, array('я', 'еві', 'я', 'ем', 'еві', 'ю'));
                     $this->Rule(311);
                     return true;
@@ -395,8 +358,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
      */
     protected function manRule4()
     {
-        if ($this->Last(1) == 'і')
-        {
+        if ($this->Last(1) == 'і') {
             $this->wordForms($this->workingWord, array('их', 'им', 'их', 'ими', 'их', 'і'), 1);
             $this->Rule(4);
             return true;
@@ -406,12 +368,11 @@ class NCLNameCaseUa extends NCLNameCaseCore
 
     /**
      * Якщо слово закінчується на ий або ой
-     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function manRule5()
     {
-        if ($this->in($this->Last(2), array('ий', 'ой')))
-        {
+        if ($this->in($this->Last(2), array('ий', 'ой'))) {
             $this->wordForms($this->workingWord, array('ого', 'ому', 'ого', 'им', 'ому', 'ий'), 2);
             $this->Rule(5);
             return true;
@@ -420,14 +381,14 @@ class NCLNameCaseUa extends NCLNameCaseCore
     }
 
     /**
-     * Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я), 
-     * відмінються як відповідні іменники І відміни.  
-     * - Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах 
-     *   у давальному та місцевому відмінках однини перед закінченням -і 
+     * Українські чоловічі та жіночі імена, що в називному відмінку однини закінчуються на -а (-я),
+     * відмінються як відповідні іменники І відміни.
+     * - Примітка 1. Кінцеві приголосні основи г, к, х у жіночих іменах
+     *   у давальному та місцевому відмінках однини перед закінченням -і
      *   змінюються на з, ц, с: Ольга - Ользі, Палажка - Палажці, Солоха - Солосі.
-     * - Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини 
-     *   в кінці основи між приголосними з'являється звук о: Одарок, Парасок 
-     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
+     * - Примітка 2. У жіночих іменах типу Одарка, Параска в родовому відмінку множини
+     *   в кінці основи між приголосними з'являється звук о: Одарок, Парасок
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function womanRule1()
     {
@@ -435,33 +396,24 @@ class NCLNameCaseUa extends NCLNameCaseCore
         $BeforeLast = $this->Last(2, 1);
 
         //Якщо закінчується на ніга -» нога
-        if ($this->Last(4) == 'ніга')
-        {
+        if ($this->Last(4) == 'ніга') {
             $osnova = NCLStr::substr($this->workingWord, 0, NCLStr::strlen($this->workingWord) - 3) . 'о';
             $this->wordForms($osnova, array('ги', 'зі', 'гу', 'гою', 'зі', 'го'));
             $this->Rule(101);
             return true;
-        }
-
-        //Останні літера або а
-        elseif ($this->Last(1) == 'а')
-        {
+        } //Останні літера або а
+        elseif ($this->Last(1) == 'а') {
             $this->wordForms($this->workingWord, array($BeforeLast . 'и', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'у', $BeforeLast . 'ою', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'о'), 2);
             $this->Rule(102);
             return true;
-        }
-        //Остання літера я
-        elseif ($this->Last(1) == 'я')
-        {
+        } //Остання літера я
+        elseif ($this->Last(1) == 'я') {
 
-            if ($this->in($BeforeLast, $this->vowels) or $this->isApostrof($BeforeLast))
-            {
+            if ($this->in($BeforeLast, $this->vowels) or $this->isApostrof($BeforeLast)) {
                 $this->wordForms($this->workingWord, array('ї', 'ї', 'ю', 'єю', 'ї', 'є'), 1);
                 $this->Rule(103);
                 return true;
-            }
-            else
-            {
+            } else {
                 $this->wordForms($this->workingWord, array($BeforeLast . 'і', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'ю', $BeforeLast . 'ею', $this->inverseGKH($BeforeLast) . 'і', $BeforeLast . 'е'), 2);
                 $this->Rule(104);
                 return true;
@@ -471,14 +423,13 @@ class NCLNameCaseUa extends NCLNameCaseCore
     }
 
     /**
-     * Українські жіночі імена, що в називному відмінку однини закінчуються на приголосний, 
+     * Українські жіночі імена, що в називному відмінку однини закінчуються на приголосний,
      * відмінюються як відповідні іменники ІІІ відміни
-     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function womanRule2()
     {
-        if ($this->in($this->Last(1), $this->consonant . 'ь'))
-        {
+        if ($this->in($this->Last(1), $this->consonant . 'ь')) {
             $osnova = $this->getOsnova($this->workingWord);
             $apostrof = '';
             $duplicate = '';
@@ -486,27 +437,22 @@ class NCLNameCaseUa extends NCLNameCaseCore
             $osBeforeLast = NCLStr::substr($osnova, -2, 1);
 
             //Чи треба ставити апостроф
-            if ($this->in($osLast, 'мвпбф') and ($this->in($osBeforeLast, $this->vowels)))
-            {
+            if ($this->in($osLast, 'мвпбф') and ($this->in($osBeforeLast, $this->vowels))) {
                 $apostrof = '’';
             }
 
             //Чи треба подвоювати
-            if ($this->in($osLast, 'дтзсцлн'))
-            {
+            if ($this->in($osLast, 'дтзсцлн')) {
                 $duplicate = $osLast;
             }
 
 
             //Відмінюємо
-            if ($this->Last(1) == 'ь')
-            {
+            if ($this->Last(1) == 'ь') {
                 $this->wordForms($osnova, array('і', 'і', 'ь', $duplicate . $apostrof . 'ю', 'і', 'е'));
                 $this->Rule(201);
                 return true;
-            }
-            else
-            {
+            } else {
                 $this->wordForms($osnova, array('і', 'і', '', $duplicate . $apostrof . 'ю', 'і', 'е'));
                 $this->Rule(202);
                 return true;
@@ -517,7 +463,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
 
     /**
      * Якщо слово на ськ або це російське прізвище
-     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено 
+     * @return boolean true - якщо було задіяно правило з переліку, false - якщо правило не знайдено
      */
     protected function womanRule3()
     {
@@ -525,16 +471,14 @@ class NCLNameCaseUa extends NCLNameCaseCore
         $BeforeLast = $this->Last(2, 1);
 
         //Донская
-        if ($this->Last(2) == 'ая')
-        {
+        if ($this->Last(2) == 'ая') {
             $this->wordForms($this->workingWord, array('ої', 'ій', 'ую', 'ою', 'ій', 'ая'), 2);
             $this->Rule(301);
             return true;
         }
 
         //Ті що на ськ
-        if ($this->Last(1) == 'а' and ($this->in($this->Last(2, 1), 'чнв') or $this->in($this->Last(3, 2), array('ьк'))))
-        {
+        if ($this->Last(1) == 'а' and ($this->in($this->Last(2, 1), 'чнв') or $this->in($this->Last(3, 2), array('ьк')))) {
             $this->wordForms($this->workingWord, array($BeforeLast . 'ої', $BeforeLast . 'ій', $BeforeLast . 'у', $BeforeLast . 'ою', $BeforeLast . 'ій', $BeforeLast . 'о'), 2);
             $this->Rule(302);
             return true;
@@ -585,8 +529,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
      */
     protected function manFatherName()
     {
-        if ($this->in($this->Last(2), array('ич', 'іч')))
-        {
+        if ($this->in($this->Last(2), array('ич', 'іч'))) {
             $this->wordForms($this->workingWord, array('а', 'у', 'а', 'ем', 'у', 'у'));
             return true;
         }
@@ -599,8 +542,7 @@ class NCLNameCaseUa extends NCLNameCaseCore
      */
     protected function womanFatherName()
     {
-        if ($this->in($this->Last(3), array('вна')))
-        {
+        if ($this->in($this->Last(3), array('вна'))) {
             $this->wordForms($this->workingWord, array('и', 'і', 'у', 'ою', 'і', 'о'), 1);
             return true;
         }
@@ -619,44 +561,36 @@ class NCLNameCaseUa extends NCLNameCaseCore
         $woman = 0; //Женщина
         //Попробуем выжать максимум из имени
         //Если имя заканчивается на й, то скорее всего мужчина
-        if ($this->Last(1) == 'й')
-        {
-            $man+=0.9;
+        if ($this->Last(1) == 'й') {
+            $man += 0.9;
         }
 
-        if ($this->inNames($this->workingWord, array('Петро', 'Микола')))
-        {
-            $man+=30;
+        if ($this->inNames($this->workingWord, array('Петро', 'Микола'))) {
+            $man += 30;
         }
 
-        if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло')))
-        {
-            $man+=0.5;
+        if ($this->in($this->Last(2), array('он', 'ов', 'ав', 'ам', 'ол', 'ан', 'рд', 'мп', 'ко', 'ло'))) {
+            $man += 0.5;
         }
 
-        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила', 'опа')))
-        {
-            $woman+=0.5;
+        if ($this->in($this->Last(3), array('бов', 'нка', 'яра', 'ила', 'опа'))) {
+            $woman += 0.5;
         }
 
-        if ($this->in($this->Last(1), $this->consonant))
-        {
-            $man+=0.01;
+        if ($this->in($this->Last(1), $this->consonant)) {
+            $man += 0.01;
         }
 
-        if ($this->Last(1) == 'ь')
-        {
-            $man+=0.02;
+        if ($this->Last(1) == 'ь') {
+            $man += 0.02;
         }
 
-        if ($this->in($this->Last(2), array('дь')))
-        {
-            $woman+=0.1;
+        if ($this->in($this->Last(2), array('дь'))) {
+            $woman += 0.1;
         }
 
-        if ($this->in($this->Last(3), array('ель', 'бов')))
-        {
-            $woman+=0.4;
+        if ($this->in($this->Last(3), array('ель', 'бов'))) {
+            $woman += 0.4;
         }
 
         $word->setGender($man, $woman);
@@ -673,19 +607,16 @@ class NCLNameCaseUa extends NCLNameCaseCore
         $man = 0; //Мужчина
         $woman = 0; //Женщина
 
-        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ой', 'ей')))
-        {
-            $man+=0.4;
+        if ($this->in($this->Last(2), array('ов', 'ин', 'ев', 'єв', 'ін', 'їн', 'ий', 'їв', 'ів', 'ой', 'ей'))) {
+            $man += 0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'єва', 'іна', 'мін')))
-        {
-            $woman+=0.4;
+        if ($this->in($this->Last(3), array('ова', 'ина', 'ева', 'єва', 'іна', 'мін'))) {
+            $woman += 0.4;
         }
 
-        if ($this->in($this->Last(2), array('ая')))
-        {
-            $woman+=0.4;
+        if ($this->in($this->Last(2), array('ая'))) {
+            $woman += 0.4;
         }
 
         $word->setGender($man, $woman);
@@ -699,12 +630,10 @@ class NCLNameCaseUa extends NCLNameCaseCore
     {
         $this->setWorkingWord($word->getWord());
 
-        if ($this->Last(2) == 'ич')
-        {
+        if ($this->Last(2) == 'ич') {
             $word->setGender(10, 0); // мужчина
         }
-        if ($this->Last(2) == 'на')
-        {
+        if ($this->Last(2) == 'на') {
             $word->setGender(0, 12); // женщина
         }
     }
@@ -727,56 +656,44 @@ class NCLNameCaseUa extends NCLNameCaseCore
         $father = 0;
 
         //если смахивает на отчество
-        if ($this->in($this->Last(3), array('вна', 'чна', 'ліч')) or $this->in($this->Last(4), array('ьмич', 'ович')))
-        {
-            $father+=3;
+        if ($this->in($this->Last(3), array('вна', 'чна', 'ліч')) or $this->in($this->Last(4), array('ьмич', 'ович'))) {
+            $father += 3;
         }
 
         //Похоже на имя
-        if ($this->in($this->Last(3), array('тин' /* {endings_sirname3} */)) or $this->in($this->Last(4), array('ьмич', 'юбов', 'івна', 'явка', 'орив', 'кіян' /* {endings_sirname4} */)))
-        {
-            $first+=0.5;
+        if ($this->in($this->Last(3), array('тин' /* {endings_sirname3} */)) or $this->in($this->Last(4), array('ьмич', 'юбов', 'івна', 'явка', 'орив', 'кіян' /* {endings_sirname4} */))) {
+            $first += 0.5;
         }
 
         //Исключения
-        if ($this->inNames($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь', 'Микола', 'Мая', 'Англеліна', 'Елькін', 'Мерлін')))
-        {
-            $first+=10;
+        if ($this->inNames($namepart, array('Лев', 'Гаїна', 'Афіна', 'Антоніна', 'Ангеліна', 'Альвіна', 'Альбіна', 'Аліна', 'Павло', 'Олесь', 'Микола', 'Мая', 'Англеліна', 'Елькін', 'Мерлін'))) {
+            $first += 10;
         }
 
         //похоже на фамилию
-        if ($this->in($this->Last(2), array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх', 'ут', 'ча', 'ул', 'вк', 'зь', 'уц', 'їн', 'де', 'уз', 'юр', 'ік', 'іч', 'ро' /* {endings_name2} */)))
-        {
-            $second+=0.4;
+        if ($this->in($this->Last(2), array('ов', 'ін', 'ев', 'єв', 'ий', 'ин', 'ой', 'ко', 'ук', 'як', 'ца', 'их', 'ик', 'ун', 'ок', 'ша', 'ая', 'га', 'єк', 'аш', 'ив', 'юк', 'ус', 'це', 'ак', 'бр', 'яр', 'іл', 'ів', 'ич', 'сь', 'ей', 'нс', 'яс', 'ер', 'ай', 'ян', 'ах', 'ць', 'ющ', 'іс', 'ач', 'уб', 'ох', 'юх', 'ут', 'ча', 'ул', 'вк', 'зь', 'уц', 'їн', 'де', 'уз', 'юр', 'ік', 'іч', 'ро' /* {endings_name2} */))) {
+            $second += 0.4;
         }
 
-        if ($this->in($this->Last(3), array('ова', 'ева', 'єва', 'тих', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'чий', 'іна', 'їна', 'ька', 'ань', 'ива', 'аль', 'ура', 'ран', 'ало', 'ола', 'кур', 'оба', 'оль', 'нта', 'зій', 'ґан', 'іло', 'шта', 'юпа', 'рна', 'бла', 'еїн', 'има', 'мар', 'кар', 'оха', 'чур', 'ниш', 'ета', 'тна', 'зур', 'нір', 'йма', 'орж', 'рба', 'іла', 'лас', 'дід', 'роз', 'аба', 'чан', 'ган' /* {endings_name3} */)))
-        {
-            $second+=0.4;
+        if ($this->in($this->Last(3), array('ова', 'ева', 'єва', 'тих', 'рик', 'вач', 'аха', 'шен', 'мей', 'арь', 'вка', 'шир', 'бан', 'чий', 'іна', 'їна', 'ька', 'ань', 'ива', 'аль', 'ура', 'ран', 'ало', 'ола', 'кур', 'оба', 'оль', 'нта', 'зій', 'ґан', 'іло', 'шта', 'юпа', 'рна', 'бла', 'еїн', 'има', 'мар', 'кар', 'оха', 'чур', 'ниш', 'ета', 'тна', 'зур', 'нір', 'йма', 'орж', 'рба', 'іла', 'лас', 'дід', 'роз', 'аба', 'чан', 'ган' /* {endings_name3} */))) {
+            $second += 0.4;
         }
 
-        if ($this->in($this->Last(4), array('ьник', 'нчук', 'тник', 'кирь', 'ский', 'шена', 'шина', 'вина', 'нина', 'гана', 'гана', 'хній', 'зюба', 'орош', 'орон', 'сило', 'руба', 'лест', 'мара', 'обка', 'рока', 'сика', 'одна', 'нчар', 'вата', 'ндар', 'грій' /* {endings_name4} */)))
-        {
-            $second+=0.4;
+        if ($this->in($this->Last(4), array('ьник', 'нчук', 'тник', 'кирь', 'ский', 'шена', 'шина', 'вина', 'нина', 'гана', 'гана', 'хній', 'зюба', 'орош', 'орон', 'сило', 'руба', 'лест', 'мара', 'обка', 'рока', 'сика', 'одна', 'нчар', 'вата', 'ндар', 'грій' /* {endings_name4} */))) {
+            $second += 0.4;
         }
 
-        if ($this->Last(1) == 'і')
-        {
-            $second+=0.2;
+        if ($this->Last(1) == 'і') {
+            $second += 0.2;
         }
 
         $max = max(array($first, $second, $father));
 
-        if ($first == $max)
-        {
+        if ($first == $max) {
             $word->setNamePart('N');
-        }
-        elseif ($second == $max)
-        {
+        } elseif ($second == $max) {
             $word->setNamePart('S');
-        }
-        else
-        {
+        } else {
             $word->setNamePart('F');
         }
     }
